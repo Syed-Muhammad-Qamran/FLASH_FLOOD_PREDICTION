@@ -1,0 +1,27 @@
+# Domain definition. Change this file to move the prototype to another region.
+name: kp-peshawar
+description: >
+  Khyber Pakhtunkhwa operational prototype. Covers the Kabul, Swat, Panjkora,
+  Chitral, Gomal and upper Indus catchments that drain into the Peshawar valley
+  and D.I. Khan. Two flood mechanisms: monsoon cloudburst hill-torrents (Model A)
+  and seasonal snow/glacier melt (Model B).
+
+crs: EPSG:4326
+
+# min_lon, min_lat, max_lon, max_lat
+bbox: [69.5, 31.3, 74.0, 37.3]
+
+# Display only. All stored timestamps are UTC.
+display_timezone: Asia/Karachi
+utc_offset_hours: 5
+
+basins_geojson: data/static/basins.geojson
+
+# IMERG / ERA5 request box is intentionally slightly larger than the basin bbox
+# so that upstream rainfall is not clipped at the watershed divide.
+ingest_bbox: [69.0, 31.0, 74.5, 37.5]
+
+# Operational cadence.
+timestep_hours: 3          # Model A
+daily_timestep_days: 1     # Model B
+forecast_hours: 72         # Open-Meteo look-ahead used by the rule engine

@@ -1,0 +1,40 @@
+# Operating thresholds.
+#
+# PROVENANCE RULE: every number in the `calibrated:` blocks must come from
+# scripts/05_calibrate.py run on VALIDATION years only. Hand-editing these to
+# improve test scores is the one thing that destroys the credibility of the
+# prototype. Record the commit hash in docs/log.md when you change them.
+#
+# `defaults:` are the pre-calibration values used until week 5.
+
+model_a:
+  defaults:
+    rain_3h_percentile: 0.95
+    rain_3h_floor_mm: 20.0
+    soil_moisture_percentile: 0.70
+    tiers: {low: 0.30, moderate: 0.50, high: 0.70, severe: 0.85}
+  calibrated: {}
+
+model_b:
+  defaults:
+    discharge_percentile: 0.90
+    tiers: {low: 0.30, moderate: 0.50, high: 0.70, severe: 0.85}
+  calibrated: {}
+
+fusion:
+  # "max" = higher risk wins (plan default). "noisy_or" = 1-(1-pA)(1-pB).
+  rule: max
+  # If both modules are at or above their `moderate` tier, raise the fused
+  # tier by one level and set compound=true.
+  compound_escalate: true
+  # A daily Model B value may be carried forward to 3-hourly rows for at most
+  # this many hours before it is treated as stale.
+  model_b_max_age_hours: 24
+
+alerts:
+  min_tier: high
+  # file = write alerts.json only (shadow mode, no external delivery)
+  delivery: file
+  # Populate these in .env only when you deliberately leave shadow mode.
+  telegram_bot_token_env: TELEGRAM_BOT_TOKEN
+  telegram_chat_id_env: TELEGRAM_CHAT_ID

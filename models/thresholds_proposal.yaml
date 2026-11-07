@@ -1,0 +1,23 @@
+'# PROPOSAL ONLY - review, then copy values into configs/thresholds.yaml': null
+model_a:
+  calibrated:
+    tiers:
+      low: 0.3325
+      moderate: 0.6175
+      high: 0.95
+      severe: 0.999899
+    operating_threshold: 0.968461
+    calibrated_on: validation
+    rows: 44800
+    positives: 448
+model_b:
+  calibrated:
+    tiers:
+      low: 0.28983
+      moderate: 0.538256
+      high: 0.828086
+      severe: 0.9999
+    operating_threshold: 0.828086
+    calibrated_on: validation
+    rows: 44800
+    positives: 7178

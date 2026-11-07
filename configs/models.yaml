@@ -1,0 +1,40 @@
+# Model training settings. Kept separate from thresholds so that a tuning
+# change does not look like a threshold change in the git history.
+
+model_a:
+  # Predict whether an event occurs in the next `horizon_steps` x 3h.
+  # 2 steps = 6 hours of real lead time.
+  horizon_steps: 2
+  hidden_size: 64
+  num_layers: 2
+  dropout: 0.25
+  lr: 0.001
+  batch_size: 256
+  max_epochs: 30
+  pos_weight: auto
+  seeds: [0, 1, 2, 3, 4]
+
+model_b:
+  # 8 x 3h = 24 hours ahead. If you later resample B to daily, set this to 1.
+  horizon_steps: 8
+  hidden_size: 64
+  num_layers: 2
+  dropout: 0.25
+  lr: 0.001
+  batch_size: 256
+  max_epochs: 30
+  pos_weight: auto
+  seeds: [0, 1, 2, 3, 4]
+
+baseline:
+  # Gradient-boosted trees. HistGradientBoosting is used so the baseline runs
+  # without xgboost installed; switch to XGBoost once the environment has it.
+  backend: hist_gradient_boosting
+  # Calibrate probabilities with internal cross-validation on TRAIN only.
+  # Without this the trees are wildly overconfident and tier cutoffs collapse.
+  calibrate: true
+  max_iter: 300
+  learning_rate: 0.05
+  max_leaf_nodes: 31
+  min_samples_leaf: 40
+  l2_regularization: 1.0

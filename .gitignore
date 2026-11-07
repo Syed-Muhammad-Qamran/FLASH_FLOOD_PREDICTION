@@ -1,0 +1,27 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Data is never committed. Keep the folder, ignore the contents.
+data/**
+!data/.gitkeep
+!data/README.md
+
+# Model checkpoints and run artefacts
+models/*.pt
+models/*.pkl
+runs/
+
+# Local secrets
+.env
+.secrets/
+credentials*.json
+
+# OS noise
+.DS_Store
+Thumbs.db

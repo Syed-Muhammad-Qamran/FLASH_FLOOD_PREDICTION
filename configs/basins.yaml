@@ -1,0 +1,82 @@
+# Operational control points.
+#
+# These are river gauging / outlet control points, NOT delineated catchments.
+# scripts/01_make_basins.py writes a placeholder basins.geojson (buffered points)
+# so the pipeline runs. Replace it in week 1 with a HydroSHEDS / MERIT-Hydro
+# delineation and keep the same basin_id values.
+#
+# area_km2 and elevation_mean_m are approximate and are used only by the
+# synthetic demo generator and as sanity checks. Do not cite them.
+
+basins:
+  - basin_id: kabul_peshawar
+    name: Kabul River at Peshawar
+    lon: 71.58
+    lat: 34.02
+    area_km2: 92000
+    elevation_mean_m: 2100
+    snow_fraction: 0.18
+    primary_mechanism: mixed
+
+  - basin_id: kabul_nowshera
+    name: Kabul River at Nowshera
+    lon: 72.00
+    lat: 34.02
+    area_km2: 87000
+    elevation_mean_m: 2200
+    snow_fraction: 0.20
+    primary_mechanism: mixed
+
+  - basin_id: swat_chakdara
+    name: Swat River at Chakdara
+    lon: 72.03
+    lat: 34.65
+    area_km2: 14000
+    elevation_mean_m: 2600
+    snow_fraction: 0.30
+    primary_mechanism: cloudburst
+
+  - basin_id: panjkora_dir
+    name: Panjkora River at Dir
+    lon: 71.88
+    lat: 35.20
+    area_km2: 4200
+    elevation_mean_m: 2900
+    snow_fraction: 0.38
+    primary_mechanism: cloudburst
+
+  - basin_id: chitral_chitral
+    name: Chitral River at Chitral
+    lon: 71.79
+    lat: 35.85
+    area_km2: 11400
+    elevation_mean_m: 3600
+    snow_fraction: 0.52
+    primary_mechanism: melt
+
+  - basin_id: kohat_toi
+    name: Kohat Toi at Kohat
+    lon: 71.44
+    lat: 33.58
+    area_km2: 2600
+    elevation_mean_m: 1100
+    snow_fraction: 0.02
+    primary_mechanism: cloudburst
+
+  - basin_id: gomal_dik
+    name: Gomal River at D.I. Khan
+    lon: 70.90
+    lat: 31.83
+    area_km2: 30000
+    elevation_mean_m: 1400
+    snow_fraction: 0.05
+    primary_mechanism: cloudburst
+
+  - basin_id: indus_besham
+    name: Indus River at Besham
+    lon: 72.87
+    lat: 34.92
+    area_km2: 130000
+    elevation_mean_m: 3300
+    snow_fraction: 0.35
+    primary_mechanism: mixed
