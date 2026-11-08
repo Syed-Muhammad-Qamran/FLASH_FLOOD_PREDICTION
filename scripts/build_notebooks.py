@@ -321,7 +321,7 @@ scaler = StandardScaler()
 scaler.fit(feat_df.loc[train_mask, feature_cols])
 
 scaled_df = feat_df.copy()
-scaled_df[feature_cols] = scaler.transform(feat_df[feature_cols]).fillna(0.0)
+scaled_df[feature_cols] = np.nan_to_num(scaler.transform(feat_df[feature_cols]))
 
 # Build sliding temporal windows
 basin_arrays = {}
@@ -451,7 +451,7 @@ for year, start_w, end_w in external_windows:
         case_dfs.append(res.frame)
     c_raw = pd.concat(case_dfs, ignore_index=True)
     c_feats = add_features(c_raw)
-    c_feats[feature_cols] = scaler.transform(c_feats[feature_cols]).fillna(0.0)
+    c_feats[feature_cols] = np.nan_to_num(scaler.transform(c_feats[feature_cols]))
 
     # Generate predictions
     case_basin_arrays = {b_id: grp[feature_cols].values.astype(np.float32) for b_id, grp in c_feats.groupby("basin_id")}
@@ -660,7 +660,7 @@ scaler = StandardScaler()
 scaler.fit(feat_df.loc[train_mask, feature_cols])
 
 scaled_df = feat_df.copy()
-scaled_df[feature_cols] = scaler.transform(feat_df[feature_cols]).fillna(0.0)
+scaled_df[feature_cols] = np.nan_to_num(scaler.transform(feat_df[feature_cols]))
 
 # Build baseline on train rows
 baseline_fn, baseline_state = build_baseline(feat_df[train_mask])
@@ -755,7 +755,7 @@ for year, start_w, end_w in [(2010, "2010-07-28", "2010-08-03"), (2022, "2022-08
         case_dfs.append(res.frame)
     c_raw = pd.concat(case_dfs, ignore_index=True)
     c_feats = add_features(c_raw)
-    c_feats[feature_cols] = scaler.transform(c_feats[feature_cols]).fillna(0.0)
+    c_feats[feature_cols] = np.nan_to_num(scaler.transform(c_feats[feature_cols]))
 
     case_basin_arrays = {b_id: grp[feature_cols].values.astype(np.float32) for b_id, grp in c_feats.groupby("basin_id")}
     case_records = []

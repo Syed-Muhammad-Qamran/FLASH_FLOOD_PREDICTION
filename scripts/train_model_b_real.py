@@ -207,7 +207,7 @@ def main() -> int:
     scaler = StandardScaler()
     scaler.fit(feat_df.loc[train_mask, feature_cols])
     scaled_feats = feat_df.copy()
-    scaled_feats[feature_cols] = scaler.transform(feat_df[feature_cols]).fillna(0.0)
+    scaled_feats[feature_cols] = np.nan_to_num(scaler.transform(feat_df[feature_cols]))
 
     basin_arrays = {}
     index_records = []
@@ -303,7 +303,7 @@ def main() -> int:
                 basins, c_start, c_end, offline=args.offline
             )
             case_feats = add_features(case_weather)
-            case_feats[feature_cols] = scaler.transform(case_feats[feature_cols]).fillna(0.0)
+            case_feats[feature_cols] = np.nan_to_num(scaler.transform(case_feats[feature_cols]))
 
             case_basin_arrays = {
                 b_id: grp[feature_cols].values.astype(np.float32)
