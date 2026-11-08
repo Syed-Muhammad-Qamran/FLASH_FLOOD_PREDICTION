@@ -56,11 +56,14 @@ owners:
   warisha:
     # Contracts & model I/O
     - src/floodwatch/models/base.py
+    - src/floodwatch/models/__init__.py
+    - src/floodwatch/__init__.py
     - src/floodwatch/models/eval.py
     - src/floodwatch/models/model_b.py
     - src/floodwatch/tiers.py
     - src/floodwatch/report_schema.py
     - configs/thresholds.yaml
+    - configs/run.yaml
     - src/floodwatch/thresholds.py
     - src/floodwatch/fusion.py
     - src/floodwatch/runner.py
@@ -86,6 +89,7 @@ owners:
     # App & state
     - app/**
     - artifacts/b/**
+    - artifacts/ablation*
     - runs/**
     - data/state/**
     - data/overrides.json
@@ -99,8 +103,12 @@ owners:
     - requirements.txt
     - requirements-dev.txt
     - pyproject.toml
+    - FEATURE_BACKLOG.md
     - docs/FEATURE_BACKLOG.md
     - docs/model_b.md
+    - docs/ABLATION.md
+    - docs/PR_PLAN.md
+    - docs/SOURCES.md
     - docs/TEST_REPORT.md
     - docs/decisions/w-*.md
     # Tests & fixtures
@@ -108,6 +116,7 @@ owners:
     - tests/helpers_b.py
     - tests/fixtures/golden/predictions_b.parquet
     - tests/fixtures/golden/golden_expected.json
+    - tests/fixtures/golden/labels.parquet
     - tests/test_*.py
 
 contract:
