@@ -579,6 +579,7 @@ def _whatsapp_simulation_tab() -> None:
     # Scenario Directive Texts & Metadata
     # -------------------------------------------------------------------------
     if selected_sim == "emergency":
+        basin_id = "swat_kalam"
         basin_name = "Swat River at Kalam (swat_kalam)"
         level_badge = "<span class='fw-badge badge-red'>RED ALERT — LEVEL 4 (CRITICAL OVERBANK)</span>"
         action = "IMMEDIATE EVACUATION REQUIRED"
@@ -602,6 +603,7 @@ def _whatsapp_simulation_tab() -> None:
         )
 
     elif selected_sim == "cancel":
+        basin_id = "swat_kalam"
         basin_name = "Swat River at Kalam (swat_kalam)"
         level_badge = "<span class='fw-badge badge-green'>GREEN — ALERT CANCELED (ALL CLEAR)</span>"
         action = "EVACUATION LIFTED — SAFE RETURN PERMITTED"
@@ -626,6 +628,7 @@ def _whatsapp_simulation_tab() -> None:
         )
 
     else:
+        basin_id = "chitral_drosh"
         basin_name = "Chitral River at Drosh (chitral_drosh)"
         level_badge = "<span class='fw-badge badge-green'>GREEN — LEVEL 1 (NORMAL / SAFE)</span>"
         action = "NORMAL ROUTINE — NO EVACUATION"
