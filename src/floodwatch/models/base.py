@@ -26,9 +26,7 @@ class ModelOutput:
         if not 0.0 <= float(self.prob) <= 1.0:
             raise ValueError(f"prob must be in [0, 1], got {self.prob!r}")
         if not 0.0 <= float(self.baseline_prob) <= 1.0:
-            raise ValueError(
-                f"baseline_prob must be in [0, 1], got {self.baseline_prob!r}"
-            )
+            raise ValueError(f"baseline_prob must be in [0, 1], got {self.baseline_prob!r}")
 
     def as_row(
         self,
@@ -50,10 +48,7 @@ class ModelOutput:
             "baseline_prob": float(self.baseline_prob),
             "source": "deep",
             "top_drivers": json.dumps(
-                [
-                    {"feature": d["feature"], "weight": float(d["weight"])}
-                    for d in self.top_drivers
-                ],
+                [{"feature": d["feature"], "weight": float(d["weight"])} for d in self.top_drivers],
                 ensure_ascii=False,
             ),
             "model_version": self.model_version,

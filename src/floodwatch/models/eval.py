@@ -75,7 +75,7 @@ def average_precision(y_true, y_score) -> float:
     recall_curve = tp / np.maximum(tp[-1], 1)
     ap = 0.0
     prev_recall = 0.0
-    for prec, rec in zip(precision_curve, recall_curve):
+    for prec, rec in zip(precision_curve, recall_curve, strict=False):
         ap += prec * (rec - prev_recall)
         prev_recall = rec
     return float(ap)

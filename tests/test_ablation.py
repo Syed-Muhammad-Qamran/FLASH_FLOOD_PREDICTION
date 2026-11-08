@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -15,10 +16,10 @@ ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "tests" / "fixtures" / "golden"
 
 
-import sys
-
 def _load_ablation():
-    spec = importlib.util.spec_from_file_location("ablation_script", ROOT / "scripts" / "08_ablation.py")
+    spec = importlib.util.spec_from_file_location(
+        "ablation_script", ROOT / "scripts" / "08_ablation.py"
+    )
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module

@@ -78,7 +78,7 @@ def test_explain_all_handles_conditions_by_area() -> None:
 
 
 def test_explainer_has_no_io_or_model_imports() -> None:
-    source = (explain.__file__ or "")
+    source = explain.__file__ or ""
     text = open(source, encoding="utf-8").read()
     for banned in ("import torch", "import sklearn", "requests", "open("):
         assert banned not in text

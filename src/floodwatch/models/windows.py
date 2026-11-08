@@ -12,8 +12,8 @@ Scaffolding for the person-1 lane (M1). Contract file: joint PR to change.
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator
 
 import numpy as np
 import pandas as pd
@@ -139,7 +139,7 @@ def iter_sequences(
         for basin_id, positions in chunk.groupby("basin_id", sort=False).groups.items():
             arr, index = arrays[str(basin_id)]
             pos = index.get_indexer(pd.DatetimeIndex(chunk.loc[positions, "timestamp_utc"]))
-            for local, p in zip(positions, pos):
+            for local, p in zip(positions, pos, strict=False):
                 if p < lookback_h - 1:
                     if not pad_short:
                         continue

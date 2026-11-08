@@ -87,9 +87,7 @@ def main() -> int:
         )
         return 2
 
-    snapshot_hash = str(
-        json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))["data_snapshot_hash"]
-    )
+    snapshot_hash = str(json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))["data_snapshot_hash"])
     frame_a = _window(ART_A)
     frame_b = _window(ART_B)
     if frame_a.empty or frame_b.empty:
@@ -133,9 +131,11 @@ def main() -> int:
         how="inner",
         validate="one_to_one",
     )
-    labels = labels[["basin_id", "timestamp_utc", "split", "label"]].sort_values(
-        ["basin_id", "timestamp_utc"]
-    ).reset_index(drop=True)
+    labels = (
+        labels[["basin_id", "timestamp_utc", "split", "label"]]
+        .sort_values(["basin_id", "timestamp_utc"])
+        .reset_index(drop=True)
+    )
     labels.to_parquet(LABELS_PATH, index=False)
 
     config = thresholds.load_thresholds()

@@ -47,8 +47,8 @@ def test_both_fixtures_obey_the_nine_column_contract() -> None:
 
 def test_fixtures_share_the_same_key_set() -> None:
     frame_a, frame_b = _fixtures()
-    keys_a = set(zip(frame_a["basin_id"], frame_a["timestamp_utc"]))
-    keys_b = set(zip(frame_b["basin_id"], frame_b["timestamp_utc"]))
+    keys_a = set(zip(frame_a["basin_id"], frame_a["timestamp_utc"], strict=False))
+    keys_b = set(zip(frame_b["basin_id"], frame_b["timestamp_utc"], strict=False))
     assert keys_a == keys_b
 
 

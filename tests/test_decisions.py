@@ -51,9 +51,7 @@ def test_drop_below_orange_gives_exactly_one_all_clear() -> None:
     state = _state(Level.ORANGE, last_alert_at=NOW, alerted_level=Level.ORANGE)
     first = decisions.decide(state, Level.GREEN, now=NOW + timedelta(hours=1))
     assert first.action == "all_clear"
-    quiet = decisions.AreaState(
-        area_id="swat_kalam", level=Level.GREEN, all_clear_sent=True
-    )
+    quiet = decisions.AreaState(area_id="swat_kalam", level=Level.GREEN, all_clear_sent=True)
     second = decisions.decide(quiet, Level.GREEN, now=NOW + timedelta(hours=2))
     assert second.action == "none"
 

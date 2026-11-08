@@ -11,7 +11,8 @@ on them.
 from __future__ import annotations
 
 import re
-from typing import Any, Iterable
+from collections.abc import Iterable
+from typing import Any
 
 from .tiers import (
     ALL_LEVEL_WORDS,
@@ -96,7 +97,9 @@ def allowed_numbers_for(result: Any) -> set[str]:
 
 
 def _whole_word(word: str, text: str) -> bool:
-    return re.search(rf"(?<![A-Za-z]){re.escape(word)}(?![A-Za-z])", text, re.IGNORECASE) is not None
+    return (
+        re.search(rf"(?<![A-Za-z]){re.escape(word)}(?![A-Za-z])", text, re.IGNORECASE) is not None
+    )
 
 
 def check_alert(

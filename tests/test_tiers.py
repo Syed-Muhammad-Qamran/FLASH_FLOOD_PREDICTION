@@ -37,7 +37,13 @@ def test_no_public_word_collision() -> None:
 
 @pytest.mark.parametrize(
     ("tier", "expected"),
-    [("none", "low"), ("low", "moderate"), ("moderate", "high"), ("high", "severe"), ("severe", "none")],
+    [
+        ("none", "low"),
+        ("low", "moderate"),
+        ("moderate", "high"),
+        ("high", "severe"),
+        ("severe", "none"),
+    ],
 )
 def test_next_tier(tier: str, expected: str) -> None:
     assert tiers.next_tier(tier) == expected

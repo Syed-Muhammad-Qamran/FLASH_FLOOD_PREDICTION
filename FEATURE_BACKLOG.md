@@ -325,22 +325,41 @@ Produces `runs/<run_id>/predictions_fused.parquet`, `run_report.json`, `alerts.j
 The only place that knows both vocabularies. It never changes a probability.
 
 ```python
-class Level(IntEnum): GREEN=0; YELLOW=1; ORANGE=2; RED=3     # imported from tiers.py
+class Level(IntEnum):
+    GREEN = 0
+    YELLOW = 1
+    ORANGE = 2
+    RED = 3  # imported from tiers.py
+
 
 @dataclass(frozen=True)
 class Area:
-    id: str; name: str; district: str; lat: float; lon: float
-    terrain_susceptibility: float = 0.5   # neutral placeholder, not a measurement
-    glacial_lake_nearby: bool = False     # GLOF is out of scope
+    id: str
+    name: str
+    district: str
+    lat: float
+    lon: float
+    terrain_susceptibility: float = 0.5  # neutral placeholder, not a measurement
+    glacial_lake_nearby: bool = False  # GLOF is out of scope
     snow_cover_frac: float = 0.0
+
 
 @dataclass(frozen=True)
 class RiskResult:
-    area_id: str; score: float; level: Level; reasons: list[str]
-    computed_at: str; tier: str = "none"; compound: bool = False
-    prob_a: float | None = None; prob_b: float | None = None
+    area_id: str
+    score: float
+    level: Level
+    reasons: list[str]
+    computed_at: str
+    tier: str = "none"
+    compound: bool = False
+    prob_a: float | None = None
+    prob_b: float | None = None
 
-def to_risk_results(fused, *, catalog=None, pred_a=None, pred_b=None, computed_at=None) -> list[RiskResult]: ...
+
+def to_risk_results(
+    fused, *, catalog=None, pred_a=None, pred_b=None, computed_at=None
+) -> list[RiskResult]: ...
 def risk_frame(results, catalog=None) -> pd.DataFrame: ...
 def areas() -> dict[str, Area]: ...
 def levels_from(results) -> dict[str, Level]: ...
@@ -373,7 +392,9 @@ Published, stable signatures (Warisha only **calls** them; changing one is a joi
 ```python
 def check_alert(text, *, basin_id, tier, allowed_numbers) -> list[str]:
     """Return problems. Empty list == safe to send."""
-def allowed_numbers_for(result) -> set[str]: ...          # duck-typed; reads attributes only
+
+
+def allowed_numbers_for(result) -> set[str]: ...  # duck-typed; reads attributes only
 def check_risk_alert(text, result, *, extra_numbers=(), extra_texts=()) -> list[str]: ...
 ```
 
@@ -412,18 +433,36 @@ The verdict is decided by code from three facts: which monitored basins are name
 
 ```python
 class Verdict(str, Enum):
-    SUPPORTED     = "supported_by_advisory"
-    CONSISTENT    = "consistent_with_conditions"
-    NO_SIGNAL     = "no_signal_found"          # was NOT_SUPPORTED (D-03)
+    SUPPORTED = "supported_by_advisory"
+    CONSISTENT = "consistent_with_conditions"
+    NO_SIGNAL = "no_signal_found"  # was NOT_SUPPORTED (D-03)
     CANNOT_ASSESS = "cannot_assess"
 
+
 @dataclass(frozen=True)
-class Advisory: title: str; url: str; areas: frozenset[str]; issued_at: datetime|None=None; age_hours: float|None=None; source: str=""
+class Advisory:
+    title: str
+    url: str
+    areas: frozenset[str]
+    issued_at: datetime | None = None
+    age_hours: float | None = None
+    source: str = ""
+
+
 @dataclass(frozen=True)
-class TriageResult: verdict: Verdict; evidence: list[str]; matched_basins: list[str]; extracted_date: date|None=None; level: Level|None=None; truncated: bool=False
+class TriageResult:
+    verdict: Verdict
+    evidence: list[str]
+    matched_basins: list[str]
+    extracted_date: date | None = None
+    level: Level | None = None
+    truncated: bool = False
+
 
 def extract_dates(text, *, now=None) -> list[date]: ...
-def triage(text, *, aliases, levels, advisories=(), now=None, max_advisory_age_h=48.0, stale_days=30.0) -> TriageResult: ...
+def triage(
+    text, *, aliases, levels, advisories=(), now=None, max_advisory_age_h=48.0, stale_days=30.0
+) -> TriageResult: ...
 def load_aliases(path=None) -> dict[str, str]: ...
 def load_advisories(path=None) -> list[Advisory]: ...
 ```
@@ -1053,13 +1092,23 @@ contract:                           # need label `contract` + both approvals
 ```python
 def run_test_once(snapshot_hash: str, *, marker="runs/TEST_EVALUATED.json"):
     try:
-        f = open(marker, "x")          # exclusive create: fails if it exists
+        f = open(marker, "x")  # exclusive create: fails if it exists
     except FileExistsError:
         raise SystemExit("Test split already evaluated. Open a joint PR to change this.")
     with f:
-        result = _evaluate_test_split_once()      # the only reader of split == "test"
-        json.dump({"snapshot": snapshot_hash, "models": _versions(), "thresholds": _thresholds(),
-                   "git_sha": _sha(), "utc": _now(), "metrics": result}, f, indent=2)
+        result = _evaluate_test_split_once()  # the only reader of split == "test"
+        json.dump(
+            {
+                "snapshot": snapshot_hash,
+                "models": _versions(),
+                "thresholds": _thresholds(),
+                "git_sha": _sha(),
+                "utc": _now(),
+                "metrics": result,
+            },
+            f,
+            indent=2,
+        )
 ```
 
 ### 13.6 `validate_model_file` checks (sketch)
@@ -1067,15 +1116,29 @@ def run_test_once(snapshot_hash: str, *, marker="runs/TEST_EVALUATED.json"):
 ```python
 def validate_model_file(path, module, grid_index):
     df = pd.read_parquet(path)
-    require_columns(df, ["basin_id","timestamp_utc","module","split","prob",
-                         "baseline_prob","source","top_drivers","model_version"])
+    require_columns(
+        df,
+        [
+            "basin_id",
+            "timestamp_utc",
+            "module",
+            "split",
+            "prob",
+            "baseline_prob",
+            "source",
+            "top_drivers",
+            "model_version",
+        ],
+    )
     assert (df["module"] == module).all()
     assert df["timestamp_utc"].dt.tz is not None and (df["timestamp_utc"].dt.minute == 0).all()
     assert df["prob"].between(0, 1).all() and df["prob"].notna().all()
     assert df.duplicated(["basin_id", "timestamp_utc"]).sum() == 0
     assert df.equals(df.sort_values(["basin_id", "timestamp_utc"]).reset_index(drop=True))
-    expected = grid_index[grid_index.split != "test"]            # test rows only after M7
-    assert set(map(tuple, df[["basin_id","timestamp_utc"]].values)) == \
-           set(map(tuple, expected[["basin_id","timestamp_utc"]].values))
-    check_drivers_json(df["top_drivers"]); check_metadata(path)
+    expected = grid_index[grid_index.split != "test"]  # test rows only after M7
+    assert set(map(tuple, df[["basin_id", "timestamp_utc"]].values)) == set(
+        map(tuple, expected[["basin_id", "timestamp_utc"]].values)
+    )
+    check_drivers_json(df["top_drivers"])
+    check_metadata(path)
 ```

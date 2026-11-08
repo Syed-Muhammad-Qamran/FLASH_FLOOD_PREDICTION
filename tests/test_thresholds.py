@@ -30,7 +30,7 @@ def test_fit_produces_strictly_increasing_cutoffs() -> None:
     fit = thresholds.fit_tier_cutoffs(_frame())
     values = [fit["tiers"][key] for key in thresholds.ALL_TIER_KEYS]
     assert values[0] == 0.0
-    assert all(a < b for a, b in zip(values, values[1:]))
+    assert all(a < b for a, b in zip(values, values[1:], strict=False))
     assert fit["rows"] == 400
 
 
@@ -69,9 +69,15 @@ def test_metrics_at_cutoff_matches_confusion_counts() -> None:
 
 def test_config_round_trip_and_hand_edit_detection(tmp_path) -> None:
     modules = {
-        schema.MODULE_A: {"tiers": {"none": 0.0, "low": 0.1, "moderate": 0.2, "high": 0.4, "severe": 0.7}},
-        schema.MODULE_B: {"tiers": {"none": 0.0, "low": 0.1, "moderate": 0.2, "high": 0.4, "severe": 0.7}},
-        schema.MODULE_FUSED: {"tiers": {"none": 0.0, "low": 0.1, "moderate": 0.2, "high": 0.4, "severe": 0.7}},
+        schema.MODULE_A: {
+            "tiers": {"none": 0.0, "low": 0.1, "moderate": 0.2, "high": 0.4, "severe": 0.7}
+        },
+        schema.MODULE_B: {
+            "tiers": {"none": 0.0, "low": 0.1, "moderate": 0.2, "high": 0.4, "severe": 0.7}
+        },
+        schema.MODULE_FUSED: {
+            "tiers": {"none": 0.0, "low": 0.1, "moderate": 0.2, "high": 0.4, "severe": 0.7}
+        },
     }
     config = thresholds.build_config(modules, data_snapshot_hash="hash")
     thresholds.validate_thresholds(config)
@@ -87,7 +93,9 @@ def test_config_round_trip_and_hand_edit_detection(tmp_path) -> None:
 
 def test_non_monotonic_cutoffs_rejected() -> None:
     modules = {
-        schema.MODULE_A: {"tiers": {"none": 0.0, "low": 0.5, "moderate": 0.2, "high": 0.4, "severe": 0.7}},
+        schema.MODULE_A: {
+            "tiers": {"none": 0.0, "low": 0.5, "moderate": 0.2, "high": 0.4, "severe": 0.7}
+        },
     }
     config = thresholds.build_config(modules, data_snapshot_hash="hash")
     with pytest.raises(ValueError, match="not strictly increasing"):

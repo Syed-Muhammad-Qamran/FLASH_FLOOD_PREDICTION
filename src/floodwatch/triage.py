@@ -12,11 +12,12 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime
 from enum import Enum
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 from .tiers import Level
 
@@ -43,20 +44,42 @@ _DIGITS = {ord(ch): str(i) for i, ch in enumerate(_URDU)} | {
 }
 
 _MONTHS = {
-    "january": 1, "jan": 1,
-    "february": 2, "feb": 2,
-    "march": 3, "mar": 3,
-    "april": 4, "apr": 4,
+    "january": 1,
+    "jan": 1,
+    "february": 2,
+    "feb": 2,
+    "march": 3,
+    "mar": 3,
+    "april": 4,
+    "apr": 4,
     "may": 5,
-    "june": 6, "jun": 6,
-    "july": 7, "jul": 7,
-    "august": 8, "aug": 8,
-    "september": 9, "sep": 9, "sept": 9,
-    "october": 10, "oct": 10,
-    "november": 11, "nov": 11,
-    "december": 12, "dec": 12,
-    "جنوری": 1, "فروری": 2, "مارچ": 3, "اپریل": 4, "مئی": 5, "جون": 6,
-    "جولائی": 7, "اگست": 8, "ستمبر": 9, "اکتوبر": 10, "نومبر": 11, "دسمبر": 12,
+    "june": 6,
+    "jun": 6,
+    "july": 7,
+    "jul": 7,
+    "august": 8,
+    "aug": 8,
+    "september": 9,
+    "sep": 9,
+    "sept": 9,
+    "october": 10,
+    "oct": 10,
+    "november": 11,
+    "nov": 11,
+    "december": 12,
+    "dec": 12,
+    "جنوری": 1,
+    "فروری": 2,
+    "مارچ": 3,
+    "اپریل": 4,
+    "مئی": 5,
+    "جون": 6,
+    "جولائی": 7,
+    "اگست": 8,
+    "ستمبر": 9,
+    "اکتوبر": 10,
+    "نومبر": 11,
+    "دسمبر": 12,
 }
 
 _FLOOD_WORDS = (
@@ -150,7 +173,9 @@ def extract_dates(text: str, *, now: datetime | date | None = None) -> list[date
 
     # 27 June 2025 / ۲۷ اگست ۲۰۲۲
     month_names = "|".join(sorted(_MONTHS, key=len, reverse=True))
-    for match in re.finditer(rf"\b(\d{{1,2}})\s+({month_names})\s+(20\d{{2}})\b", cleaned, re.IGNORECASE):
+    for match in re.finditer(
+        rf"\b(\d{{1,2}})\s+({month_names})\s+(20\d{{2}})\b", cleaned, re.IGNORECASE
+    ):
         day, month_name, year = match.group(1), match.group(2).lower(), match.group(3)
         month = _MONTHS.get(month_name)
         if month:
@@ -292,7 +317,9 @@ def triage(
     newest = max(dates) if dates else None
 
     known_levels = {
-        basin: _level_of(levels.get(basin)) for basin in matched if _level_of(levels.get(basin)) is not None
+        basin: _level_of(levels.get(basin))
+        for basin in matched
+        if _level_of(levels.get(basin)) is not None
     }
     level = max(known_levels.values()) if known_levels else None
 

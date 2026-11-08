@@ -7,10 +7,11 @@ meteorological/hydrological constraint that binds first.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Any, Mapping
+from typing import Any
 
-from .tiers import TIERS, TIER_RANK, next_tier, tier_rank
+from .tiers import TIER_RANK, TIERS, next_tier, tier_rank
 
 # Illustrative requirements for the *next* tier. They are display guidance for
 # the demo, not calibrated physical thresholds; the probability cutoffs remain

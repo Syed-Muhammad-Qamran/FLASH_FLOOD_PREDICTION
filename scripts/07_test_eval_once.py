@@ -52,7 +52,10 @@ def _load_snapshot_hash() -> str:
         return str(json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))["data_snapshot_hash"])
     # Fall back to manifests; they must agree.
     hashes = []
-    for path in (ROOT / "artifacts" / "a" / "manifest.json", ROOT / "artifacts" / "b" / "manifest.json"):
+    for path in (
+        ROOT / "artifacts" / "a" / "manifest.json",
+        ROOT / "artifacts" / "b" / "manifest.json",
+    ):
         if path.exists():
             hashes.append(json.loads(path.read_text(encoding="utf-8"))["data_snapshot_hash"])
     if not hashes or len(set(hashes)) != 1:
@@ -68,7 +71,9 @@ def _create_marker(marker_path: Path, payload: dict[str, Any]) -> Path:
     return marker_path
 
 
-def _load_test_model(path: Path, module: str, grid: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, str]]:
+def _load_test_model(
+    path: Path, module: str, grid: pd.DataFrame
+) -> tuple[pd.DataFrame, dict[str, str]]:
     meta = schema.read_parquet_metadata(path)
     frame = pd.read_parquet(path)
     frame["timestamp_utc"] = pd.to_datetime(frame["timestamp_utc"], utc=True)
@@ -80,7 +85,9 @@ def _load_test_model(path: Path, module: str, grid: pd.DataFrame) -> tuple[pd.Da
         raise ValueError(f"{path.name} contains no test-split rows; cannot run M7")
     # Keep only test rows that exist on the canonical grid's test keys.
     test_grid = grid[grid["split"].astype(str) == "test"][["basin_id", "timestamp_utc"]]
-    test = test.merge(test_grid.astype({"basin_id": str}), on=["basin_id", "timestamp_utc"], how="inner")
+    test = test.merge(
+        test_grid.astype({"basin_id": str}), on=["basin_id", "timestamp_utc"], how="inner"
+    )
     if test.empty:
         raise ValueError(f"{path.name} has no test rows aligned with the grid")
     return test.sort_values(["basin_id", "timestamp_utc"]).reset_index(drop=True), meta
@@ -105,7 +112,10 @@ def run(*, confirm: str, marker_path: Path = MARKER_PATH) -> dict[str, Any]:
 
     pred_a, meta_a = _load_test_model(PRED_A, schema.MODULE_A, grid)
     pred_b, meta_b = _load_test_model(PRED_B, schema.MODULE_B, grid)
-    if meta_a.get("data_snapshot_hash") != snapshot_hash or meta_b.get("data_snapshot_hash") != snapshot_hash:
+    if (
+        meta_a.get("data_snapshot_hash") != snapshot_hash
+        or meta_b.get("data_snapshot_hash") != snapshot_hash
+    ):
         raise ValueError("model files do not match the confirmed snapshot hash")
 
     features = pd.read_parquet(FEATURES_PATH)

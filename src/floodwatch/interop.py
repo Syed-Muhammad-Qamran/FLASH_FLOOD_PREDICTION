@@ -6,9 +6,9 @@ It never changes a probability, never calls the network and never writes a file.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable
 
 import pandas as pd
 import yaml
@@ -47,6 +47,8 @@ class RiskResult:
     prob_b: float | None = None
     escalated: bool = False
     provisional: bool = False
+    prob_std: float | None = None
+    tier_stable: bool | None = None
 
 
 def _load_catalog(path: str | Path | None = None) -> dict[str, Area]:
@@ -80,7 +82,9 @@ def _reason_strings(top_drivers: object) -> list[str]:
     return reasons
 
 
-def _lookup(frame: pd.DataFrame | None, area_id: str, when: pd.Timestamp, column: str) -> float | None:
+def _lookup(
+    frame: pd.DataFrame | None, area_id: str, when: pd.Timestamp, column: str
+) -> float | None:
     if frame is None or frame.empty:
         return None
     subset = frame[
@@ -132,12 +136,22 @@ def to_risk_results(
         if compound:
             reasons = [COMPOUND_REASON] + reasons
         if escalated:
-            reasons = reasons[:1] + ["rain-on-snow escalation: liquid water on a snowpack"] + reasons[1:]
+            reasons = (
+                reasons[:1] + ["rain-on-snow escalation: liquid water on a snowpack"] + reasons[1:]
+            )
         if not reasons:
             reasons = ["no dominant driver above threshold"]
         when = pd.Timestamp(row.timestamp_utc)
-        prob_a = _float_or_none(getattr(row, "prob_a", None)) if has_prob_a else _lookup(pred_a, area_id, when, "prob")
-        prob_b = _float_or_none(getattr(row, "prob_b", None)) if has_prob_b else _lookup(pred_b, area_id, when, "prob")
+        prob_a = (
+            _float_or_none(getattr(row, "prob_a", None))
+            if has_prob_a
+            else _lookup(pred_a, area_id, when, "prob")
+        )
+        prob_b = (
+            _float_or_none(getattr(row, "prob_b", None))
+            if has_prob_b
+            else _lookup(pred_b, area_id, when, "prob")
+        )
         results.append(
             RiskResult(
                 area_id=area_id,
@@ -151,6 +165,12 @@ def to_risk_results(
                 prob_b=prob_b,
                 escalated=bool(getattr(row, "escalated", False)),
                 provisional=bool(getattr(row, "provisional", False)),
+                prob_std=_float_or_none(getattr(row, "prob_std", None)),
+                tier_stable=(
+                    None
+                    if getattr(row, "tier_stable", None) is None
+                    else bool(getattr(row, "tier_stable"))
+                ),
             )
         )
     results.sort(key=lambda r: r.area_id)
@@ -190,6 +210,8 @@ def risk_frame(
                 "compound": result.compound,
                 "prob_a": result.prob_a,
                 "prob_b": result.prob_b,
+                "prob_std": result.prob_std,
+                "tier_stable": result.tier_stable,
                 "provisional": result.provisional,
                 "reasons": "; ".join(result.reasons),
                 "computed_at": result.computed_at,

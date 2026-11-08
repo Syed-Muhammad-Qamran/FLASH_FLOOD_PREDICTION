@@ -167,7 +167,9 @@ def test_missing_source_health_degrades_instead_of_crashing(monkeypatch, tmp_pat
     monkeypatch.setattr(runner, "SNAPSHOT_PATH", snapshot_path)
     monkeypatch.setattr(runner, "PRED_A", pred_a)
     monkeypatch.setattr(runner, "PRED_B", pred_b)
-    monkeypatch.setattr(runner.health, "read_source_health", lambda: runner.health.degraded_health("test"))
+    monkeypatch.setattr(
+        runner.health, "read_source_health", lambda: runner.health.degraded_health("test")
+    )
 
     result = runner.run_pipeline(
         "degraded", config_path=config_path, offline=True, run_root=tmp_path / "runs"

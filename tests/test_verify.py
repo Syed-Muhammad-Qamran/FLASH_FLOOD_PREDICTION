@@ -11,7 +11,12 @@ def _result(tier: str = "severe", score: float = 0.62) -> RiskResult:
     return RiskResult(
         area_id="swat_kalam",
         score=score,
-        level={"none": Level.GREEN, "moderate": Level.YELLOW, "high": Level.ORANGE, "severe": Level.RED}[tier],
+        level={
+            "none": Level.GREEN,
+            "moderate": Level.YELLOW,
+            "high": Level.ORANGE,
+            "severe": Level.RED,
+        }[tier],
         reasons=["rain_3h (12.5)"],
         computed_at="2022-08-27T00:00:00+00:00",
         tier=tier,

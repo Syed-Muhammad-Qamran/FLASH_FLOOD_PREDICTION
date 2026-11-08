@@ -72,9 +72,7 @@ def test_escalation_can_be_disabled() -> None:
     drivers = '[{"feature": "rain_on_snow", "weight": 3.0}]'
     a = _frame(schema.MODULE_A, [0.5], drivers=drivers)
     b = _frame(schema.MODULE_B, [0.5], drivers=drivers)
-    fused = fusion.fuse_frames(
-        a, b, thresholds_config=_thresholds(), rain_on_snow_escalation=False
-    )
+    fused = fusion.fuse_frames(a, b, thresholds_config=_thresholds(), rain_on_snow_escalation=False)
     assert bool(fused.iloc[0]["escalated"]) is False
     assert fused.iloc[0]["tier"] == "high"
 
@@ -129,7 +127,7 @@ def test_wrong_module_constant_raises() -> None:
 
 
 def test_fusion_does_not_import_models_or_torch() -> None:
-    source = (fusion.__file__ or "")
+    source = fusion.__file__ or ""
     text = open(source, encoding="utf-8").read()
     for banned in (
         "import torch",

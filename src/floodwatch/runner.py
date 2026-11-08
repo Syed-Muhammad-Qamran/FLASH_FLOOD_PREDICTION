@@ -60,7 +60,9 @@ def _json_default(value: Any) -> Any:
 
 def _write_json(path: Path, payload: Any) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False, default=_json_default), encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False, default=_json_default), encoding="utf-8"
+    )
     return path
 
 
@@ -72,7 +74,9 @@ def _write_jsonl(path: Path, rows: list[dict[str, Any]]) -> Path:
     return path
 
 
-def _model_block(predictions: pd.DataFrame, meta: dict[str, str], module: str, path: Path) -> dict[str, Any]:
+def _model_block(
+    predictions: pd.DataFrame, meta: dict[str, str], module: str, path: Path
+) -> dict[str, Any]:
     try:
         display_path = str(path.relative_to(ROOT))
     except ValueError:
@@ -99,9 +103,9 @@ def _audit_records(
     frame = fused.copy()
     frame["timestamp_utc"] = pd.to_datetime(frame["timestamp_utc"], utc=True)
     start = now - pd.Timedelta(hours=float(hours))
-    frame = frame[
-        (frame["timestamp_utc"] >= start) & (frame["timestamp_utc"] <= now)
-    ].sort_values(["timestamp_utc", "basin_id"])
+    frame = frame[(frame["timestamp_utc"] >= start) & (frame["timestamp_utc"] <= now)].sort_values(
+        ["timestamp_utc", "basin_id"]
+    )
 
     states: dict[str, decisions.AreaState] = {}
     records: list[dict[str, Any]] = []
@@ -109,7 +113,10 @@ def _audit_records(
         results = interop.to_risk_results(group, computed_at=pd.Timestamp(timestamp).isoformat())
         levels = {result.area_id: result.level for result in results}
         cycle, states = decisions.apply_decisions(
-            states, levels, now=pd.Timestamp(timestamp).to_pydatetime(), cooldown_hours=cooldown_hours
+            states,
+            levels,
+            now=pd.Timestamp(timestamp).to_pydatetime(),
+            cooldown_hours=cooldown_hours,
         )
         action_by_area = {decision.area_id: decision.action for decision in cycle}
         by_area = {result.area_id: result for result in results}
@@ -158,9 +165,7 @@ def run_pipeline(
     thresholds_config = thresholds.load_thresholds()
     thresholds.validate_thresholds(thresholds_config)
 
-    snapshot_hash = str(
-        json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))["data_snapshot_hash"]
-    )
+    snapshot_hash = str(json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))["data_snapshot_hash"])
 
     pred_a, meta_a = fusion.load_model_file(PRED_A, schema.MODULE_A, grid)
     pred_b, meta_b = fusion.load_model_file(PRED_B, schema.MODULE_B, grid)

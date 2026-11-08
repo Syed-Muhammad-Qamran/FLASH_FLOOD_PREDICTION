@@ -21,7 +21,7 @@ import pandas as pd
 
 from . import schema
 from .thresholds import module_tiers
-from .tiers import TIERS, TIER_RANK, escalate, max_tier
+from .tiers import TIER_RANK, TIERS, escalate, max_tier
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_A = ROOT / "artifacts" / "a" / "predictions_a.parquet"
@@ -67,7 +67,9 @@ def has_rain_on_snow(drivers: list[dict[str, Any]]) -> bool:
 
 
 def key_set(df: pd.DataFrame) -> set[tuple[str, pd.Timestamp]]:
-    return set(zip(df["basin_id"].astype(str), pd.to_datetime(df["timestamp_utc"], utc=True)))
+    return set(
+        zip(df["basin_id"].astype(str), pd.to_datetime(df["timestamp_utc"], utc=True), strict=False)
+    )
 
 
 def _describe_diff(
@@ -196,8 +198,10 @@ def fuse_frames(
         is_compound = bool(compound[i])
         reason_drivers = _merge_drivers(drivers_a[i], drivers_b[i])
         escalated = False
-        if is_compound and rain_on_snow_escalation and (
-            has_rain_on_snow(drivers_a[i]) or has_rain_on_snow(drivers_b[i])
+        if (
+            is_compound
+            and rain_on_snow_escalation
+            and (has_rain_on_snow(drivers_a[i]) or has_rain_on_snow(drivers_b[i]))
         ):
             base_tier = escalate(base_tier, 1)
             escalated = True

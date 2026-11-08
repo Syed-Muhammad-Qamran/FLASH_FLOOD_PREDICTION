@@ -18,9 +18,7 @@ torch = pytest.importorskip("torch")
 def _features(n: int = 140, seed: int = 3) -> pd.DataFrame:
     rng = np.random.default_rng(seed)
     stamps = pd.date_range("2022-01-01T00:00Z", periods=n, freq="h")
-    data = {
-        column: rng.uniform(0, 1, n) for column in FEATURE_COLUMNS_B
-    }
+    data = {column: rng.uniform(0, 1, n) for column in FEATURE_COLUMNS_B}
     data.update(
         {
             "basin_id": ["swat_kalam"] * n,

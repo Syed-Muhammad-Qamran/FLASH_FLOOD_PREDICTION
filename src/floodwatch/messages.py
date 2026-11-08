@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from .tiers import Level, tier_to_level, tier_to_public_word
+from .tiers import tier_to_level, tier_to_public_word
 
 HOTLINE = "Rescue 1122"
 _URDU_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")

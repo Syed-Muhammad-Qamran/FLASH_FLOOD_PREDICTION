@@ -13,10 +13,11 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -61,8 +62,7 @@ def grid_for(frames: Iterable[pd.DataFrame]) -> pd.DataFrame:
 
 def _has_rain_on_snow(value: object) -> bool:
     return any(
-        "rain_on_snow" in str(driver.get("feature", ""))
-        for driver in schema.parse_drivers(value)
+        "rain_on_snow" in str(driver.get("feature", "")) for driver in schema.parse_drivers(value)
     )
 
 
@@ -99,7 +99,9 @@ def build_variants(frame: pd.DataFrame, thresholds_config: dict[str, Any]) -> li
     )
 
     return [
-        Variant("a_only", "Model A only", "Cloudburst mechanism alone", prob_a, float(cut_a["high"])),
+        Variant(
+            "a_only", "Model A only", "Cloudburst mechanism alone", prob_a, float(cut_a["high"])
+        ),
         Variant("b_only", "Model B only", "Snowmelt mechanism alone", prob_b, float(cut_b["high"])),
         Variant("max", "max(prob_a, prob_b)", "Agreed fusion rule", max_prob, high),
         Variant(
@@ -227,7 +229,9 @@ def load_default_inputs(
         grid["timestamp_utc"] = pd.to_datetime(grid["timestamp_utc"], utc=True)
         if not labels_path.exists():
             if not FEATURES_PATH.exists():
-                raise FileNotFoundError("labels are missing and data/demo/features_demo.parquet is absent")
+                raise FileNotFoundError(
+                    "labels are missing and data/demo/features_demo.parquet is absent"
+                )
             features = pd.read_parquet(FEATURES_PATH)
             features["timestamp_utc"] = pd.to_datetime(features["timestamp_utc"], utc=True)
             labels = features[["basin_id", "timestamp_utc", "label"]].merge(
@@ -244,9 +248,7 @@ def load_default_inputs(
     # CI has no processed grid or model parquets: the golden fixtures are
     # self-contained and carry the truth labels for the same rows.
     if not (FIXTURE_A.exists() and FIXTURE_B.exists() and FIXTURE_LABELS.exists()):
-        raise FileNotFoundError(
-            "no prediction inputs found; run scripts/09_build_golden.py first"
-        )
+        raise FileNotFoundError("no prediction inputs found; run scripts/09_build_golden.py first")
     frame_a = pd.read_parquet(FIXTURE_A)
     frame_b = pd.read_parquet(FIXTURE_B)
     for frame in (frame_a, frame_b):
@@ -271,9 +273,9 @@ def run(
     ensure_validation_only(validated_a)
     ensure_validation_only(validated_b)
 
-    frame = validated_a[
-        ["basin_id", "timestamp_utc", "split", "prob", "top_drivers"]
-    ].rename(columns={"prob": "prob_a", "top_drivers": "top_drivers_a"})
+    frame = validated_a[["basin_id", "timestamp_utc", "split", "prob", "top_drivers"]].rename(
+        columns={"prob": "prob_a", "top_drivers": "top_drivers_a"}
+    )
     frame = frame.merge(
         validated_b[["basin_id", "timestamp_utc", "prob", "top_drivers"]].rename(
             columns={"prob": "prob_b", "top_drivers": "top_drivers_b"}

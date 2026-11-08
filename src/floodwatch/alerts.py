@@ -7,8 +7,9 @@ formatting bug can never push an unverified number out of the door.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Any, Iterable
+from typing import Any
 
 from . import messages, verify
 from .channels import router

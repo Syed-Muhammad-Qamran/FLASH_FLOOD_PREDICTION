@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import math
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -164,8 +163,12 @@ def validation_guard(
     far_tolerance: float = FAR_TOLERANCE,
 ) -> dict[str, Any]:
     """D-01 check. Returns deltas and a pass flag; never refits."""
-    pod_delta = round(float(validation_metrics.get("pod", 0.0)) - float(train_metrics.get("pod", 0.0)), 4)
-    far_delta = round(float(validation_metrics.get("far", 0.0)) - float(train_metrics.get("far", 0.0)), 4)
+    pod_delta = round(
+        float(validation_metrics.get("pod", 0.0)) - float(train_metrics.get("pod", 0.0)), 4
+    )
+    far_delta = round(
+        float(validation_metrics.get("far", 0.0)) - float(train_metrics.get("far", 0.0)), 4
+    )
     passed = abs(pod_delta) <= pod_tolerance + 1e-9 and abs(far_delta) <= far_tolerance + 1e-9
     return {
         "pod_train": round(float(train_metrics.get("pod", 0.0)), 4),
@@ -216,7 +219,8 @@ def build_config(
         "generated_at": generated_at or datetime.now(UTC).isoformat(),
         "objective": {"target_far": target_far, "min_pod": min_pod},
         "modules": modules,
-        "guard": guard or {
+        "guard": guard
+        or {
             "pod_tolerance": POD_TOLERANCE,
             "far_tolerance": FAR_TOLERANCE,
             "pass": all(block.get("drift", {}).get("pass", True) for block in modules.values()),
@@ -236,7 +240,9 @@ def save_thresholds(config: dict[str, Any], path: str | Path | None = None) -> P
         "# Re-run the script after any model or data change; contract tests\n"
         "# recompute provenance_fingerprint and fail on a manual edit.\n"
     )
-    p.write_text(header + yaml.safe_dump(body, sort_keys=False, allow_unicode=True), encoding="utf-8")
+    p.write_text(
+        header + yaml.safe_dump(body, sort_keys=False, allow_unicode=True), encoding="utf-8"
+    )
     return p
 
 
@@ -274,7 +280,7 @@ def validate_thresholds(config: dict[str, Any]) -> None:
         values = [float(tiers[key]) for key in ALL_TIER_KEYS]
         if any(not (0.0 <= value <= 1.0) for value in values):
             problems.append(f"{name}: cutoffs outside [0, 1]")
-        if any(b <= a for a, b in zip(values, values[1:])):
+        if any(b <= a for a, b in zip(values, values[1:], strict=False)):
             problems.append(f"{name}: cutoffs are not strictly increasing: {values}")
     if problems:
         raise ValueError("invalid thresholds config:\n  - " + "\n  - ".join(problems))

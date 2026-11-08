@@ -74,8 +74,10 @@ def generate_raw(start: str = START, end: str = END, *, seed: int = 42) -> pd.Da
         n_bursts = int(rng.poisson(10 * (n / 8000)))
         monsoon_idx = np.flatnonzero((doy >= 170) & (doy <= 275))
         for _ in range(n_bursts):
-            i = int(rng.choice(monsoon_idx)) if len(monsoon_idx) and rng.random() < 0.85 else int(
-                rng.integers(0, n)
+            i = (
+                int(rng.choice(monsoon_idx))
+                if len(monsoon_idx) and rng.random() < 0.85
+                else int(rng.integers(0, n))
             )
             _add_burst(burst, i, float(rng.uniform(18, 55)), int(rng.integers(2, 6)))
         rain = np.clip(base + burst, 0.0, None)
@@ -192,7 +194,10 @@ def _placeholder_a(features: pd.DataFrame, grid: pd.DataFrame, snapshot: str) ->
         items = [
             {"feature": "rain_3h", "weight": round(float(row.rain_3h), 3)},
             {"feature": "soil_moisture", "weight": round(float(row.soil_moisture), 3)},
-            {"feature": "terrain_susceptibility", "weight": round(float(row.terrain_susceptibility), 3)},
+            {
+                "feature": "terrain_susceptibility",
+                "weight": round(float(row.terrain_susceptibility), 3),
+            },
         ]
         drivers.append(schema.drivers_to_json(items))
 

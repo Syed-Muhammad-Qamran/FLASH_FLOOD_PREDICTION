@@ -26,12 +26,12 @@ STALE = triage.Advisory(
 
 
 def test_alias_matching_is_case_insensitive_and_longest_first() -> None:
-    assert triage.triage("Kalam valley is flooding", levels={"swat_kalam": Level.ORANGE}).matched_basins == [
-        "swat_kalam"
-    ]
-    assert triage.triage("Upper Dir is flooding", levels={"panjkora_dir": Level.ORANGE}).matched_basins == [
-        "panjkora_dir"
-    ]
+    assert triage.triage(
+        "Kalam valley is flooding", levels={"swat_kalam": Level.ORANGE}
+    ).matched_basins == ["swat_kalam"]
+    assert triage.triage(
+        "Upper Dir is flooding", levels={"panjkora_dir": Level.ORANGE}
+    ).matched_basins == ["panjkora_dir"]
 
 
 def test_urdu_alias_matches() -> None:

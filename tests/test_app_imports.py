@@ -24,26 +24,30 @@ RUNTIME_MODULES = (
     "floodwatch.data_sources.health",
 )
 
+HEAVY = {"torch", "sklearn"}
 
-def _assert_no_heavy_ml() -> None:
-    for name in list(sys.modules):
-        root = name.split(".", 1)[0]
-        assert root not in {"torch", "sklearn"}, f"heavy ML package loaded: {name}"
+
+def _heavy_loaded() -> set[str]:
+    return {name for name in sys.modules if name.split(".", 1)[0] in HEAVY}
 
 
 def test_runtime_modules_import_without_torch_or_sklearn() -> None:
+    before = _heavy_loaded()
     for module in RUNTIME_MODULES:
         importlib.import_module(module)
-    _assert_no_heavy_ml()
+    assert _heavy_loaded() == before, (
+        f"runtime imports loaded a heavy ML package: {sorted(_heavy_loaded() - before)}"
+    )
 
 
 def test_streamlit_app_imports_without_torch_or_sklearn() -> None:
-    # streamlit is a runtime dependency, but the import-safety property holds
-    # even when it is absent (the module structure must not reach for ML).
+    before = _heavy_loaded()
     try:
         importlib.import_module("app.streamlit_app")
     except ModuleNotFoundError as exc:
         if exc.name and exc.name.split(".", 1)[0] == "streamlit":
             return
         raise
-    _assert_no_heavy_ml()
+    assert _heavy_loaded() == before, (
+        f"app import loaded a heavy ML package: {sorted(_heavy_loaded() - before)}"
+    )

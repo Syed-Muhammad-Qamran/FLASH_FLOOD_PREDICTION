@@ -16,14 +16,15 @@ A missing grid row is a bug, not a zero.
 from __future__ import annotations
 
 import json
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from .tiers import TIERS, TIER_RANK
+from .tiers import TIER_RANK, TIERS
 
 SCHEMA_VERSION = 1
 LABEL_HORIZON_H = 6
@@ -113,7 +114,9 @@ def parse_drivers(value: object) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for item in raw:
         if isinstance(item, dict):
-            out.append({"feature": str(item.get("feature", "")), "weight": float(item.get("weight", 0.0))})
+            out.append(
+                {"feature": str(item.get("feature", "")), "weight": float(item.get("weight", 0.0))}
+            )
         else:
             out.append({"feature": str(item), "weight": 0.0})
     return out
@@ -323,8 +326,8 @@ def validate_model_file(
     grid["timestamp_utc"] = pd.to_datetime(grid["timestamp_utc"], utc=True)
     if not allow_test:
         grid = grid[grid["split"].astype(str) != "test"]
-    expected = set(zip(grid["basin_id"].astype(str), grid["timestamp_utc"]))
-    actual = set(zip(df["basin_id"].astype(str), df["timestamp_utc"]))
+    expected = set(zip(grid["basin_id"].astype(str), grid["timestamp_utc"], strict=False))
+    actual = set(zip(df["basin_id"].astype(str), df["timestamp_utc"], strict=False))
     missing = expected - actual
     extra = actual - expected
     if missing:

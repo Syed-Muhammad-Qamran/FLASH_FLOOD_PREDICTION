@@ -30,7 +30,9 @@ def _glob_to_regex(pattern: str) -> re.Pattern[str]:
     # Expand simple brace alternatives first.
     m = re.search(r"\{([^{}]+)\}", pattern)
     if m:
-        alternatives = [pattern[: m.start()] + alt + pattern[m.end() :] for alt in m.group(1).split(",")]
+        alternatives = [
+            pattern[: m.start()] + alt + pattern[m.end() :] for alt in m.group(1).split(",")
+        ]
         return re.compile("|".join(f"(?:{_glob_to_regex(a).pattern})" for a in alternatives))
 
     out = []
@@ -132,15 +134,10 @@ def main(argv: list[str] | None = None) -> int:
     for path in files:
         owner = owner_of(path, owners)
         if owner is None:
-            errors.append(
-                f"{path}: new file is not covered by OWNERS.yaml "
-                "(add it in the same PR)"
-            )
+            errors.append(f"{path}: new file is not covered by OWNERS.yaml (add it in the same PR)")
             continue
         if owner == other and "cross-owner" not in labels:
-            errors.append(
-                f"{path}: owned by {owner}; {author} needs the `cross-owner` label"
-            )
+            errors.append(f"{path}: owned by {owner}; {author} needs the `cross-owner` label")
         is_contract = any(matches(path, pattern) for pattern in contract)
         if is_contract and "contract" not in labels:
             errors.append(f"{path}: contract file changed without the `contract` label")

@@ -68,7 +68,9 @@ def test_fixtures_stay_within_budget() -> None:
         for path in (FIXTURE_A, FIXTURE_B, LABELS_PATH, EXPECTED_PATH)
         if path.exists()
     )
-    assert total < MAX_FIXTURE_BYTES, f"golden fixtures are {total} bytes; limit {MAX_FIXTURE_BYTES}"
+    assert total < MAX_FIXTURE_BYTES, (
+        f"golden fixtures are {total} bytes; limit {MAX_FIXTURE_BYTES}"
+    )
 
 
 def test_replay_is_validation_only(replay) -> None:
@@ -81,9 +83,9 @@ def test_replay_is_validation_only(replay) -> None:
 
 
 def test_threshold_fingerprint_matches_expected(replay) -> None:
-    assert replay["expected"]["thresholds_fingerprint"] == replay["config"][
-        "provenance_fingerprint"
-    ], (
+    assert (
+        replay["expected"]["thresholds_fingerprint"] == replay["config"]["provenance_fingerprint"]
+    ), (
         "configs/thresholds.yaml changed without regenerating the golden fixtures; "
         "run scripts/09_build_golden.py and review the diff"
     )
@@ -107,8 +109,7 @@ def test_replay_matches_every_expected_row(replay) -> None:
             continue
         if abs(float(row.prob) - float(expected["prob"])) > PROB_TOLERANCE:
             mismatches.append(
-                f"{key}: prob {row.prob:.6f} != {expected['prob']:.6f} "
-                f"(tol {PROB_TOLERANCE})"
+                f"{key}: prob {row.prob:.6f} != {expected['prob']:.6f} (tol {PROB_TOLERANCE})"
             )
         if str(row.tier) != expected["tier"]:
             mismatches.append(f"{key}: tier {row.tier} != {expected['tier']}")

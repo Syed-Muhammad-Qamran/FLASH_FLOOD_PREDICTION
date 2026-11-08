@@ -6,7 +6,7 @@ import pytest
 
 from floodwatch import messages, verify
 from floodwatch.interop import RiskResult
-from floodwatch.tiers import Level, tier_to_level
+from floodwatch.tiers import Level
 
 LEVELS = {
     "none": Level.GREEN,

@@ -11,7 +11,7 @@ publishing uses the baseline probabilities and the manifest says so.
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
 import numpy as np
@@ -214,7 +214,9 @@ def _stack_sequences(
     return pd.concat(kept, ignore_index=True), np.concatenate(blocks, axis=0)
 
 
-def _standardise(train_x: np.ndarray, other_x: np.ndarray) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+def _standardise(
+    train_x: np.ndarray, other_x: np.ndarray
+) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
     flat = train_x.reshape(-1, train_x.shape[-1])
     mean = flat.mean(axis=0)
     std = flat.std(axis=0)
@@ -292,7 +294,7 @@ def train_model_b(
     x_train = torch.from_numpy(train_x.astype(np.float32))
     y_train = torch.from_numpy(train_y)
     x_val = torch.from_numpy(val_x.astype(np.float32))
-    y_val = torch.from_numpy(val_y)
+    torch.from_numpy(val_y)
 
     best_state: dict[str, Any] | None = None
     best_ap = -math.inf
@@ -301,7 +303,9 @@ def train_model_b(
 
     for epoch in range(cfg.max_epochs):
         model.train()
-        order = torch.randperm(len(x_train), generator=torch.Generator().manual_seed(cfg.seed + epoch))
+        order = torch.randperm(
+            len(x_train), generator=torch.Generator().manual_seed(cfg.seed + epoch)
+        )
         epoch_loss = 0.0
         for start in range(0, len(order), cfg.batch_size):
             idx = order[start : start + cfg.batch_size]
@@ -397,9 +401,7 @@ def predict_table(
     summary = baseline_inputs(features)
     baseline_map = summary.set_index(["basin_id", "timestamp_utc"])
     key_index = pd.MultiIndex.from_frame(keys[["basin_id", "timestamp_utc"]])
-    baseline_prob = baseline_probability(
-        baseline_map.reindex(key_index).reset_index(), state
-    )
+    baseline_prob = baseline_probability(baseline_map.reindex(key_index).reset_index(), state)
 
     joined = keys.merge(
         summary,
@@ -487,11 +489,19 @@ def load_checkpoint(path: str | Any):
     import torch
 
     checkpoint = torch.load(path, map_location="cpu", weights_only=False)
-    cfg = TrainConfig(**{k: v for k, v in checkpoint["config"].items() if k in TrainConfig.__dataclass_fields__})
+    cfg = TrainConfig(
+        **{k: v for k, v in checkpoint["config"].items() if k in TrainConfig.__dataclass_fields__}
+    )
     model = build_model(n_features=len(cfg.features), cfg=cfg)
     model.load_state_dict(checkpoint["state_dict"])
     model.eval()
-    return model, BaselineState.from_dict(checkpoint["baseline"]), cfg, checkpoint["norm"], checkpoint
+    return (
+        model,
+        BaselineState.from_dict(checkpoint["baseline"]),
+        cfg,
+        checkpoint["norm"],
+        checkpoint,
+    )
 
 
 def tier_for(prob: float, cutoffs: dict[str, float]) -> Tier:

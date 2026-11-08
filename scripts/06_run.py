@@ -24,9 +24,7 @@ from floodwatch import runner  # noqa: E402
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-id", default="demo", help="output directory name under runs/")
-    parser.add_argument(
-        "--config", default=str(runner.DEFAULT_RUN_CONFIG), help="run config YAML"
-    )
+    parser.add_argument("--config", default=str(runner.DEFAULT_RUN_CONFIG), help="run config YAML")
     parser.add_argument(
         "--offline",
         action="store_true",
