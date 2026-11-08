@@ -1,0 +1,26 @@
+{
+  "module": "A_cloudburst_cnn_lstm",
+  "architecture": "CloudburstTemporalNN",
+  "seed": 42,
+  "features": [
+    "rain_1h",
+    "rain_3h",
+    "rain_24h",
+    "rain_72h",
+    "temp_c",
+    "freezing_level_m",
+    "soil_moisture",
+    "terrain_susceptibility"
+  ],
+  "train_period": "2016-01-01 to 2020-11-30",
+  "validation_metrics": {
+    "pod": 0.5647,
+    "far": 0.5596,
+    "csi": 0.3288,
+    "pr_auc": 0.5216,
+    "hits": 144,
+    "misses": 111,
+    "false_alarms": 183
+  },
+  "data_disclaimer": "Trained on real Open-Meteo ERA5 historical reanalysis. 2010 and 2022 evaluated strictly out-of-sample."
+}
