@@ -37,6 +37,8 @@ def test_openmeteo_retries_on_http_429() -> None:
         start_date="2022-08-26",
         end_date="2022-08-26",
         fetcher=mock_fetcher_429,
+        initial_backoff_s=0.01,
+        max_backoff_s=0.05,
     )
     assert len(calls) == 3
     assert len(res.frame) == 1
@@ -57,6 +59,9 @@ def test_openmeteo_refuses_to_synthesize_data_on_failure() -> None:
             start_date="2022-08-26",
             end_date="2022-08-26",
             fetcher=fail_fetcher,
+            max_retries=2,
+            initial_backoff_s=0.01,
+            max_backoff_s=0.05,
         )
     assert "refusing to synthesize fake weather" in str(exc_info.value) or "HTTPError" in str(
         exc_info.value

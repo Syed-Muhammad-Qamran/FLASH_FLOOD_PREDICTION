@@ -224,36 +224,44 @@ print(f"Features ({len(feature_cols)}): {feature_cols}")
 print(f"Lookback: {lookback}h | Horizon: {horizon}h")"""
     ),
     code_cell(
-        """# Fetch or Load Real Historical Weather (2016-2021)
-# Bounded exponential backoff handles Open-Meteo 429 rate limits; responses are cached locally.
+        """# Fetch Real Historical Weather with Bounded Backoff, Polite Rate Limiting & Disk Caching
+# To avoid Open-Meteo HTTP 429 throttling on shared Google Colab IPs,
+# we ingest in two clean periods with polite pauses and disk caching:
+# 1. Historical 2010 Super Floods monsoon season (2010-06-01 to 2010-09-30)
+# 2. Multi-year training & validation period (2020-01-01 to 2021-12-31)
+import time
+
+PERIODS = [
+    ("2010-06-01", "2010-09-30"),  # 2010 Super Floods convective monsoon season
+    ("2020-01-01", "2021-12-31"),  # 2-year chronological train (2020) & val (2021)
+]
+
 cache_base = repo_root / "data" / "raw" / "cache"
 cache_base.mkdir(parents=True, exist_ok=True)
-
-# Increased dataset including the 2010 Super Floods event (2010 through 2021)
-START_DATE = "2010-06-01"
-END_DATE = "2021-12-31"
 
 basin_dfs = []
 for b in basins:
     b_id = b["basin_id"]
-    print(f"Ingesting ERA5 historical weather for {b_id} ({START_DATE} to {END_DATE})...")
-    res = openmeteo.fetch_archive(
-        basin_id=b_id,
-        latitude=b["lat"],
-        longitude=b["lon"],
-        start_date=START_DATE,
-        end_date=END_DATE,
-        elevation_m=b.get("elevation_mean_m"),
-        terrain_susceptibility=b.get("terrain_susceptibility"),
-        snow_fraction=b.get("snow_fraction"),
-        use_cache=True,
-        cache_dir=cache_base,
-    )
-    basin_dfs.append(res.frame)
+    for p_start, p_end in PERIODS:
+        print(f"Ingesting ERA5 for {b_id} ({p_start} to {p_end})...")
+        res = openmeteo.fetch_archive(
+            basin_id=b_id,
+            latitude=b["lat"],
+            longitude=b["lon"],
+            start_date=p_start,
+            end_date=p_end,
+            elevation_m=b.get("elevation_mean_m"),
+            terrain_susceptibility=b.get("terrain_susceptibility"),
+            snow_fraction=b.get("snow_fraction"),
+            use_cache=True,
+            cache_dir=cache_base,
+        )
+        basin_dfs.append(res.frame)
+        time.sleep(1.0)  # Polite pause prevents HTTP 429 rate limiting
 
-raw_df = pd.concat(basin_dfs, ignore_index=True)
+raw_df = pd.concat(basin_dfs, ignore_index=True).drop_duplicates(subset=["basin_id", "timestamp_utc"])
 raw_df["timestamp_utc"] = pd.to_datetime(raw_df["timestamp_utc"], utc=True)
-print(f"\\nTotal historical records collected: {len(raw_df):,} hourly timesteps across 8 basins.")"""
+print(f"\nTotal historical records collected: {len(raw_df):,} hourly timesteps across {len(basins)} basins.")"""
     ),
     code_cell(
         """# Hydrological Feature Engineering without Target Leakage
@@ -572,33 +580,40 @@ basins = load_basins()
 print(f"Model B Features: {feature_cols}")"""
     ),
     code_cell(
-        """# Ingest ERA5 Weather with Bounded Backoff and Caching
+        """# Ingest ERA5 Weather with Bounded Backoff, Polite Rate Limiting and Disk Caching
+import time
+
+PERIODS = [
+    ("2010-06-01", "2010-09-30"),  # 2010 Super Floods high-altitude melt & monsoon season
+    ("2020-01-01", "2021-12-31"),  # 2-year chronological train (2020) & val (2021)
+]
+
 cache_base = repo_root / "data" / "raw" / "cache"
 cache_base.mkdir(parents=True, exist_ok=True)
 
-# Increased dataset including the 2010 Super Floods event (2010 through 2021)
-START_DATE = "2010-06-01"
-END_DATE = "2021-12-31"
-
 basin_dfs = []
 for b in basins:
-    res = openmeteo.fetch_archive(
-        basin_id=b["basin_id"],
-        latitude=b["lat"],
-        longitude=b["lon"],
-        start_date=START_DATE,
-        end_date=END_DATE,
-        elevation_m=b.get("elevation_mean_m"),
-        terrain_susceptibility=b.get("terrain_susceptibility"),
-        snow_fraction=b.get("snow_fraction"),
-        use_cache=True,
-        cache_dir=cache_base,
-    )
-    basin_dfs.append(res.frame)
+    b_id = b["basin_id"]
+    for p_start, p_end in PERIODS:
+        print(f"Ingesting ERA5 for {b_id} ({p_start} to {p_end})...")
+        res = openmeteo.fetch_archive(
+            basin_id=b_id,
+            latitude=b["lat"],
+            longitude=b["lon"],
+            start_date=p_start,
+            end_date=p_end,
+            elevation_m=b.get("elevation_mean_m"),
+            terrain_susceptibility=b.get("terrain_susceptibility"),
+            snow_fraction=b.get("snow_fraction"),
+            use_cache=True,
+            cache_dir=cache_base,
+        )
+        basin_dfs.append(res.frame)
+        time.sleep(1.0)  # Polite pause prevents HTTP 429 rate limiting
 
-raw_df = pd.concat(basin_dfs, ignore_index=True)
+raw_df = pd.concat(basin_dfs, ignore_index=True).drop_duplicates(subset=["basin_id", "timestamp_utc"])
 raw_df["timestamp_utc"] = pd.to_datetime(raw_df["timestamp_utc"], utc=True)
-print(f"Ingested {len(raw_df):,} hourly records.")"""
+print(f"Ingested {len(raw_df):,} hourly records across {len(basins)} basins.")"""
     ),
     code_cell(
         """# Build Melt & Rain-on-Snow Features

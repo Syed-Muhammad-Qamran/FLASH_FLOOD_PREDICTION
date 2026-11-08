@@ -96,9 +96,9 @@ def _execute_with_retry(
     params: dict[str, Any],
     timeout_s: float,
     *,
-    max_retries: int = 4,
-    initial_backoff_s: float = 0.2,
-    max_backoff_s: float = 5.0,
+    max_retries: int = 6,
+    initial_backoff_s: float = 1.0,
+    max_backoff_s: float = 30.0,
 ) -> dict[str, Any]:
     """Execute any fetcher with bounded exponential backoff for HTTP 429 and transient errors.
 
@@ -111,7 +111,13 @@ def _execute_with_retry(
         except urllib.error.HTTPError as exc:
             last_error = exc
             if exc.code in {429, 500, 502, 503, 504} and attempt < max_retries:
-                backoff = min(max_backoff_s, initial_backoff_s * (2**attempt))
+                retry_after = getattr(exc, "headers", None) and exc.headers.get("Retry-After")
+                if retry_after and str(retry_after).isdigit():
+                    backoff = min(max_backoff_s, max(1.0, float(retry_after) + 0.5))
+                elif exc.code == 429:
+                    backoff = min(max_backoff_s, max(2.0, initial_backoff_s * (2**attempt)))
+                else:
+                    backoff = min(max_backoff_s, initial_backoff_s * (2**attempt))
                 time.sleep(backoff)
                 continue
             raise OpenMeteoError(
@@ -212,6 +218,9 @@ def fetch_archive(
     fetcher: Fetcher | None = None,
     use_cache: bool = False,
     cache_dir: Any = None,
+    max_retries: int = 5,
+    initial_backoff_s: float = 1.0,
+    max_backoff_s: float = 30.0,
 ) -> FetchResult:
     """Fetch historical hourly weather for one point (ERA5-backed archive API).
 
@@ -249,7 +258,15 @@ def fetch_archive(
         "timezone": timezone,
     }
     try:
-        payload = _execute_with_retry(fetcher or _default_fetch, ARCHIVE_BASE, params, timeout_s)
+        payload = _execute_with_retry(
+            fetcher or _default_fetch,
+            ARCHIVE_BASE,
+            params,
+            timeout_s,
+            max_retries=max_retries,
+            initial_backoff_s=initial_backoff_s,
+            max_backoff_s=max_backoff_s,
+        )
     except OpenMeteoError:
         raise
     except (ValueError, TypeError, OSError) as exc:
