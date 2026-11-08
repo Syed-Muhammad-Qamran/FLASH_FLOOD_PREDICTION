@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-08T05:30:37.464730+00:00",
+  "split": "validation",
+  "rows": 64128,
+  "data_snapshot_hash": "aee867d56d657f7abc7b3fe8260c845dbcccf158434ffd22e7d5cbad82573f71",
+  "thresholds_fingerprint": "1bfb9288484eabb099c13caad7a849dc96a12e5d4e1e683b5acc8db3bc6b9fc1",
+  "variants": [
+    {
+      "key": "a_only",
+      "name": "Model A only",
+      "description": "Cloudburst mechanism alone",
+      "threshold": 0.24,
+      "metrics": {
+        "rows": 64128.0,
+        "pod": 0.7985,
+        "far": 0.1482,
+        "csi": 0.7011,
+        "precision": 0.8518,
+        "pr_auc": 0.8622,
+        "positive_rate": 0.3791,
+        "event_pod": 0.5571,
+        "median_lead_time_h": 24.0
+      }
+    },
+    {
+      "key": "b_only",
+      "name": "Model B only",
+      "description": "Snowmelt mechanism alone",
+      "threshold": 0.42,
+      "metrics": {
+        "rows": 64128.0,
+        "pod": 0.9759,
+        "far": 0.3834,
+        "csi": 0.6073,
+        "precision": 0.6166,
+        "pr_auc": 0.756,
+        "positive_rate": 0.3791,
+        "event_pod": 0.9497,
+        "median_lead_time_h": 24.0
+      }
+    },
+    {
+      "key": "max",
+      "name": "max(prob_a, prob_b)",
+      "description": "Agreed fusion rule",
+      "threshold": 0.42,
+      "metrics": {
+        "rows": 64128.0,
+        "pod": 0.9761,
+        "far": 0.3837,
+        "csi": 0.6072,
+        "precision": 0.6163,
+        "pr_auc": 0.7648,
+        "positive_rate": 0.3791,
+        "event_pod": 0.9497,
+        "median_lead_time_h": 24.0
+      }
+    },
+    {
+      "key": "noisy_or",
+      "name": "noisy_or(prob_a, prob_b)",
+      "description": "Probabilistic union of independent mechanisms",
+      "threshold": 0.42,
+      "metrics": {
+        "rows": 64128.0,
+        "pod": 0.9889,
+        "far": 0.3988,
+        "csi": 0.5971,
+        "precision": 0.6012,
+        "pr_auc": 0.8735,
+        "positive_rate": 0.3791,
+        "event_pod": 0.9749,
+        "median_lead_time_h": 24.0
+      }
+    },
+    {
+      "key": "max_compound",
+      "name": "max + compound",
+      "description": "max score, raised to the high floor when both mechanisms fire",
+      "threshold": 0.42,
+      "metrics": {
+        "rows": 64128.0,
+        "pod": 0.9761,
+        "far": 0.3837,
+        "csi": 0.6072,
+        "precision": 0.6163,
+        "pr_auc": 0.7648,
+        "positive_rate": 0.3791,
+        "event_pod": 0.9497,
+        "median_lead_time_h": 24.0
+      }
+    },
+    {
+      "key": "max_compound_rain_on_snow",
+      "name": "max + compound + rain-on-snow",
+      "description": "max score with compound and rain-on-snow escalation floors",
+      "threshold": 0.42,
+      "metrics": {
+        "rows": 64128.0,
+        "pod": 0.9761,
+        "far": 0.3837,
+        "csi": 0.6072,
+        "precision": 0.6163,
+        "pr_auc": 0.8482,
+        "positive_rate": 0.3791,
+        "event_pod": 0.9497,
+        "median_lead_time_h": 24.0
+      }
+    }
+  ],
+  "best_variant": "noisy_or",
+  "best_variant_name": "noisy_or(prob_a, prob_b)",
+  "justification": "noisy_or(prob_a, prob_b) ranks first on validation PR-AUC (0.8735) and CSI (0.5971) with FAR 0.3988. It beats Model A only by +0.0113 PR-AUC and -0.1040 CSI."
+}

@@ -1,0 +1,18 @@
+# Runtime configuration for `scripts/06_run.py`.
+#
+# Lock 1 of the delivery gate lives here: `delivery: file` is the default and
+# the only value used by the committed demo. Change to `whatsapp` only for a
+# live demo, and only when FLOODWATCH_SEND=1 and no override suppresses it.
+
+schema_version: 1
+delivery: file
+language: en
+# File mode records verified messages in outbound.json and never transmits.
+# Set dry_run: true (or pass --dry-run) to preview the exact provider payload.
+dry_run: false
+cooldown_hours: 6
+audit_hours: 24
+
+# Offline replay anchor: the August 2022 flood window (validation split).
+# Set to null for a live/operational run.
+as_of: "2022-08-27T00:00:00Z"

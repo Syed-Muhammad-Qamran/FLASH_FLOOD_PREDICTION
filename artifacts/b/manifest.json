@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "module": "B_snowmelt_lstm",
+  "model_version": "B_snowmelt_lstm-2434f0a-aee867d5",
+  "data_snapshot_hash": "aee867d56d657f7abc7b3fe8260c845dbcccf158434ffd22e7d5cbad82573f71",
+  "seed": 42,
+  "rows": 81600,
+  "sha256": "893b4917e395e2f4b63a338f4831b60c26973f22f0db95861a8bfa4648c8878f",
+  "validated_at": "2026-11-08T05:06:28.940296+00:00",
+  "validation_metrics_path": "artifacts/b/metrics_b.json",
+  "baseline_wins": false,
+  "published_source": "deep",
+  "architecture": {
+    "lstm_layers": 1,
+    "hidden_units": 48,
+    "dropout": 0.2,
+    "lookback_h": 72,
+    "features": [
+      "rain_1h",
+      "rain_3h",
+      "rain_24h",
+      "rain_72h",
+      "rain_fcst_mm_3h",
+      "temp_c",
+      "temp_fcst_c",
+      "freezing_level_m",
+      "soil_moisture",
+      "snow_depth_mm",
+      "snowmelt_mm",
+      "degree_day_melt",
+      "rain_on_snow",
+      "terrain_susceptibility"
+    ]
+  },
+  "synthetic_data": true
+}

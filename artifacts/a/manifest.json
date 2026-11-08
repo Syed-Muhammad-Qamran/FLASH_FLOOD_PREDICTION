@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "module": "A_cloudburst_cnn_lstm",
+  "model_version": "A_cloudburst_cnn_lstm-synthetic-aee867d5",
+  "data_snapshot_hash": "aee867d56d657f7abc7b3fe8260c845dbcccf158434ffd22e7d5cbad82573f71",
+  "seed": 1234,
+  "rows": 81600,
+  "sha256": "a3efd0899b4c9001ff8b3f011864f84eee3c232bc9c9b495187c7f19b380554f",
+  "validated_at": "2026-11-08T00:00:00Z",
+  "validation_metrics_path": "artifacts/a/metrics_a.json",
+  "baseline_wins": true,
+  "synthetic_placeholder": true
+}
