@@ -232,13 +232,16 @@ def _overview(results: list[interop.RiskResult], thresholds_config: dict[str, An
     st.dataframe(display, use_container_width=True, hide_index=True)
 
     cuts = thresholds_config.get("modules", {}).get(schema.MODULE_FUSED, {}).get("tiers", {})
+    catalog = interop.areas()
     st.markdown("### 🔍 Basin Mechanistic Attribution & Gap Analysis")
     for result in results:
         card = explain.explain(result, cuts)
         label = result.level.name
         badge_class = f"badge-{label.lower()}"
+        area = catalog.get(result.area_id)
+        name_str = area.name if area else result.area_id
         with st.expander(
-            f"{result.name} ({result.area_id}) — Level {label} (Risk: {result.score:.3f})",
+            f"{name_str} ({result.area_id}) — Level {label} (Risk: {result.score:.3f})",
             expanded=result.level >= Level.ORANGE,
         ):
             c1, c2 = st.columns(2)
