@@ -1,0 +1,66 @@
+[
+  {
+    "area_id": "chitral_chitral",
+    "action": "alert",
+    "level": "RED",
+    "previous_level": "GREEN",
+    "reason": "first transition to ORANGE or above",
+    "cooldown_remaining_h": null
+  },
+  {
+    "area_id": "chitral_drosh",
+    "action": "alert",
+    "level": "RED",
+    "previous_level": "GREEN",
+    "reason": "first transition to ORANGE or above",
+    "cooldown_remaining_h": null
+  },
+  {
+    "area_id": "chitral_mastuj",
+    "action": "alert",
+    "level": "RED",
+    "previous_level": "GREEN",
+    "reason": "first transition to ORANGE or above",
+    "cooldown_remaining_h": null
+  },
+  {
+    "area_id": "panjkora_dir",
+    "action": "alert",
+    "level": "RED",
+    "previous_level": "GREEN",
+    "reason": "first transition to ORANGE or above",
+    "cooldown_remaining_h": null
+  },
+  {
+    "area_id": "panjkora_talash",
+    "action": "alert",
+    "level": "RED",
+    "previous_level": "GREEN",
+    "reason": "first transition to ORANGE or above",
+    "cooldown_remaining_h": null
+  },
+  {
+    "area_id": "swat_chakdara",
+    "action": "alert",
+    "level": "RED",
+    "previous_level": "GREEN",
+    "reason": "first transition to ORANGE or above",
+    "cooldown_remaining_h": null
+  },
+  {
+    "area_id": "swat_kalam",
+    "action": "alert",
+    "level": "RED",
+    "previous_level": "GREEN",
+    "reason": "first transition to ORANGE or above",
+    "cooldown_remaining_h": null
+  },
+  {
+    "area_id": "swat_madyan",
+    "action": "alert",
+    "level": "RED",
+    "previous_level": "GREEN",
+    "reason": "first transition to ORANGE or above",
+    "cooldown_remaining_h": null
+  }
+]

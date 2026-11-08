@@ -1,0 +1,7694 @@
+{
+ "schema_version": 1,
+ "window": {
+  "start_utc": "2022-08-24T00:00:00Z",
+  "end_utc": "2022-08-29T00:00:00Z"
+ },
+ "data_snapshot_hash": "aee867d56d657f7abc7b3fe8260c845dbcccf158434ffd22e7d5cbad82573f71",
+ "thresholds_path": "configs/thresholds.yaml",
+ "thresholds_fingerprint": "1bfb9288484eabb099c13caad7a849dc96a12e5d4e1e683b5acc8db3bc6b9fc1",
+ "module_a_version": "A_cloudburst_cnn_lstm-synthetic-aee867d5",
+ "module_b_version": "B_snowmelt_lstm-2434f0a-aee867d5",
+ "rows": [
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T00:00:00+00:00",
+   "prob": 0.611676,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T00:00:00+00:00",
+   "prob": 0.610261,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T00:00:00+00:00",
+   "prob": 0.603262,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T00:00:00+00:00",
+   "prob": 0.625124,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T00:00:00+00:00",
+   "prob": 0.591968,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T00:00:00+00:00",
+   "prob": 0.591886,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T00:00:00+00:00",
+   "prob": 0.589331,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T00:00:00+00:00",
+   "prob": 0.598628,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T01:00:00+00:00",
+   "prob": 0.607784,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T01:00:00+00:00",
+   "prob": 0.607668,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T01:00:00+00:00",
+   "prob": 0.592957,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T01:00:00+00:00",
+   "prob": 0.619615,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T01:00:00+00:00",
+   "prob": 0.581588,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T01:00:00+00:00",
+   "prob": 0.587886,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T01:00:00+00:00",
+   "prob": 0.582865,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T01:00:00+00:00",
+   "prob": 0.604613,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T02:00:00+00:00",
+   "prob": 0.605868,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T02:00:00+00:00",
+   "prob": 0.596462,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T02:00:00+00:00",
+   "prob": 0.584307,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T02:00:00+00:00",
+   "prob": 0.618073,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T02:00:00+00:00",
+   "prob": 0.575013,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T02:00:00+00:00",
+   "prob": 0.580908,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T02:00:00+00:00",
+   "prob": 0.59365,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T02:00:00+00:00",
+   "prob": 0.6029,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T03:00:00+00:00",
+   "prob": 0.602112,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T03:00:00+00:00",
+   "prob": 0.597911,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T03:00:00+00:00",
+   "prob": 0.582158,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T03:00:00+00:00",
+   "prob": 0.615564,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T03:00:00+00:00",
+   "prob": 0.5712,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T03:00:00+00:00",
+   "prob": 0.574317,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T03:00:00+00:00",
+   "prob": 0.588183,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T03:00:00+00:00",
+   "prob": 0.596623,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T04:00:00+00:00",
+   "prob": 0.599896,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T04:00:00+00:00",
+   "prob": 0.60044,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T04:00:00+00:00",
+   "prob": 0.578331,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T04:00:00+00:00",
+   "prob": 0.611983,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T04:00:00+00:00",
+   "prob": 0.574438,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T04:00:00+00:00",
+   "prob": 0.588101,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T04:00:00+00:00",
+   "prob": 0.584412,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T04:00:00+00:00",
+   "prob": 0.599246,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T05:00:00+00:00",
+   "prob": 0.59689,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T05:00:00+00:00",
+   "prob": 0.599639,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T05:00:00+00:00",
+   "prob": 0.585077,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T05:00:00+00:00",
+   "prob": 0.609191,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T05:00:00+00:00",
+   "prob": 0.575181,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T05:00:00+00:00",
+   "prob": 0.586092,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T05:00:00+00:00",
+   "prob": 0.572103,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T05:00:00+00:00",
+   "prob": 0.595762,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T06:00:00+00:00",
+   "prob": 0.596055,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T06:00:00+00:00",
+   "prob": 0.603048,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T06:00:00+00:00",
+   "prob": 0.589177,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T06:00:00+00:00",
+   "prob": 0.612416,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T06:00:00+00:00",
+   "prob": 0.578031,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T06:00:00+00:00",
+   "prob": 0.594555,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T06:00:00+00:00",
+   "prob": 0.57148,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T06:00:00+00:00",
+   "prob": 0.598892,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T07:00:00+00:00",
+   "prob": 0.595653,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T07:00:00+00:00",
+   "prob": 0.598512,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T07:00:00+00:00",
+   "prob": 0.594464,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T07:00:00+00:00",
+   "prob": 0.616541,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T07:00:00+00:00",
+   "prob": 0.572902,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T07:00:00+00:00",
+   "prob": 0.58924,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T07:00:00+00:00",
+   "prob": 0.583485,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T07:00:00+00:00",
+   "prob": 0.595447,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T08:00:00+00:00",
+   "prob": 0.604597,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T08:00:00+00:00",
+   "prob": 0.599744,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T08:00:00+00:00",
+   "prob": 0.595708,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T08:00:00+00:00",
+   "prob": 0.621583,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T08:00:00+00:00",
+   "prob": 0.573732,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T08:00:00+00:00",
+   "prob": 0.587526,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T08:00:00+00:00",
+   "prob": 0.578517,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T08:00:00+00:00",
+   "prob": 0.597752,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T09:00:00+00:00",
+   "prob": 0.610802,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T09:00:00+00:00",
+   "prob": 0.603985,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T09:00:00+00:00",
+   "prob": 0.598897,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T09:00:00+00:00",
+   "prob": 0.620724,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T09:00:00+00:00",
+   "prob": 0.575791,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T09:00:00+00:00",
+   "prob": 0.580613,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T09:00:00+00:00",
+   "prob": 0.593274,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T09:00:00+00:00",
+   "prob": 0.598318,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T10:00:00+00:00",
+   "prob": 0.613755,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T10:00:00+00:00",
+   "prob": 0.613548,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T10:00:00+00:00",
+   "prob": 0.601757,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T10:00:00+00:00",
+   "prob": 0.623435,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T10:00:00+00:00",
+   "prob": 0.577468,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T10:00:00+00:00",
+   "prob": 0.583429,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T10:00:00+00:00",
+   "prob": 0.596615,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T10:00:00+00:00",
+   "prob": 0.5989,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T11:00:00+00:00",
+   "prob": 0.612755,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T11:00:00+00:00",
+   "prob": 0.615449,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T11:00:00+00:00",
+   "prob": 0.603227,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T11:00:00+00:00",
+   "prob": 0.619969,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T11:00:00+00:00",
+   "prob": 0.582972,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T11:00:00+00:00",
+   "prob": 0.583822,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T11:00:00+00:00",
+   "prob": 0.601952,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T11:00:00+00:00",
+   "prob": 0.607991,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T12:00:00+00:00",
+   "prob": 0.619517,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T12:00:00+00:00",
+   "prob": 0.614603,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T12:00:00+00:00",
+   "prob": 0.604735,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T12:00:00+00:00",
+   "prob": 0.621389,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T12:00:00+00:00",
+   "prob": 0.592601,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T12:00:00+00:00",
+   "prob": 0.58467,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T12:00:00+00:00",
+   "prob": 0.612859,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T12:00:00+00:00",
+   "prob": 0.609751,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T13:00:00+00:00",
+   "prob": 0.622888,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T13:00:00+00:00",
+   "prob": 0.614305,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T13:00:00+00:00",
+   "prob": 0.608696,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T13:00:00+00:00",
+   "prob": 0.622104,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T13:00:00+00:00",
+   "prob": 0.595591,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T13:00:00+00:00",
+   "prob": 0.588894,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T13:00:00+00:00",
+   "prob": 0.630793,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T13:00:00+00:00",
+   "prob": 0.613133,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T14:00:00+00:00",
+   "prob": 0.622832,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T14:00:00+00:00",
+   "prob": 0.619181,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T14:00:00+00:00",
+   "prob": 0.609397,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T14:00:00+00:00",
+   "prob": 0.62579,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T14:00:00+00:00",
+   "prob": 0.612757,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T14:00:00+00:00",
+   "prob": 0.594172,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T14:00:00+00:00",
+   "prob": 0.627417,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T14:00:00+00:00",
+   "prob": 0.61582,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T15:00:00+00:00",
+   "prob": 0.621046,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T15:00:00+00:00",
+   "prob": 0.622839,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T15:00:00+00:00",
+   "prob": 0.610916,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T15:00:00+00:00",
+   "prob": 0.62486,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T15:00:00+00:00",
+   "prob": 0.608291,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T15:00:00+00:00",
+   "prob": 0.594108,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T15:00:00+00:00",
+   "prob": 0.62616,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T15:00:00+00:00",
+   "prob": 0.616721,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T16:00:00+00:00",
+   "prob": 0.625666,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T16:00:00+00:00",
+   "prob": 0.625032,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T16:00:00+00:00",
+   "prob": 0.611273,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T16:00:00+00:00",
+   "prob": 0.624593,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T16:00:00+00:00",
+   "prob": 0.606959,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T16:00:00+00:00",
+   "prob": 0.59341,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T16:00:00+00:00",
+   "prob": 0.623282,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T16:00:00+00:00",
+   "prob": 0.624618,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T17:00:00+00:00",
+   "prob": 0.626482,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T17:00:00+00:00",
+   "prob": 0.640099,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T17:00:00+00:00",
+   "prob": 0.611218,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T17:00:00+00:00",
+   "prob": 0.623339,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T17:00:00+00:00",
+   "prob": 0.601801,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T17:00:00+00:00",
+   "prob": 0.598867,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T17:00:00+00:00",
+   "prob": 0.624278,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T17:00:00+00:00",
+   "prob": 0.629427,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T18:00:00+00:00",
+   "prob": 0.628375,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T18:00:00+00:00",
+   "prob": 0.636054,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T18:00:00+00:00",
+   "prob": 0.612467,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T18:00:00+00:00",
+   "prob": 0.625387,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T18:00:00+00:00",
+   "prob": 0.599715,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T18:00:00+00:00",
+   "prob": 0.599451,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T18:00:00+00:00",
+   "prob": 0.621722,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T18:00:00+00:00",
+   "prob": 0.625848,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T19:00:00+00:00",
+   "prob": 0.624282,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T19:00:00+00:00",
+   "prob": 0.632434,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T19:00:00+00:00",
+   "prob": 0.613903,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T19:00:00+00:00",
+   "prob": 0.624196,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T19:00:00+00:00",
+   "prob": 0.604425,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T19:00:00+00:00",
+   "prob": 0.592176,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T19:00:00+00:00",
+   "prob": 0.618888,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T19:00:00+00:00",
+   "prob": 0.61998,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T20:00:00+00:00",
+   "prob": 0.631222,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T20:00:00+00:00",
+   "prob": 0.627244,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T20:00:00+00:00",
+   "prob": 0.610876,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T20:00:00+00:00",
+   "prob": 0.625487,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T20:00:00+00:00",
+   "prob": 0.598626,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T20:00:00+00:00",
+   "prob": 0.589278,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T20:00:00+00:00",
+   "prob": 0.61429,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T20:00:00+00:00",
+   "prob": 0.618463,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T21:00:00+00:00",
+   "prob": 0.62717,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T21:00:00+00:00",
+   "prob": 0.624067,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T21:00:00+00:00",
+   "prob": 0.602755,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T21:00:00+00:00",
+   "prob": 0.619336,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T21:00:00+00:00",
+   "prob": 0.600137,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T21:00:00+00:00",
+   "prob": 0.583692,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T21:00:00+00:00",
+   "prob": 0.610094,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T21:00:00+00:00",
+   "prob": 0.624427,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T22:00:00+00:00",
+   "prob": 0.625095,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T22:00:00+00:00",
+   "prob": 0.626278,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T22:00:00+00:00",
+   "prob": 0.599456,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T22:00:00+00:00",
+   "prob": 0.617284,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T22:00:00+00:00",
+   "prob": 0.590637,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T22:00:00+00:00",
+   "prob": 0.579876,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T22:00:00+00:00",
+   "prob": 0.600067,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T22:00:00+00:00",
+   "prob": 0.615645,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-24T23:00:00+00:00",
+   "prob": 0.616976,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-24T23:00:00+00:00",
+   "prob": 0.627303,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-24T23:00:00+00:00",
+   "prob": 0.59625,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-24T23:00:00+00:00",
+   "prob": 0.614701,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-24T23:00:00+00:00",
+   "prob": 0.583824,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-24T23:00:00+00:00",
+   "prob": 0.568488,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-24T23:00:00+00:00",
+   "prob": 0.595914,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-24T23:00:00+00:00",
+   "prob": 0.606699,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T00:00:00+00:00",
+   "prob": 0.613091,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T00:00:00+00:00",
+   "prob": 0.627734,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T00:00:00+00:00",
+   "prob": 0.590281,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T00:00:00+00:00",
+   "prob": 0.615677,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T00:00:00+00:00",
+   "prob": 0.575866,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T00:00:00+00:00",
+   "prob": 0.575423,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T00:00:00+00:00",
+   "prob": 0.585433,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T00:00:00+00:00",
+   "prob": 0.602766,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T01:00:00+00:00",
+   "prob": 0.617327,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T01:00:00+00:00",
+   "prob": 0.622662,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T01:00:00+00:00",
+   "prob": 0.579306,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T01:00:00+00:00",
+   "prob": 0.610033,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T01:00:00+00:00",
+   "prob": 0.570716,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T01:00:00+00:00",
+   "prob": 0.567406,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T01:00:00+00:00",
+   "prob": 0.57686,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T01:00:00+00:00",
+   "prob": 0.5947,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T02:00:00+00:00",
+   "prob": 0.615127,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T02:00:00+00:00",
+   "prob": 0.616256,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T02:00:00+00:00",
+   "prob": 0.566473,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T02:00:00+00:00",
+   "prob": 0.604638,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T02:00:00+00:00",
+   "prob": 0.575993,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T02:00:00+00:00",
+   "prob": 0.562468,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T02:00:00+00:00",
+   "prob": 0.569589,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T02:00:00+00:00",
+   "prob": 0.585596,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T03:00:00+00:00",
+   "prob": 0.60555,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T03:00:00+00:00",
+   "prob": 0.61247,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T03:00:00+00:00",
+   "prob": 0.571862,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T03:00:00+00:00",
+   "prob": 0.603499,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T03:00:00+00:00",
+   "prob": 0.567298,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T03:00:00+00:00",
+   "prob": 0.559863,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T03:00:00+00:00",
+   "prob": 0.557054,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T03:00:00+00:00",
+   "prob": 0.600496,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T04:00:00+00:00",
+   "prob": 0.60389,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T04:00:00+00:00",
+   "prob": 0.606965,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T04:00:00+00:00",
+   "prob": 0.565386,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T04:00:00+00:00",
+   "prob": 0.609725,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T04:00:00+00:00",
+   "prob": 0.559162,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T04:00:00+00:00",
+   "prob": 0.574125,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T04:00:00+00:00",
+   "prob": 0.56635,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T04:00:00+00:00",
+   "prob": 0.592513,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T05:00:00+00:00",
+   "prob": 0.597527,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T05:00:00+00:00",
+   "prob": 0.605783,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T05:00:00+00:00",
+   "prob": 0.572744,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T05:00:00+00:00",
+   "prob": 0.611073,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T05:00:00+00:00",
+   "prob": 0.554534,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T05:00:00+00:00",
+   "prob": 0.572428,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T05:00:00+00:00",
+   "prob": 0.564423,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T05:00:00+00:00",
+   "prob": 0.605233,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T06:00:00+00:00",
+   "prob": 0.600363,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T06:00:00+00:00",
+   "prob": 0.600175,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T06:00:00+00:00",
+   "prob": 0.572215,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T06:00:00+00:00",
+   "prob": 0.61208,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T06:00:00+00:00",
+   "prob": 0.553735,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T06:00:00+00:00",
+   "prob": 0.571729,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T06:00:00+00:00",
+   "prob": 0.55799,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T06:00:00+00:00",
+   "prob": 0.600405,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T07:00:00+00:00",
+   "prob": 0.604577,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T07:00:00+00:00",
+   "prob": 0.6013,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T07:00:00+00:00",
+   "prob": 0.574412,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T07:00:00+00:00",
+   "prob": 0.614766,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T07:00:00+00:00",
+   "prob": 0.566072,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T07:00:00+00:00",
+   "prob": 0.56477,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T07:00:00+00:00",
+   "prob": 0.564168,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T07:00:00+00:00",
+   "prob": 0.60021,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T08:00:00+00:00",
+   "prob": 0.610759,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T08:00:00+00:00",
+   "prob": 0.607265,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T08:00:00+00:00",
+   "prob": 0.590092,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T08:00:00+00:00",
+   "prob": 0.614509,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T08:00:00+00:00",
+   "prob": 0.5735,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T08:00:00+00:00",
+   "prob": 0.561417,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T08:00:00+00:00",
+   "prob": 0.582319,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T08:00:00+00:00",
+   "prob": 0.598535,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T09:00:00+00:00",
+   "prob": 0.617175,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T09:00:00+00:00",
+   "prob": 0.610329,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T09:00:00+00:00",
+   "prob": 0.59517,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T09:00:00+00:00",
+   "prob": 0.614498,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T09:00:00+00:00",
+   "prob": 0.575183,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T09:00:00+00:00",
+   "prob": 0.562564,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T09:00:00+00:00",
+   "prob": 0.595195,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T09:00:00+00:00",
+   "prob": 0.595741,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T10:00:00+00:00",
+   "prob": 0.62104,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T10:00:00+00:00",
+   "prob": 0.618037,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T10:00:00+00:00",
+   "prob": 0.594715,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T10:00:00+00:00",
+   "prob": 0.612328,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T10:00:00+00:00",
+   "prob": 0.572696,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T10:00:00+00:00",
+   "prob": 0.569583,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T10:00:00+00:00",
+   "prob": 0.598411,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T10:00:00+00:00",
+   "prob": 0.600628,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T11:00:00+00:00",
+   "prob": 0.622632,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T11:00:00+00:00",
+   "prob": 0.621382,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T11:00:00+00:00",
+   "prob": 0.601423,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T11:00:00+00:00",
+   "prob": 0.62796,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T11:00:00+00:00",
+   "prob": 0.576647,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T11:00:00+00:00",
+   "prob": 0.572836,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T11:00:00+00:00",
+   "prob": 0.600889,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T11:00:00+00:00",
+   "prob": 0.611091,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T12:00:00+00:00",
+   "prob": 0.622331,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T12:00:00+00:00",
+   "prob": 0.627447,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T12:00:00+00:00",
+   "prob": 0.607237,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T12:00:00+00:00",
+   "prob": 0.627068,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T12:00:00+00:00",
+   "prob": 0.580095,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T12:00:00+00:00",
+   "prob": 0.603923,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T12:00:00+00:00",
+   "prob": 0.602198,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T12:00:00+00:00",
+   "prob": 0.628181,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T13:00:00+00:00",
+   "prob": 0.622476,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T13:00:00+00:00",
+   "prob": 0.626942,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T13:00:00+00:00",
+   "prob": 0.612159,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T13:00:00+00:00",
+   "prob": 0.627831,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T13:00:00+00:00",
+   "prob": 0.58305,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T13:00:00+00:00",
+   "prob": 0.609385,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T13:00:00+00:00",
+   "prob": 0.608593,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T13:00:00+00:00",
+   "prob": 0.632412,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T14:00:00+00:00",
+   "prob": 0.624217,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T14:00:00+00:00",
+   "prob": 0.627993,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T14:00:00+00:00",
+   "prob": 0.614477,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T14:00:00+00:00",
+   "prob": 0.625566,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T14:00:00+00:00",
+   "prob": 0.585223,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T14:00:00+00:00",
+   "prob": 0.608981,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T14:00:00+00:00",
+   "prob": 0.610385,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T14:00:00+00:00",
+   "prob": 0.63616,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T15:00:00+00:00",
+   "prob": 0.62528,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T15:00:00+00:00",
+   "prob": 0.633265,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T15:00:00+00:00",
+   "prob": 0.615005,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T15:00:00+00:00",
+   "prob": 0.624292,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T15:00:00+00:00",
+   "prob": 0.588886,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T15:00:00+00:00",
+   "prob": 0.605867,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T15:00:00+00:00",
+   "prob": 0.608248,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T15:00:00+00:00",
+   "prob": 0.629649,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T16:00:00+00:00",
+   "prob": 0.625525,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T16:00:00+00:00",
+   "prob": 0.632329,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T16:00:00+00:00",
+   "prob": 0.623434,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T16:00:00+00:00",
+   "prob": 0.626075,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T16:00:00+00:00",
+   "prob": 0.598816,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T16:00:00+00:00",
+   "prob": 0.601847,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T16:00:00+00:00",
+   "prob": 0.608699,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T16:00:00+00:00",
+   "prob": 0.628677,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T17:00:00+00:00",
+   "prob": 0.626327,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T17:00:00+00:00",
+   "prob": 0.63366,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T17:00:00+00:00",
+   "prob": 0.625471,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T17:00:00+00:00",
+   "prob": 0.63665,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T17:00:00+00:00",
+   "prob": 0.600916,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T17:00:00+00:00",
+   "prob": 0.601782,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T17:00:00+00:00",
+   "prob": 0.608529,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T17:00:00+00:00",
+   "prob": 0.624011,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T18:00:00+00:00",
+   "prob": 0.62596,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T18:00:00+00:00",
+   "prob": 0.629414,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T18:00:00+00:00",
+   "prob": 0.625867,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T18:00:00+00:00",
+   "prob": 0.632629,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T18:00:00+00:00",
+   "prob": 0.606721,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T18:00:00+00:00",
+   "prob": 0.610323,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T18:00:00+00:00",
+   "prob": 0.616013,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T18:00:00+00:00",
+   "prob": 0.622233,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T19:00:00+00:00",
+   "prob": 0.626431,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T19:00:00+00:00",
+   "prob": 0.62646,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T19:00:00+00:00",
+   "prob": 0.620474,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T19:00:00+00:00",
+   "prob": 0.638146,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T19:00:00+00:00",
+   "prob": 0.599465,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T19:00:00+00:00",
+   "prob": 0.615611,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T19:00:00+00:00",
+   "prob": 0.612149,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T19:00:00+00:00",
+   "prob": 0.618885,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T20:00:00+00:00",
+   "prob": 0.630805,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T20:00:00+00:00",
+   "prob": 0.633184,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T20:00:00+00:00",
+   "prob": 0.610912,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T20:00:00+00:00",
+   "prob": 0.632539,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T20:00:00+00:00",
+   "prob": 0.603765,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T20:00:00+00:00",
+   "prob": 0.612387,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T20:00:00+00:00",
+   "prob": 0.612129,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T20:00:00+00:00",
+   "prob": 0.614651,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T21:00:00+00:00",
+   "prob": 0.626523,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T21:00:00+00:00",
+   "prob": 0.997047,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T21:00:00+00:00",
+   "prob": 0.611822,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T21:00:00+00:00",
+   "prob": 0.636734,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T21:00:00+00:00",
+   "prob": 0.605536,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T21:00:00+00:00",
+   "prob": 0.604799,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T21:00:00+00:00",
+   "prob": 0.61332,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T21:00:00+00:00",
+   "prob": 0.608027,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T22:00:00+00:00",
+   "prob": 0.632757,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T22:00:00+00:00",
+   "prob": 0.999824,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T22:00:00+00:00",
+   "prob": 0.604776,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T22:00:00+00:00",
+   "prob": 0.629854,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T22:00:00+00:00",
+   "prob": 0.593077,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T22:00:00+00:00",
+   "prob": 0.589504,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T22:00:00+00:00",
+   "prob": 0.603969,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T22:00:00+00:00",
+   "prob": 0.61285,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-25T23:00:00+00:00",
+   "prob": 0.6378,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-25T23:00:00+00:00",
+   "prob": 0.999955,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-25T23:00:00+00:00",
+   "prob": 0.5989,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-25T23:00:00+00:00",
+   "prob": 0.622792,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-25T23:00:00+00:00",
+   "prob": 0.599566,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-25T23:00:00+00:00",
+   "prob": 0.581936,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-25T23:00:00+00:00",
+   "prob": 0.606708,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-25T23:00:00+00:00",
+   "prob": 0.599796,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T00:00:00+00:00",
+   "prob": 0.631678,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T00:00:00+00:00",
+   "prob": 0.998729,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T00:00:00+00:00",
+   "prob": 0.602323,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T00:00:00+00:00",
+   "prob": 0.622036,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T00:00:00+00:00",
+   "prob": 0.586311,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T00:00:00+00:00",
+   "prob": 0.573552,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T00:00:00+00:00",
+   "prob": 0.595952,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T00:00:00+00:00",
+   "prob": 0.593731,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T01:00:00+00:00",
+   "prob": 0.616899,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T01:00:00+00:00",
+   "prob": 0.990965,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T01:00:00+00:00",
+   "prob": 0.593914,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T01:00:00+00:00",
+   "prob": 0.618366,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T01:00:00+00:00",
+   "prob": 0.579117,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T01:00:00+00:00",
+   "prob": 0.563936,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T01:00:00+00:00",
+   "prob": 0.583372,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T01:00:00+00:00",
+   "prob": 0.593549,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T02:00:00+00:00",
+   "prob": 0.60178,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T02:00:00+00:00",
+   "prob": 0.972677,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T02:00:00+00:00",
+   "prob": 0.593283,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T02:00:00+00:00",
+   "prob": 0.602072,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T02:00:00+00:00",
+   "prob": 0.572527,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T02:00:00+00:00",
+   "prob": 0.558871,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T02:00:00+00:00",
+   "prob": 0.56722,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T02:00:00+00:00",
+   "prob": 0.596739,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T03:00:00+00:00",
+   "prob": 0.602525,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T03:00:00+00:00",
+   "prob": 0.931568,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T03:00:00+00:00",
+   "prob": 0.58924,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T03:00:00+00:00",
+   "prob": 0.605926,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T03:00:00+00:00",
+   "prob": 0.570153,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T03:00:00+00:00",
+   "prob": 0.546852,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T03:00:00+00:00",
+   "prob": 0.564701,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T03:00:00+00:00",
+   "prob": 0.591701,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T04:00:00+00:00",
+   "prob": 0.594313,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T04:00:00+00:00",
+   "prob": 0.910683,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T04:00:00+00:00",
+   "prob": 0.595822,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T04:00:00+00:00",
+   "prob": 0.608036,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T04:00:00+00:00",
+   "prob": 0.561871,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T04:00:00+00:00",
+   "prob": 0.540579,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T04:00:00+00:00",
+   "prob": 0.564697,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T04:00:00+00:00",
+   "prob": 0.581837,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T05:00:00+00:00",
+   "prob": 0.59308,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T05:00:00+00:00",
+   "prob": 0.895737,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T05:00:00+00:00",
+   "prob": 0.589087,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T05:00:00+00:00",
+   "prob": 0.61092,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T05:00:00+00:00",
+   "prob": 0.562917,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T05:00:00+00:00",
+   "prob": 0.537731,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T05:00:00+00:00",
+   "prob": 0.549586,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T05:00:00+00:00",
+   "prob": 0.58474,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T06:00:00+00:00",
+   "prob": 0.606278,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T06:00:00+00:00",
+   "prob": 0.892952,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T06:00:00+00:00",
+   "prob": 0.588084,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T06:00:00+00:00",
+   "prob": 0.615409,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T06:00:00+00:00",
+   "prob": 0.569842,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T06:00:00+00:00",
+   "prob": 0.54082,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T06:00:00+00:00",
+   "prob": 0.548637,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T06:00:00+00:00",
+   "prob": 0.595684,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T07:00:00+00:00",
+   "prob": 0.600895,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T07:00:00+00:00",
+   "prob": 0.894967,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T07:00:00+00:00",
+   "prob": 0.591489,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T07:00:00+00:00",
+   "prob": 0.613722,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T07:00:00+00:00",
+   "prob": 0.592728,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T07:00:00+00:00",
+   "prob": 0.549642,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T07:00:00+00:00",
+   "prob": 0.553801,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T07:00:00+00:00",
+   "prob": 0.600877,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T08:00:00+00:00",
+   "prob": 0.609239,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T08:00:00+00:00",
+   "prob": 0.892995,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T08:00:00+00:00",
+   "prob": 0.604767,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T08:00:00+00:00",
+   "prob": 0.60985,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T08:00:00+00:00",
+   "prob": 0.594379,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T08:00:00+00:00",
+   "prob": 0.553165,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T08:00:00+00:00",
+   "prob": 0.573754,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T08:00:00+00:00",
+   "prob": 0.599976,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T09:00:00+00:00",
+   "prob": 0.615429,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T09:00:00+00:00",
+   "prob": 0.892475,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T09:00:00+00:00",
+   "prob": 0.609658,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T09:00:00+00:00",
+   "prob": 0.605174,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T09:00:00+00:00",
+   "prob": 0.599286,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T09:00:00+00:00",
+   "prob": 0.578377,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T09:00:00+00:00",
+   "prob": 0.589073,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T09:00:00+00:00",
+   "prob": 0.620037,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T10:00:00+00:00",
+   "prob": 0.617651,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T10:00:00+00:00",
+   "prob": 0.890838,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T10:00:00+00:00",
+   "prob": 0.616229,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T10:00:00+00:00",
+   "prob": 0.610189,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T10:00:00+00:00",
+   "prob": 0.592334,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T10:00:00+00:00",
+   "prob": 0.581365,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T10:00:00+00:00",
+   "prob": 0.601652,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T10:00:00+00:00",
+   "prob": 0.62328,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T11:00:00+00:00",
+   "prob": 0.618037,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T11:00:00+00:00",
+   "prob": 0.891423,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T11:00:00+00:00",
+   "prob": 0.614455,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T11:00:00+00:00",
+   "prob": 0.618612,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T11:00:00+00:00",
+   "prob": 0.590613,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T11:00:00+00:00",
+   "prob": 0.585882,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T11:00:00+00:00",
+   "prob": 0.626457,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T11:00:00+00:00",
+   "prob": 0.624766,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T12:00:00+00:00",
+   "prob": 0.619205,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T12:00:00+00:00",
+   "prob": 0.904247,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T12:00:00+00:00",
+   "prob": 0.612574,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T12:00:00+00:00",
+   "prob": 0.624753,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T12:00:00+00:00",
+   "prob": 0.589476,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T12:00:00+00:00",
+   "prob": 0.582473,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T12:00:00+00:00",
+   "prob": 0.625997,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T12:00:00+00:00",
+   "prob": 0.623995,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T13:00:00+00:00",
+   "prob": 0.621168,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T13:00:00+00:00",
+   "prob": 0.899915,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T13:00:00+00:00",
+   "prob": 0.617879,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T13:00:00+00:00",
+   "prob": 0.629772,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T13:00:00+00:00",
+   "prob": 0.586799,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T13:00:00+00:00",
+   "prob": 0.584916,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T13:00:00+00:00",
+   "prob": 0.631749,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T13:00:00+00:00",
+   "prob": 0.624897,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T14:00:00+00:00",
+   "prob": 0.62467,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T14:00:00+00:00",
+   "prob": 0.90578,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T14:00:00+00:00",
+   "prob": 0.616858,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T14:00:00+00:00",
+   "prob": 0.631505,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T14:00:00+00:00",
+   "prob": 0.591184,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T14:00:00+00:00",
+   "prob": 0.594708,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T14:00:00+00:00",
+   "prob": 0.631625,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T14:00:00+00:00",
+   "prob": 0.626322,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T15:00:00+00:00",
+   "prob": 0.625591,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T15:00:00+00:00",
+   "prob": 0.903137,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T15:00:00+00:00",
+   "prob": 0.62672,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T15:00:00+00:00",
+   "prob": 0.632706,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T15:00:00+00:00",
+   "prob": 0.611539,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T15:00:00+00:00",
+   "prob": 0.596365,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T15:00:00+00:00",
+   "prob": 0.633074,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T15:00:00+00:00",
+   "prob": 0.630875,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T16:00:00+00:00",
+   "prob": 0.625831,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T16:00:00+00:00",
+   "prob": 0.908891,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T16:00:00+00:00",
+   "prob": 0.628071,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T16:00:00+00:00",
+   "prob": 0.635191,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T16:00:00+00:00",
+   "prob": 0.613238,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T16:00:00+00:00",
+   "prob": 0.597411,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T16:00:00+00:00",
+   "prob": 0.636645,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T16:00:00+00:00",
+   "prob": 0.633567,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T17:00:00+00:00",
+   "prob": 0.626632,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T17:00:00+00:00",
+   "prob": 0.908474,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T17:00:00+00:00",
+   "prob": 0.626756,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T17:00:00+00:00",
+   "prob": 0.638215,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T17:00:00+00:00",
+   "prob": 0.612244,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T17:00:00+00:00",
+   "prob": 0.599586,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T17:00:00+00:00",
+   "prob": 0.633188,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T17:00:00+00:00",
+   "prob": 0.629295,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T18:00:00+00:00",
+   "prob": 0.632664,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T18:00:00+00:00",
+   "prob": 0.899852,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T18:00:00+00:00",
+   "prob": 0.623456,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T18:00:00+00:00",
+   "prob": 0.63573,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T18:00:00+00:00",
+   "prob": 0.612818,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T18:00:00+00:00",
+   "prob": 0.607981,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T18:00:00+00:00",
+   "prob": 0.999731,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T18:00:00+00:00",
+   "prob": 0.628072,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T19:00:00+00:00",
+   "prob": 0.631336,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T19:00:00+00:00",
+   "prob": 0.891111,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T19:00:00+00:00",
+   "prob": 0.624056,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T19:00:00+00:00",
+   "prob": 0.636554,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T19:00:00+00:00",
+   "prob": 0.609169,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T19:00:00+00:00",
+   "prob": 0.605205,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T19:00:00+00:00",
+   "prob": 0.999995,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T19:00:00+00:00",
+   "prob": 0.998334,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T20:00:00+00:00",
+   "prob": 0.628637,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T20:00:00+00:00",
+   "prob": 0.885297,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T20:00:00+00:00",
+   "prob": 0.619518,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T20:00:00+00:00",
+   "prob": 0.631276,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T20:00:00+00:00",
+   "prob": 0.606077,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T20:00:00+00:00",
+   "prob": 0.599742,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T20:00:00+00:00",
+   "prob": 1.0,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T20:00:00+00:00",
+   "prob": 0.999927,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T21:00:00+00:00",
+   "prob": 0.628416,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T21:00:00+00:00",
+   "prob": 0.765857,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T21:00:00+00:00",
+   "prob": 0.61714,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T21:00:00+00:00",
+   "prob": 0.999177,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T21:00:00+00:00",
+   "prob": 0.602724,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T21:00:00+00:00",
+   "prob": 0.589624,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T21:00:00+00:00",
+   "prob": 0.999921,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T21:00:00+00:00",
+   "prob": 0.999991,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T22:00:00+00:00",
+   "prob": 0.630101,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T22:00:00+00:00",
+   "prob": 0.677746,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T22:00:00+00:00",
+   "prob": 0.608411,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T22:00:00+00:00",
+   "prob": 0.999976,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T22:00:00+00:00",
+   "prob": 0.6025,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T22:00:00+00:00",
+   "prob": 0.581951,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T22:00:00+00:00",
+   "prob": 0.998285,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T22:00:00+00:00",
+   "prob": 0.99945,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-26T23:00:00+00:00",
+   "prob": 0.62307,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-26T23:00:00+00:00",
+   "prob": 0.631288,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-26T23:00:00+00:00",
+   "prob": 0.592738,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-26T23:00:00+00:00",
+   "prob": 0.999998,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-26T23:00:00+00:00",
+   "prob": 0.595198,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-26T23:00:00+00:00",
+   "prob": 0.572065,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-26T23:00:00+00:00",
+   "prob": 0.990103,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-26T23:00:00+00:00",
+   "prob": 0.993513,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T00:00:00+00:00",
+   "prob": 0.622052,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T00:00:00+00:00",
+   "prob": 0.626141,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T00:00:00+00:00",
+   "prob": 0.586531,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T00:00:00+00:00",
+   "prob": 0.999717,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T00:00:00+00:00",
+   "prob": 0.589665,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T00:00:00+00:00",
+   "prob": 0.991581,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T00:00:00+00:00",
+   "prob": 0.976294,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T00:00:00+00:00",
+   "prob": 0.973479,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T01:00:00+00:00",
+   "prob": 0.614056,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T01:00:00+00:00",
+   "prob": 0.622654,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T01:00:00+00:00",
+   "prob": 0.575774,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T01:00:00+00:00",
+   "prob": 0.995531,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T01:00:00+00:00",
+   "prob": 0.587719,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T01:00:00+00:00",
+   "prob": 0.999256,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T01:00:00+00:00",
+   "prob": 0.962196,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T01:00:00+00:00",
+   "prob": 0.927831,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T02:00:00+00:00",
+   "prob": 0.605813,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T02:00:00+00:00",
+   "prob": 0.621071,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T02:00:00+00:00",
+   "prob": 0.568318,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T02:00:00+00:00",
+   "prob": 0.977718,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T02:00:00+00:00",
+   "prob": 0.987877,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T02:00:00+00:00",
+   "prob": 0.99987,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T02:00:00+00:00",
+   "prob": 0.938523,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T02:00:00+00:00",
+   "prob": 0.908095,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T03:00:00+00:00",
+   "prob": 0.602132,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T03:00:00+00:00",
+   "prob": 0.621797,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T03:00:00+00:00",
+   "prob": 0.566101,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T03:00:00+00:00",
+   "prob": 0.943945,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T03:00:00+00:00",
+   "prob": 0.998491,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T03:00:00+00:00",
+   "prob": 0.995643,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T03:00:00+00:00",
+   "prob": 0.919772,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T03:00:00+00:00",
+   "prob": 0.877634,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T04:00:00+00:00",
+   "prob": 0.605299,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T04:00:00+00:00",
+   "prob": 0.621183,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T04:00:00+00:00",
+   "prob": 0.565871,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T04:00:00+00:00",
+   "prob": 0.909061,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T04:00:00+00:00",
+   "prob": 0.999661,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T04:00:00+00:00",
+   "prob": 0.973804,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T04:00:00+00:00",
+   "prob": 0.898081,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T04:00:00+00:00",
+   "prob": 0.853171,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T05:00:00+00:00",
+   "prob": 0.611374,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T05:00:00+00:00",
+   "prob": 0.616736,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T05:00:00+00:00",
+   "prob": 0.582793,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T05:00:00+00:00",
+   "prob": 0.875992,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T05:00:00+00:00",
+   "prob": 0.992511,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T05:00:00+00:00",
+   "prob": 0.921983,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T05:00:00+00:00",
+   "prob": 0.900009,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T05:00:00+00:00",
+   "prob": 0.823599,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T06:00:00+00:00",
+   "prob": 0.610598,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T06:00:00+00:00",
+   "prob": 0.619542,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T06:00:00+00:00",
+   "prob": 0.591175,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T06:00:00+00:00",
+   "prob": 0.848219,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T06:00:00+00:00",
+   "prob": 0.958637,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T06:00:00+00:00",
+   "prob": 0.864318,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T06:00:00+00:00",
+   "prob": 0.931501,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T06:00:00+00:00",
+   "prob": 0.816377,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T07:00:00+00:00",
+   "prob": 0.610254,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T07:00:00+00:00",
+   "prob": 0.623161,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T07:00:00+00:00",
+   "prob": 0.586167,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T07:00:00+00:00",
+   "prob": 0.836075,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T07:00:00+00:00",
+   "prob": 0.888426,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T07:00:00+00:00",
+   "prob": 0.794262,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T07:00:00+00:00",
+   "prob": 0.930315,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T07:00:00+00:00",
+   "prob": 0.824497,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T08:00:00+00:00",
+   "prob": 0.618519,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T08:00:00+00:00",
+   "prob": 0.625068,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T08:00:00+00:00",
+   "prob": 0.580598,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T08:00:00+00:00",
+   "prob": 0.834819,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T08:00:00+00:00",
+   "prob": 0.809435,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T08:00:00+00:00",
+   "prob": 0.760344,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T08:00:00+00:00",
+   "prob": 0.930818,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T08:00:00+00:00",
+   "prob": 0.837374,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T09:00:00+00:00",
+   "prob": 0.617194,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T09:00:00+00:00",
+   "prob": 0.633564,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T09:00:00+00:00",
+   "prob": 0.591478,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T09:00:00+00:00",
+   "prob": 0.832536,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T09:00:00+00:00",
+   "prob": 0.748637,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T09:00:00+00:00",
+   "prob": 0.712837,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T09:00:00+00:00",
+   "prob": 0.908187,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T09:00:00+00:00",
+   "prob": 0.849425,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T10:00:00+00:00",
+   "prob": 0.618752,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T10:00:00+00:00",
+   "prob": 0.6307,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T10:00:00+00:00",
+   "prob": 0.600234,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T10:00:00+00:00",
+   "prob": 0.829656,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T10:00:00+00:00",
+   "prob": 0.695546,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T10:00:00+00:00",
+   "prob": 0.727933,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T10:00:00+00:00",
+   "prob": 0.907142,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T10:00:00+00:00",
+   "prob": 0.839693,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T11:00:00+00:00",
+   "prob": 0.619754,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T11:00:00+00:00",
+   "prob": 0.630175,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T11:00:00+00:00",
+   "prob": 0.609122,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T11:00:00+00:00",
+   "prob": 0.82602,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T11:00:00+00:00",
+   "prob": 0.681755,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T11:00:00+00:00",
+   "prob": 0.723326,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T11:00:00+00:00",
+   "prob": 0.907619,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T11:00:00+00:00",
+   "prob": 0.830565,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T12:00:00+00:00",
+   "prob": 0.625769,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T12:00:00+00:00",
+   "prob": 0.628066,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T12:00:00+00:00",
+   "prob": 0.615378,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T12:00:00+00:00",
+   "prob": 0.837342,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T12:00:00+00:00",
+   "prob": 0.653607,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T12:00:00+00:00",
+   "prob": 0.73162,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T12:00:00+00:00",
+   "prob": 0.908842,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T12:00:00+00:00",
+   "prob": 0.816403,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T13:00:00+00:00",
+   "prob": 0.625649,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T13:00:00+00:00",
+   "prob": 0.631572,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T13:00:00+00:00",
+   "prob": 0.623937,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T13:00:00+00:00",
+   "prob": 0.842745,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T13:00:00+00:00",
+   "prob": 0.67089,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T13:00:00+00:00",
+   "prob": 0.719485,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T13:00:00+00:00",
+   "prob": 0.911034,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T13:00:00+00:00",
+   "prob": 0.812943,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T14:00:00+00:00",
+   "prob": 0.998565,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T14:00:00+00:00",
+   "prob": 0.633863,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T14:00:00+00:00",
+   "prob": 0.632827,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T14:00:00+00:00",
+   "prob": 0.85305,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T14:00:00+00:00",
+   "prob": 0.667268,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T14:00:00+00:00",
+   "prob": 0.716534,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T14:00:00+00:00",
+   "prob": 0.903822,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T14:00:00+00:00",
+   "prob": 0.807825,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T15:00:00+00:00",
+   "prob": 0.999942,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T15:00:00+00:00",
+   "prob": 0.638116,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T15:00:00+00:00",
+   "prob": 0.63312,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T15:00:00+00:00",
+   "prob": 0.853189,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T15:00:00+00:00",
+   "prob": 0.676124,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T15:00:00+00:00",
+   "prob": 0.720288,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T15:00:00+00:00",
+   "prob": 0.904603,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T15:00:00+00:00",
+   "prob": 0.803669,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T16:00:00+00:00",
+   "prob": 0.999989,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T16:00:00+00:00",
+   "prob": 0.638854,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T16:00:00+00:00",
+   "prob": 0.632782,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T16:00:00+00:00",
+   "prob": 0.84502,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T16:00:00+00:00",
+   "prob": 0.662871,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T16:00:00+00:00",
+   "prob": 0.716538,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T16:00:00+00:00",
+   "prob": 0.897467,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T16:00:00+00:00",
+   "prob": 0.827318,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T17:00:00+00:00",
+   "prob": 0.999218,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T17:00:00+00:00",
+   "prob": 0.636238,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T17:00:00+00:00",
+   "prob": 0.629702,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T17:00:00+00:00",
+   "prob": 0.887819,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T17:00:00+00:00",
+   "prob": 0.65131,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T17:00:00+00:00",
+   "prob": 0.706562,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T17:00:00+00:00",
+   "prob": 0.905537,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T17:00:00+00:00",
+   "prob": 0.824762,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T18:00:00+00:00",
+   "prob": 0.987714,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T18:00:00+00:00",
+   "prob": 0.640033,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T18:00:00+00:00",
+   "prob": 0.629908,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T18:00:00+00:00",
+   "prob": 0.882694,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T18:00:00+00:00",
+   "prob": 0.640773,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T18:00:00+00:00",
+   "prob": 0.693857,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T18:00:00+00:00",
+   "prob": 0.723147,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T18:00:00+00:00",
+   "prob": 0.82147,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T19:00:00+00:00",
+   "prob": 0.952334,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T19:00:00+00:00",
+   "prob": 0.635575,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T19:00:00+00:00",
+   "prob": 0.625704,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T19:00:00+00:00",
+   "prob": 0.88159,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T19:00:00+00:00",
+   "prob": 0.67363,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T19:00:00+00:00",
+   "prob": 0.683139,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T19:00:00+00:00",
+   "prob": 0.60245,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T19:00:00+00:00",
+   "prob": 0.601966,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T20:00:00+00:00",
+   "prob": 0.898059,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T20:00:00+00:00",
+   "prob": 0.635998,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T20:00:00+00:00",
+   "prob": 0.628749,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T20:00:00+00:00",
+   "prob": 0.84639,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T20:00:00+00:00",
+   "prob": 0.671551,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T20:00:00+00:00",
+   "prob": 0.686295,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T20:00:00+00:00",
+   "prob": 0.60182,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T20:00:00+00:00",
+   "prob": 0.605458,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T21:00:00+00:00",
+   "prob": 0.901529,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T21:00:00+00:00",
+   "prob": 0.632509,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T21:00:00+00:00",
+   "prob": 0.620663,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T21:00:00+00:00",
+   "prob": 0.64147,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T21:00:00+00:00",
+   "prob": 0.663597,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T21:00:00+00:00",
+   "prob": 0.687035,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T21:00:00+00:00",
+   "prob": 0.600619,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T21:00:00+00:00",
+   "prob": 0.609217,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T22:00:00+00:00",
+   "prob": 0.899367,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T22:00:00+00:00",
+   "prob": 0.63345,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T22:00:00+00:00",
+   "prob": 0.61217,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T22:00:00+00:00",
+   "prob": 0.603315,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T22:00:00+00:00",
+   "prob": 0.657318,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T22:00:00+00:00",
+   "prob": 0.684325,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T22:00:00+00:00",
+   "prob": 0.599569,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T22:00:00+00:00",
+   "prob": 0.611934,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-27T23:00:00+00:00",
+   "prob": 0.906768,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-27T23:00:00+00:00",
+   "prob": 0.632824,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-27T23:00:00+00:00",
+   "prob": 0.600703,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-27T23:00:00+00:00",
+   "prob": 0.60876,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-27T23:00:00+00:00",
+   "prob": 0.654649,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-27T23:00:00+00:00",
+   "prob": 0.997555,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-27T23:00:00+00:00",
+   "prob": 0.598623,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-27T23:00:00+00:00",
+   "prob": 0.631203,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T00:00:00+00:00",
+   "prob": 0.90134,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T00:00:00+00:00",
+   "prob": 0.627066,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T00:00:00+00:00",
+   "prob": 0.589425,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T00:00:00+00:00",
+   "prob": 0.607579,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T00:00:00+00:00",
+   "prob": 0.657842,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T00:00:00+00:00",
+   "prob": 0.99964,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T00:00:00+00:00",
+   "prob": 0.59694,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T00:00:00+00:00",
+   "prob": 0.622393,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T01:00:00+00:00",
+   "prob": 0.900478,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T01:00:00+00:00",
+   "prob": 0.623062,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T01:00:00+00:00",
+   "prob": 0.578638,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T01:00:00+00:00",
+   "prob": 0.605258,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T01:00:00+00:00",
+   "prob": 0.638229,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T01:00:00+00:00",
+   "prob": 0.999833,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T01:00:00+00:00",
+   "prob": 0.595426,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T01:00:00+00:00",
+   "prob": 0.614195,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T02:00:00+00:00",
+   "prob": 0.901061,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T02:00:00+00:00",
+   "prob": 0.621544,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T02:00:00+00:00",
+   "prob": 0.567783,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T02:00:00+00:00",
+   "prob": 0.600191,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T02:00:00+00:00",
+   "prob": 0.596423,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T02:00:00+00:00",
+   "prob": 0.992006,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T02:00:00+00:00",
+   "prob": 0.59424,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T02:00:00+00:00",
+   "prob": 0.602769,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T03:00:00+00:00",
+   "prob": 0.90471,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T03:00:00+00:00",
+   "prob": 0.624443,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T03:00:00+00:00",
+   "prob": 0.551619,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T03:00:00+00:00",
+   "prob": 0.594155,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T03:00:00+00:00",
+   "prob": 0.598628,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T03:00:00+00:00",
+   "prob": 0.934843,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T03:00:00+00:00",
+   "prob": 0.596097,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T03:00:00+00:00",
+   "prob": 0.598755,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T04:00:00+00:00",
+   "prob": 0.901106,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T04:00:00+00:00",
+   "prob": 0.624428,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T04:00:00+00:00",
+   "prob": 0.552571,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T04:00:00+00:00",
+   "prob": 0.597853,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T04:00:00+00:00",
+   "prob": 0.598424,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T04:00:00+00:00",
+   "prob": 0.822534,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T04:00:00+00:00",
+   "prob": 0.591862,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T04:00:00+00:00",
+   "prob": 0.593175,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T05:00:00+00:00",
+   "prob": 0.895448,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T05:00:00+00:00",
+   "prob": 0.626481,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T05:00:00+00:00",
+   "prob": 0.560937,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T05:00:00+00:00",
+   "prob": 0.599145,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T05:00:00+00:00",
+   "prob": 0.593633,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T05:00:00+00:00",
+   "prob": 0.812056,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T05:00:00+00:00",
+   "prob": 0.589143,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T05:00:00+00:00",
+   "prob": 0.595906,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T06:00:00+00:00",
+   "prob": 0.89284,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T06:00:00+00:00",
+   "prob": 0.623585,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T06:00:00+00:00",
+   "prob": 0.566858,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T06:00:00+00:00",
+   "prob": 0.597634,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T06:00:00+00:00",
+   "prob": 0.590119,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T06:00:00+00:00",
+   "prob": 0.806985,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T06:00:00+00:00",
+   "prob": 0.588832,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T06:00:00+00:00",
+   "prob": 0.611787,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T07:00:00+00:00",
+   "prob": 0.892051,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T07:00:00+00:00",
+   "prob": 0.621186,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T07:00:00+00:00",
+   "prob": 0.572042,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T07:00:00+00:00",
+   "prob": 0.60384,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T07:00:00+00:00",
+   "prob": 0.585195,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T07:00:00+00:00",
+   "prob": 0.799963,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T07:00:00+00:00",
+   "prob": 0.590261,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T07:00:00+00:00",
+   "prob": 0.609632,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T08:00:00+00:00",
+   "prob": 0.890091,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T08:00:00+00:00",
+   "prob": 0.622338,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T08:00:00+00:00",
+   "prob": 0.574278,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T08:00:00+00:00",
+   "prob": 0.607113,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T08:00:00+00:00",
+   "prob": 0.58433,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T08:00:00+00:00",
+   "prob": 0.801308,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T08:00:00+00:00",
+   "prob": 0.586582,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T08:00:00+00:00",
+   "prob": 0.6082,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T09:00:00+00:00",
+   "prob": 0.890194,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T09:00:00+00:00",
+   "prob": 0.621712,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T09:00:00+00:00",
+   "prob": 0.596499,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T09:00:00+00:00",
+   "prob": 0.605849,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T09:00:00+00:00",
+   "prob": 0.611605,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T09:00:00+00:00",
+   "prob": 0.802977,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T09:00:00+00:00",
+   "prob": 0.589546,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T09:00:00+00:00",
+   "prob": 0.605243,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T10:00:00+00:00",
+   "prob": 0.890062,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T10:00:00+00:00",
+   "prob": 0.626406,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T10:00:00+00:00",
+   "prob": 0.602588,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T10:00:00+00:00",
+   "prob": 0.605017,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T10:00:00+00:00",
+   "prob": 0.604567,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T10:00:00+00:00",
+   "prob": 0.79937,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T10:00:00+00:00",
+   "prob": 0.593324,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T10:00:00+00:00",
+   "prob": 0.60729,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T11:00:00+00:00",
+   "prob": 0.885006,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T11:00:00+00:00",
+   "prob": 0.624922,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T11:00:00+00:00",
+   "prob": 0.628074,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T11:00:00+00:00",
+   "prob": 0.607265,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T11:00:00+00:00",
+   "prob": 0.61346,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T11:00:00+00:00",
+   "prob": 0.820475,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T11:00:00+00:00",
+   "prob": 0.595871,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T11:00:00+00:00",
+   "prob": 0.605773,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T12:00:00+00:00",
+   "prob": 0.905166,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T12:00:00+00:00",
+   "prob": 0.625459,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T12:00:00+00:00",
+   "prob": 0.629071,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T12:00:00+00:00",
+   "prob": 0.60788,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T12:00:00+00:00",
+   "prob": 0.604623,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T12:00:00+00:00",
+   "prob": 0.804406,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T12:00:00+00:00",
+   "prob": 0.605812,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T12:00:00+00:00",
+   "prob": 0.606422,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T13:00:00+00:00",
+   "prob": 0.901599,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T13:00:00+00:00",
+   "prob": 0.624748,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T13:00:00+00:00",
+   "prob": 0.630449,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T13:00:00+00:00",
+   "prob": 0.608397,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T13:00:00+00:00",
+   "prob": 0.602293,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T13:00:00+00:00",
+   "prob": 0.791312,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T13:00:00+00:00",
+   "prob": 0.606764,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T13:00:00+00:00",
+   "prob": 0.607105,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T14:00:00+00:00",
+   "prob": 0.785574,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T14:00:00+00:00",
+   "prob": 0.624898,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T14:00:00+00:00",
+   "prob": 0.634817,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T14:00:00+00:00",
+   "prob": 0.607859,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T14:00:00+00:00",
+   "prob": 0.607188,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T14:00:00+00:00",
+   "prob": 0.78533,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T14:00:00+00:00",
+   "prob": 0.637172,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T14:00:00+00:00",
+   "prob": 0.606323,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T15:00:00+00:00",
+   "prob": 0.658944,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T15:00:00+00:00",
+   "prob": 0.626389,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T15:00:00+00:00",
+   "prob": 0.633157,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T15:00:00+00:00",
+   "prob": 0.608002,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T15:00:00+00:00",
+   "prob": 0.606725,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T15:00:00+00:00",
+   "prob": 0.775709,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T15:00:00+00:00",
+   "prob": 0.626587,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T15:00:00+00:00",
+   "prob": 0.608953,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T16:00:00+00:00",
+   "prob": 0.63208,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T16:00:00+00:00",
+   "prob": 0.63224,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T16:00:00+00:00",
+   "prob": 0.631966,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T16:00:00+00:00",
+   "prob": 0.609645,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T16:00:00+00:00",
+   "prob": 0.604953,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T16:00:00+00:00",
+   "prob": 0.787681,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T16:00:00+00:00",
+   "prob": 0.619865,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T16:00:00+00:00",
+   "prob": 0.60948,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T17:00:00+00:00",
+   "prob": 0.631129,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T17:00:00+00:00",
+   "prob": 0.630343,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T17:00:00+00:00",
+   "prob": 0.631917,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T17:00:00+00:00",
+   "prob": 0.611288,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T17:00:00+00:00",
+   "prob": 0.601595,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T17:00:00+00:00",
+   "prob": 0.75631,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T17:00:00+00:00",
+   "prob": 0.613011,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T17:00:00+00:00",
+   "prob": 0.610649,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T18:00:00+00:00",
+   "prob": 0.637143,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T18:00:00+00:00",
+   "prob": 0.629884,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T18:00:00+00:00",
+   "prob": 0.629962,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T18:00:00+00:00",
+   "prob": 0.609493,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T18:00:00+00:00",
+   "prob": 0.603316,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T18:00:00+00:00",
+   "prob": 0.747586,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T18:00:00+00:00",
+   "prob": 0.60862,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T18:00:00+00:00",
+   "prob": 0.625287,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T19:00:00+00:00",
+   "prob": 0.63343,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T19:00:00+00:00",
+   "prob": 0.630755,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T19:00:00+00:00",
+   "prob": 0.627901,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T19:00:00+00:00",
+   "prob": 0.60687,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T19:00:00+00:00",
+   "prob": 0.599842,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T19:00:00+00:00",
+   "prob": 0.732643,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T19:00:00+00:00",
+   "prob": 0.606186,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T19:00:00+00:00",
+   "prob": 0.617492,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T20:00:00+00:00",
+   "prob": 0.631498,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T20:00:00+00:00",
+   "prob": 0.627326,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T20:00:00+00:00",
+   "prob": 0.627225,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T20:00:00+00:00",
+   "prob": 0.607324,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T20:00:00+00:00",
+   "prob": 0.598189,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T20:00:00+00:00",
+   "prob": 0.723452,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T20:00:00+00:00",
+   "prob": 0.609216,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T20:00:00+00:00",
+   "prob": 0.613261,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T21:00:00+00:00",
+   "prob": 0.633942,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T21:00:00+00:00",
+   "prob": 0.632505,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T21:00:00+00:00",
+   "prob": 0.625077,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T21:00:00+00:00",
+   "prob": 0.608515,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T21:00:00+00:00",
+   "prob": 0.596025,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T21:00:00+00:00",
+   "prob": 0.717478,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T21:00:00+00:00",
+   "prob": 0.607274,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T21:00:00+00:00",
+   "prob": 0.618568,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T22:00:00+00:00",
+   "prob": 0.634108,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T22:00:00+00:00",
+   "prob": 0.637616,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T22:00:00+00:00",
+   "prob": 0.616848,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T22:00:00+00:00",
+   "prob": 0.610632,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T22:00:00+00:00",
+   "prob": 0.598072,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T22:00:00+00:00",
+   "prob": 0.702552,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T22:00:00+00:00",
+   "prob": 0.605322,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T22:00:00+00:00",
+   "prob": 0.610643,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_chitral",
+   "timestamp_utc": "2022-08-28T23:00:00+00:00",
+   "prob": 0.6312,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_drosh",
+   "timestamp_utc": "2022-08-28T23:00:00+00:00",
+   "prob": 0.629959,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "chitral_mastuj",
+   "timestamp_utc": "2022-08-28T23:00:00+00:00",
+   "prob": 0.617399,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_dir",
+   "timestamp_utc": "2022-08-28T23:00:00+00:00",
+   "prob": 0.605826,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "panjkora_talash",
+   "timestamp_utc": "2022-08-28T23:00:00+00:00",
+   "prob": 0.598993,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_chakdara",
+   "timestamp_utc": "2022-08-28T23:00:00+00:00",
+   "prob": 0.605778,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_kalam",
+   "timestamp_utc": "2022-08-28T23:00:00+00:00",
+   "prob": 0.600367,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  },
+  {
+   "basin_id": "swat_madyan",
+   "timestamp_utc": "2022-08-28T23:00:00+00:00",
+   "prob": 0.608634,
+   "tier": "severe",
+   "compound": true,
+   "escalated": true
+  }
+ ]
+}

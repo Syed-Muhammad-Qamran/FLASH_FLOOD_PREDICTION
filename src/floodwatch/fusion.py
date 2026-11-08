@@ -189,8 +189,6 @@ def fuse_frames(
     drivers_b = merged["top_drivers_b"].map(schema.parse_drivers).tolist()
 
     rows: list[dict[str, Any]] = []
-    compound_reason = "compound: cloudburst and snowmelt both above alert threshold"
-    rain_reason = "rain-on-snow escalation: liquid water on an existing snowpack"
     for i in range(len(merged)):
         base_tier = schema.tier_for(float(fused_prob[i]), cut_fused)
         # Never let fusion downgrade the stronger mechanism's tier.
@@ -203,12 +201,6 @@ def fuse_frames(
         ):
             base_tier = escalate(base_tier, 1)
             escalated = True
-        if is_compound:
-            reason_drivers = [
-                {"feature": compound_reason.split(":")[0], "weight": 0.0}
-            ] + reason_drivers
-        if escalated:
-            reason_drivers = [{"feature": rain_reason.split(":")[0], "weight": 0.0}] + reason_drivers
         rows.append(
             {
                 "basin_id": str(merged.at[i, "basin_id"]),

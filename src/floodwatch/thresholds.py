@@ -99,6 +99,9 @@ def fit_tier_cutoffs(
     operating point; ``moderate`` and ``low`` sit below it, ``severe`` above.
     """
     frame = predictions.dropna(subset=["prob", "label"])
+    if "split" in frame.columns:
+        # Never fit on validation or test rows, even if a caller passes them.
+        frame = frame[frame["split"].astype(str) == "train"]
     if frame.empty:
         cutoffs = {"none": 0.0, "low": 0.02, "moderate": 0.10, "high": 0.30, "severe": 0.60}
         return {

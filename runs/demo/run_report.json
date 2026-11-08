@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "run_id": "demo",
+  "generated_at": "2026-11-08T05:17:38.664361+00:00",
+  "evaluated_at": "2022-08-27T00:00:00+00:00",
+  "offline": true,
+  "synthetic_data": true,
+  "data_snapshot_hash": "aee867d56d657f7abc7b3fe8260c845dbcccf158434ffd22e7d5cbad82573f71",
+  "thresholds": {
+    "path": "configs/thresholds.yaml",
+    "fitted_on": "train",
+    "fingerprint": "1bfb9288484eabb099c13caad7a849dc96a12e5d4e1e683b5acc8db3bc6b9fc1",
+    "guard_pass": false,
+    "drift_breaches": [
+      "A_cloudburst_cnn_lstm",
+      "B_snowmelt_lstm",
+      "fused"
+    ]
+  },
+  "models": {
+    "a": {
+      "module": "A_cloudburst_cnn_lstm",
+      "path": "artifacts\\a\\predictions_a.parquet",
+      "rows": 81600,
+      "model_version": "A_cloudburst_cnn_lstm-synthetic-aee867d5",
+      "data_snapshot_hash": "aee867d56d657f7abc7b3fe8260c845dbcccf158434ffd22e7d5cbad82573f71",
+      "seed": "1234"
+    },
+    "b": {
+      "module": "B_snowmelt_lstm",
+      "path": "artifacts\\b\\predictions_b.parquet",
+      "rows": 81600,
+      "model_version": "B_snowmelt_lstm-2434f0a-aee867d5",
+      "data_snapshot_hash": "aee867d56d657f7abc7b3fe8260c845dbcccf158434ffd22e7d5cbad82573f71",
+      "seed": "42"
+    }
+  },
+  "fusion": {
+    "rules": "max(prob_a, prob_b); compound when A>=0.240 and B>=0.420; rain-on-snow escalates a compound event one tier",
+    "rows": 81600,
+    "compound_rows": 26562
+  },
+  "decisions": {
+    "alert": 8,
+    "all_clear": 0,
+    "none": 0,
+    "rows": 8,
+    "audit_rows": 200,
+    "cooldown_hours": 6.0,
+    "min_level": "ORANGE",
+    "persisted": false
+  },
+  "sources": {
+    "schema_version": 1,
+    "sources": {
+      "archive": {
+        "last_valid_utc": "2023-01-31 23:00:00+00:00",
+        "lag_hours": 0.0,
+        "expected_cadence_h": 24.0,
+        "stale": false,
+        "fallback_used": false
+      },
+      "forecast": {
+        "last_valid_utc": "2023-01-31 23:00:00+00:00",
+        "lag_hours": 0.0,
+        "expected_cadence_h": 6.0,
+        "stale": false,
+        "fallback_used": false
+      },
+      "flood": {
+        "last_valid_utc": null,
+        "lag_hours": null,
+        "expected_cadence_h": 24.0,
+        "stale": true,
+        "fallback_used": true
+      }
+    },
+    "stale_sources": [
+      "flood"
+    ]
+  },
+  "delivery": {
+    "mode": "file",
+    "attempted": 0,
+    "sent": 0,
+    "failed": 0,
+    "skipped": 0,
+    "blocked": 0,
+    "recorded": 8,
+    "messages": [
+      {
+        "area_id": "chitral_chitral",
+        "action": "alert",
+        "mode": "file",
+        "attempted": false,
+        "sent": false,
+        "blocked": false,
+        "reasons": [
+          "file mode: message recorded, not transmitted"
+        ],
+        "problems": []
+      },
+      {
+        "area_id": "chitral_drosh",
+        "action": "alert",
+        "mode": "file",
+        "attempted": false,
+        "sent": false,
+        "blocked": false,
+        "reasons": [
+          "file mode: message recorded, not transmitted"
+        ],
+        "problems": []
+      },
+      {
+        "area_id": "chitral_mastuj",
+        "action": "alert",
+        "mode": "file",
+        "attempted": false,
+        "sent": false,
+        "blocked": false,
+        "reasons": [
+          "file mode: message recorded, not transmitted"
+        ],
+        "problems": []
+      },
+      {
+        "area_id": "panjkora_dir",
+        "action": "alert",
+        "mode": "file",
+        "attempted": false,
+        "sent": false,
+        "blocked": false,
+        "reasons": [
+          "file mode: message recorded, not transmitted"
+        ],
+        "problems": []
+      },
+      {
+        "area_id": "panjkora_talash",
+        "action": "alert",
+        "mode": "file",
+        "attempted": false,
+        "sent": false,
+        "blocked": false,
+        "reasons": [
+          "file mode: message recorded, not transmitted"
+        ],
+        "problems": []
+      },
+      {
+        "area_id": "swat_chakdara",
+        "action": "alert",
+        "mode": "file",
+        "attempted": false,
+        "sent": false,
+        "blocked": false,
+        "reasons": [
+          "file mode: message recorded, not transmitted"
+        ],
+        "problems": []
+      },
+      {
+        "area_id": "swat_kalam",
+        "action": "alert",
+        "mode": "file",
+        "attempted": false,
+        "sent": false,
+        "blocked": false,
+        "reasons": [
+          "file mode: message recorded, not transmitted"
+        ],
+        "problems": []
+      },
+      {
+        "area_id": "swat_madyan",
+        "action": "alert",
+        "mode": "file",
+        "attempted": false,
+        "sent": false,
+        "blocked": false,
+        "reasons": [
+          "file mode: message recorded, not transmitted"
+        ],
+        "problems": []
+      }
+    ],
+    "payload_path": null,
+    "problems": []
+  },
+  "verify": {
+    "checked": 8,
+    "blocked": 0,
+    "problems": [],
+    "blocked_messages": []
+  },
+  "areas": [
+    {
+      "area_id": "chitral_chitral",
+      "tier": "severe",
+      "level": "RED",
+      "score": 0.622052,
+      "compound": true,
+      "reasons": [
+        "compound: cloudburst and snowmelt both active",
+        "rain-on-snow escalation: liquid water on a snowpack",
+        "snow_depth_mm (3.9261)",
+        "rain_3h (1.681)",
+        "terrain_susceptibility (0.7)"
+      ]
+    },
+    {
+      "area_id": "chitral_drosh",
+      "tier": "severe",
+      "level": "RED",
+      "score": 0.626141,
+      "compound": true,
+      "reasons": [
+        "compound: cloudburst and snowmelt both active",
+        "rain-on-snow escalation: liquid water on a snowpack",
+        "snow_depth_mm (3.4898)",
+        "rain_3h (1.464)",
+        "soil_moisture (0.85)"
+      ]
+    },
+    {
+      "area_id": "chitral_mastuj",
+      "tier": "severe",
+      "level": "RED",
+      "score": 0.586531,
+      "compound": true,
+      "reasons": [
+        "compound: cloudburst and snowmelt both active",
+        "rain-on-snow escalation: liquid water on a snowpack",
+        "snow_depth_mm (4.7985)",
+        "terrain_susceptibility (0.85)",
+        "degree_day_melt (0.4519)"
+      ]
+    },
+    {
+      "area_id": "panjkora_dir",
+      "tier": "severe",
+      "level": "RED",
+      "score": 0.999717,
+      "compound": true,
+      "reasons": [
+        "compound: cloudburst and snowmelt both active",
+        "rain-on-snow escalation: liquid water on a snowpack",
+        "rain_3h (68.201)",
+        "snow_depth_mm (2.7919)",
+        "terrain_susceptibility (0.79)"
+      ]
+    },
+    {
+      "area_id": "panjkora_talash",
+      "tier": "severe",
+      "level": "RED",
+      "score": 0.589665,
+      "compound": true,
+      "reasons": [
+        "compound: cloudburst and snowmelt both active",
+        "rain-on-snow escalation: liquid water on a snowpack",
+        "snow_depth_mm (1.3959)",
+        "soil_moisture (0.674)",
+        "terrain_susceptibility (0.66)"
+      ]
+    },
+    {
+      "area_id": "swat_chakdara",
+      "tier": "severe",
+      "level": "RED",
+      "score": 0.991581,
+      "compound": true,
+      "reasons": [
+        "compound: cloudburst and snowmelt both active",
+        "rain-on-snow escalation: liquid water on a snowpack",
+        "rain_3h (45.089)",
+        "snow_depth_mm (1.5704)",
+        "soil_moisture (0.654)"
+      ]
+    },
+    {
+      "area_id": "swat_kalam",
+      "tier": "severe",
+      "level": "RED",
+      "score": 0.976294,
+      "compound": true,
+      "reasons": [
+        "compound: cloudburst and snowmelt both active",
+        "rain-on-snow escalation: liquid water on a snowpack",
+        "rain_3h (16.759)",
+        "snow_depth_mm (3.0536)",
+        "terrain_susceptibility (0.82)"
+      ]
+    },
+    {
+      "area_id": "swat_madyan",
+      "tier": "severe",
+      "level": "RED",
+      "score": 0.973479,
+      "compound": true,
+      "reasons": [
+        "compound: cloudburst and snowmelt both active",
+        "rain-on-snow escalation: liquid water on a snowpack",
+        "rain_3h (21.984)",
+        "snow_depth_mm (2.4429)",
+        "terrain_susceptibility (0.74)"
+      ]
+    }
+  ],
+  "degraded": true
+}
