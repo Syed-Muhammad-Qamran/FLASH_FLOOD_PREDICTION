@@ -167,9 +167,7 @@ def to_risk_results(
                 provisional=bool(getattr(row, "provisional", False)),
                 prob_std=_float_or_none(getattr(row, "prob_std", None)),
                 tier_stable=(
-                    None
-                    if getattr(row, "tier_stable", None) is None
-                    else bool(getattr(row, "tier_stable"))
+                    None if getattr(row, "tier_stable", None) is None else bool(row.tier_stable)
                 ),
             )
         )

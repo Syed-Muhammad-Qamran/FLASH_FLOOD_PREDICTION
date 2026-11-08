@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import numpy as np
+import pytest
 
-from floodwatch import ensemble, tiers
-from floodwatch.tiers import tier_for
+from floodwatch import ensemble, schema
+from floodwatch.tiers import tier_to_level
 
 
 def _cutoffs() -> dict[str, float]:
@@ -16,9 +17,9 @@ def test_ensemble_probabilities_mean_and_std() -> None:
     a = np.array([0.1, 0.5, 0.9])
     b = np.array([0.2, 0.5, 0.8])
     mean, std = ensemble.ensemble_probabilities([a, b])
-    assert mean.tolist() == [0.15, 0.5, 0.85]
-    assert std[0] == 0.05
-    assert std[1] == 0.0
+    assert mean.tolist() == pytest.approx([0.15, 0.5, 0.85])
+    assert std[0] == pytest.approx(0.05)
+    assert std[1] == pytest.approx(0.0)
 
 
 def test_single_seed_has_zero_std() -> None:
@@ -71,7 +72,7 @@ def test_attach_ensemble_columns_multi_seed_overwrites_mean() -> None:
     summary = ensemble.build_ensemble([a, b], _cutoffs())
     out = ensemble.attach_ensemble_columns(frame, summary)
     assert out["prob"].tolist() == [0.4, 0.6]
-    assert out["prob_std"].tolist() == [0.1, 0.1]
+    assert out["prob_std"].tolist() == pytest.approx([0.1, 0.1])
 
 
 def test_ensemble_from_frames_aligns_and_carries_metadata() -> None:
@@ -99,7 +100,6 @@ def test_ensemble_from_frames_aligns_and_carries_metadata() -> None:
     assert list(out["basin_id"]) == ["a", "b"]
     assert out["prob"].tolist() == [0.6, 0.4]
     assert out["module"].iloc[0] == "B_snowmelt_lstm"
-    assert out["n_seeds"] if "n_seeds" in out.columns else True
 
 
 def test_ensemble_from_frames_rejects_mismatched_keys() -> None:
@@ -141,5 +141,5 @@ def test_attach_ensemble_length_mismatch_raises() -> None:
 
 def test_provisional_never_disrupts_fusion_tier() -> None:
     # Provisional is an annotation; fusion tiers come from probabilities.
-    assert tier_for(0.9, _cutoffs()) == "severe"
-    assert tiers.tier_to_level("severe").name == "RED"
+    assert schema.tier_for(0.9, _cutoffs()) == "severe"
+    assert tier_to_level("severe").name == "RED"

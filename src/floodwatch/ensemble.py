@@ -17,26 +17,14 @@ Additive columns (non-breaking to the §3.7 model-file contract):
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass, field
-from typing import Any, Iterable
 
 import numpy as np
 import pandas as pd
 
 from . import schema
-from .tiers import Tier  # noqa: F401
 
-...
-
-def tier_stability(
-    probabilities: list[np.ndarray],
-    cutoffs: dict[str, float],
-) -> np.ndarray:
-    ...
-        np.asarray([schema.tier_for(float(p), cutoffs) for p in seed], dtype=object)
-
-# A row is provisional when its inter-seed tier disagreement exceeds this
-# probability spread. Conservative default: any disagreement flips it.
 DEFAULT_STD_THRESHOLD = 0.05
 
 
@@ -162,7 +150,7 @@ def ensemble_from_frames(
     if not frames:
         raise ValueError("at least one prediction frame is required")
     aligned = _align_frames(frames)
-    keys = [set(zip(f["basin_id"].astype(str), f["timestamp_utc"])) for f in aligned]
+    keys = [set(zip(f["basin_id"].astype(str), f["timestamp_utc"], strict=False)) for f in aligned]
     if len({frozenset(k) for k in keys}) != 1:
         raise ValueError("seed prediction frames do not share the same key set")
     base = aligned[0][["basin_id", "timestamp_utc"]].copy()
