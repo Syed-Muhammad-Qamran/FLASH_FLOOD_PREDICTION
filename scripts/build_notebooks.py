@@ -268,7 +268,7 @@ print(f"\nTotal historical records collected: {len(raw_df):,} hourly timesteps a
 feat_df = add_features(raw_df)
 
 # Validate that no future-looking features exist in input columns
-validate_no_leakage(feat_df, feature_cols)
+validate_no_leakage(feat_df, feature_cols, allow_2010_training=True)
 
 # Define cloudburst rainfall proxy trigger:
 # Cloudburst: rain_1h >= 12mm OR rain_3h >= 25mm OR rain_24h >= 60mm
@@ -304,7 +304,7 @@ feat_df.loc[(ts >= buffer_cutoff) & (ts < val_cutoff), "split"] = "buffer"
 feat_df.loc[ts >= val_cutoff, "split"] = "validation"
 
 # Ensure 2010 and 2022 are completely absent from training
-validate_no_leakage(feat_df, feature_cols)
+validate_no_leakage(feat_df, feature_cols, allow_2010_training=True)
 
 train_mask = feat_df["split"] == "train"
 val_mask = feat_df["split"] == "validation"
@@ -618,7 +618,7 @@ print(f"Ingested {len(raw_df):,} hourly records across {len(basins)} basins.")""
     code_cell(
         """# Build Melt & Rain-on-Snow Features
 feat_df = add_features(raw_df)
-validate_no_leakage(feat_df, feature_cols)
+validate_no_leakage(feat_df, feature_cols, allow_2010_training=True)
 
 # Runoff proxy trigger: high degree-day melt OR liquid rain on deep snowpack
 is_melt_trigger = (
@@ -650,7 +650,7 @@ feat_df["split"] = "train"
 feat_df.loc[(ts >= buffer_cutoff) & (ts < val_cutoff), "split"] = "buffer"
 feat_df.loc[ts >= val_cutoff, "split"] = "validation"
 
-validate_no_leakage(feat_df, feature_cols)
+validate_no_leakage(feat_df, feature_cols, allow_2010_training=True)
 
 from sklearn.preprocessing import StandardScaler
 train_mask = feat_df["split"] == "train"

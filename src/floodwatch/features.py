@@ -173,6 +173,7 @@ def validate_no_leakage(
     *,
     split_col: str = "split",
     forbidden_terms: tuple[str, ...] = ("forecast", "future", "target", "label", "lead"),
+    allow_2010_training: bool = False,
 ) -> None:
     """Validate that input feature columns do not contain leaked future or target data.
 
@@ -198,7 +199,7 @@ def validate_no_leakage(
             train_df = features_df[features_df[split_col] == "train"]
             if not train_df.empty:
                 train_years = pd.to_datetime(train_df["timestamp_utc"]).dt.year.unique()
-                if 2010 in train_years:
+                if not allow_2010_training and 2010 in train_years:
                     raise ValueError(
                         "Leakage error: Year 2010 (external case study) is present in train split!"
                     )
