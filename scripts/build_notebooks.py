@@ -166,16 +166,24 @@ nb2_cells = [
 4. **Legitimate Baselines:** Logistic Regression baseline fitted on training data with real calibrated probabilities."""
     ),
     code_cell(
-        """# Setup environment and dependencies
-!nvidia-smi
-!pip install -q pandas numpy pyyaml pyarrow scikit-learn torch requests
-
+        """# Setup environment and dependencies (Auto-detects Google Colab)
 import os
 import sys
 from pathlib import Path
 
+# If running in Google Colab, clone repo & install dependencies
+if "google.colab" in sys.modules:
+    if not (Path.cwd() / "src" / "floodwatch").exists():
+        if not Path("FLASH_FLOOD_PREDICTION").exists():
+            !git clone -b qamran/real-data-eval https://github.com/Syed-Muhammad-Qamran/FLASH_FLOOD_PREDICTION.git
+        %cd FLASH_FLOOD_PREDICTION
+    !pip install -q pyyaml pyarrow
+
 # Add project root to sys.path
 repo_root = Path.cwd()
+if not (repo_root / "src" / "floodwatch").exists() and (repo_root.parent / "src" / "floodwatch").exists():
+    repo_root = repo_root.parent
+
 if str(repo_root / "src") not in sys.path:
     sys.path.insert(0, str(repo_root / "src"))
 
@@ -188,6 +196,7 @@ SEED = 42
 np.random.seed(SEED)
 torch.manual_seed(SEED)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Repository Root: {repo_root}")
 print(f"Computation Device: {device}")"""
     ),
     code_cell(
@@ -212,8 +221,8 @@ print(f"Lookback: {lookback}h | Horizon: {horizon}h")"""
 cache_base = repo_root / "data" / "raw" / "cache"
 cache_base.mkdir(parents=True, exist_ok=True)
 
-# For quick Colab run, use 2020-2021 (or adjust START_YEAR to 2016 for full multi-year)
-START_DATE = "2020-01-01"
+# Increased dataset including the 2010 Super Floods event (2010 through 2021)
+START_DATE = "2010-06-01"
 END_DATE = "2021-12-31"
 
 basin_dfs = []
@@ -507,12 +516,23 @@ nb3_cells = [
 3. **Out-of-Sample Case Studies:** 2010 and 2022 historical cases evaluated out-of-sample against official hydrometric records (focusing on snow-fed basins: Swat Kalam, Chitral Mastuj, Chitral Drosh, Chitral town)."""
     ),
     code_cell(
-        """!pip install -q pandas numpy pyyaml pyarrow scikit-learn torch requests
-
+        """# Setup environment and dependencies (Auto-detects Google Colab)
+import os
 import sys
 from pathlib import Path
 
+# If running in Google Colab, clone repo & install dependencies
+if "google.colab" in sys.modules:
+    if not (Path.cwd() / "src" / "floodwatch").exists():
+        if not Path("FLASH_FLOOD_PREDICTION").exists():
+            !git clone -b qamran/real-data-eval https://github.com/Syed-Muhammad-Qamran/FLASH_FLOOD_PREDICTION.git
+        %cd FLASH_FLOOD_PREDICTION
+    !pip install -q pyyaml pyarrow
+
 repo_root = Path.cwd()
+if not (repo_root / "src" / "floodwatch").exists() and (repo_root.parent / "src" / "floodwatch").exists():
+    repo_root = repo_root.parent
+
 if str(repo_root / "src") not in sys.path:
     sys.path.insert(0, str(repo_root / "src"))
 
@@ -524,6 +544,7 @@ import yaml
 SEED = 42
 np.random.seed(SEED)
 torch.manual_seed(SEED)
+print(f"Repository Root: {repo_root}")
 print("Environment ready for Model B training.")"""
     ),
     code_cell(
