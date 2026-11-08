@@ -42,109 +42,152 @@ CITIZEN_PHONE = "03366444552"
 # -----------------------------------------------------------------------------
 CUSTOM_CSS = """
 <style>
+    /* Force Deep Midnight Command Center Dark Theme Globally */
+    .stApp {
+        background-color: #0b0f19 !important;
+        color: #f8fafc !important;
+    }
+    header[data-testid="stHeader"] {
+        background-color: #0b0f19 !important;
+    }
+    div[data-testid="stSidebar"] {
+        background-color: #080c14 !important;
+        border-right: 1.5px solid #1e293b !important;
+    }
+    div[data-testid="stExpander"] {
+        border: 1.5px solid #2d3748 !important;
+        border-radius: 10px !important;
+        background-color: #111827 !important;
+        margin-bottom: 0.8rem !important;
+    }
+    div[data-testid="stExpander"] summary {
+        font-weight: 700 !important;
+        color: #f1f5f9 !important;
+    }
+
     /* Metric & Card Containers */
     .fw-card {
-        background: rgba(255, 255, 255, 0.04);
-        border: 1.5px solid rgba(148, 163, 184, 0.28);
+        background: #111827 !important;
+        border: 1.5px solid #2d3748 !important;
         border-radius: 10px;
         padding: 1.2rem;
         margin-bottom: 1rem;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.25);
     }
     .fw-hero {
-        background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-        color: #ffffff;
-        border: 1.5px solid #334155;
-        border-top: 3.5px solid #0284c7;
+        background: linear-gradient(135deg, #09131d 0%, #0f1d2d 50%, #15293d 100%) !important;
+        color: #ffffff !important;
+        border: 1.5px solid #334155 !important;
+        border-top: 4px solid #0284c7 !important;
         border-radius: 12px;
         padding: 1.5rem 2rem;
         margin-bottom: 1.5rem;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.35);
     }
+
+    /* High-Contrast Dark-Mode Status Badges */
     .fw-badge {
         display: inline-block;
-        padding: 0.28rem 0.75rem;
+        padding: 0.3rem 0.85rem;
         font-size: 0.82rem;
         font-weight: 700;
         border-radius: 9999px;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.05em;
     }
-    .badge-red { background-color: #fee2e2; color: #991b1b; border: 1.5px solid #ef4444; }
-    .badge-orange { background-color: #ffedd5; color: #9a3412; border: 1.5px solid #f97316; }
-    .badge-yellow { background-color: #fef9c3; color: #854d0e; border: 1.5px solid #eab308; }
-    .badge-green { background-color: #dcfce7; color: #166534; border: 1.5px solid #22c55e; }
+    .badge-red {
+        background-color: rgba(239, 68, 68, 0.22) !important;
+        color: #fca5a5 !important;
+        border: 1.5px solid #ef4444 !important;
+    }
+    .badge-orange {
+        background-color: rgba(249, 115, 22, 0.22) !important;
+        color: #fdba74 !important;
+        border: 1.5px solid #f97316 !important;
+    }
+    .badge-yellow {
+        background-color: rgba(234, 179, 8, 0.22) !important;
+        color: #fde047 !important;
+        border: 1.5px solid #eab308 !important;
+    }
+    .badge-green {
+        background-color: rgba(34, 197, 94, 0.22) !important;
+        color: #86efac !important;
+        border: 1.5px solid #22c55e !important;
+    }
 
     /* Executive High-Contrast Section Panels with Top Accent Borders */
     .fw-section-panel {
-        background: rgba(15, 23, 42, 0.45);
-        border: 1.5px solid rgba(148, 163, 184, 0.28);
+        background: #111827 !important;
+        border: 1.5px solid #2d3748 !important;
         border-radius: 10px;
         padding: 1.25rem 1.4rem;
         margin-bottom: 1.4rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     }
     .panel-accent-blue {
-        border-top: 3.5px solid #0284c7 !important;
+        border-top: 4px solid #0284c7 !important;
     }
     .panel-accent-red {
-        border-top: 3.5px solid #ef4444 !important;
+        border-top: 4px solid #ef4444 !important;
     }
     .panel-accent-green {
-        border-top: 3.5px solid #10b981 !important;
+        border-top: 4px solid #10b981 !important;
     }
     .panel-accent-purple {
-        border-top: 3.5px solid #8b5cf6 !important;
+        border-top: 4px solid #8b5cf6 !important;
     }
     .panel-accent-amber {
-        border-top: 3.5px solid #f59e0b !important;
+        border-top: 4px solid #f59e0b !important;
     }
     .fw-panel-title {
-        font-size: 1.05rem;
+        font-size: 1.08rem;
         font-weight: 700;
+        color: #f8fafc !important;
         letter-spacing: 0.01em;
         margin-bottom: 0.85rem;
         padding-bottom: 0.55rem;
-        border-bottom: 1.5px solid rgba(148, 163, 184, 0.2);
+        border-bottom: 1.5px solid #2d3748;
         display: flex;
         align-items: center;
         gap: 0.5rem;
     }
     .fw-table-header {
-        background: rgba(30, 41, 59, 0.65);
-        border: 1.5px solid rgba(148, 163, 184, 0.3);
+        background: #1e293b !important;
+        border: 1.5px solid #334155 !important;
+        color: #f1f5f9 !important;
         border-radius: 8px;
-        padding: 0.6rem 0.8rem;
+        padding: 0.65rem 0.85rem;
         font-weight: 700;
         font-size: 0.88rem;
         margin-bottom: 0.6rem;
     }
     .fw-metric-box {
-        background: rgba(30, 41, 59, 0.4);
-        border: 1.5px solid rgba(148, 163, 184, 0.25);
+        background: #151d2f !important;
+        border: 1.5px solid #2d3748 !important;
         border-radius: 8px;
-        padding: 0.85rem 1rem;
+        padding: 0.95rem 1.1rem;
         margin-bottom: 0.6rem;
     }
     .scenario-box-red {
-        border: 1.5px solid #ef4444;
+        border: 1.5px solid #ef4444 !important;
         border-radius: 8px;
-        padding: 0.85rem;
-        background: rgba(239, 68, 68, 0.05);
+        padding: 0.9rem;
+        background: #1c141d !important;
         margin-bottom: 0.6rem;
     }
     .scenario-box-green {
-        border: 1.5px solid #10b981;
+        border: 1.5px solid #10b981 !important;
         border-radius: 8px;
-        padding: 0.85rem;
-        background: rgba(16, 185, 129, 0.05);
+        padding: 0.9rem;
+        background: #0f1f1a !important;
         margin-bottom: 0.6rem;
     }
     .scenario-box-blue {
-        border: 1.5px solid #64748b;
+        border: 1.5px solid #475569 !important;
         border-radius: 8px;
-        padding: 0.85rem;
-        background: rgba(100, 116, 139, 0.05);
+        padding: 0.9rem;
+        background: #131b2e !important;
         margin-bottom: 0.6rem;
     }
 </style>
@@ -441,10 +484,9 @@ def _whatsapp_simulation_tab() -> None:
     # Top Bar: Autonomous Sentinel Status & Privacy Shield
     st.markdown(
         """
-        <div class="fw-section-panel panel-accent-purple">
-            <div class="fw-panel-title">
-                <span>🛡️ System Security & Autonomous Sentinel Controls</span>
-            </div>
+        <div style="border-left: 4px solid #8b5cf6; padding-left: 12px; margin: 1rem 0 0.8rem 0;">
+            <h4 style="margin: 0; color: #ffffff; font-weight: 700;">🛡️ System Security & Autonomous Sentinel Controls</h4>
+            <div style="font-size: 0.82rem; color: #94a3b8;">Zero-human autonomous early warning dispatch engine and PII privacy masking:</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -469,10 +511,9 @@ def _whatsapp_simulation_tab() -> None:
     # -------------------------------------------------------------------------
     st.markdown(
         """
-        <div class="fw-section-panel panel-accent-blue" style="margin-bottom: 0.6rem; padding: 0.8rem 1.2rem;">
-            <div class="fw-panel-title" style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">
-                <span>👥 Emergency Recipient Directory & Citizen Registry</span>
-            </div>
+        <div style="border-left: 4px solid #0284c7; padding-left: 12px; margin: 1.4rem 0 0.8rem 0;">
+            <h4 style="margin: 0; color: #ffffff; font-weight: 700;">👥 Emergency Recipient Directory & Citizen Registry</h4>
+            <div style="font-size: 0.82rem; color: #94a3b8;">Manage focal contact points, community leaders, and emergency rescue desks:</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -566,9 +607,9 @@ def _whatsapp_simulation_tab() -> None:
                     r_role = r.get("role", "Citizen")
                     r_phone = r.get("phone", "")
                     r_active = r.get("active", True)
-                    d_c1.markdown(f"**{r_name}**<br><span style='font-size: 0.8rem; color:#888;'>{r_role}</span>", unsafe_allow_html=True)
-                    d_c2.markdown(f"`{mask_phone(r_phone, mask_privacy)}`")
-                    d_c3.markdown("🟢 Active" if r_active else "⏸️ Muted")
+                    d_c1.markdown(f"<strong style='color: #ffffff;'>{r_name}</strong><br><span style='font-size: 0.8rem; color:#94a3b8;'>{r_role}</span>", unsafe_allow_html=True)
+                    d_c2.markdown(f"<code style='background: #1e293b; color: #38bdf8; border: 1px solid #334155; padding: 2px 6px; border-radius: 4px;'>{mask_phone(r_phone, mask_privacy)}</code>", unsafe_allow_html=True)
+                    d_c3.markdown("<span style='color: #4ade80; font-weight: 600;'>🟢 Active</span>" if r_active else "<span style='color: #94a3b8;'>⏸️ Muted</span>", unsafe_allow_html=True)
                     if d_c4.button("🗑️", key=f"del_rec_{r_id}_{idx}", help=f"Delete {r_name}"):
                         st.session_state["recipients"] = [x for i, x in enumerate(st.session_state["recipients"]) if x.get("id", i + 1) != r_id]
                         st.warning(f"Deleted {r_name} from directory.")
@@ -579,11 +620,9 @@ def _whatsapp_simulation_tab() -> None:
     # -------------------------------------------------------------------------
     st.markdown(
         """
-        <div class="fw-section-panel panel-accent-amber">
-            <div class="fw-panel-title">
-                <span>⚡ Operational Lifecycle Directives & Scenario Triage</span>
-            </div>
-            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.8rem;">
+        <div style="border-left: 4px solid #f59e0b; padding-left: 14px; margin: 1.5rem 0 0.9rem 0;">
+            <h4 style="margin: 0; color: #ffffff; font-weight: 700; font-size: 1.12rem;">⚡ Operational Lifecycle Directives & Scenario Triage</h4>
+            <div style="font-size: 0.84rem; color: #94a3b8; margin-top: 2px;">
                 Select an operational directive to generate authenticated bilingual directives with official helplines:
             </div>
         </div>
@@ -600,8 +639,8 @@ def _whatsapp_simulation_tab() -> None:
         st.markdown(
             """
             <div class="scenario-box-red">
-                <b style="color: #ef4444;">🔴 1. Positive Flood (EMERGENCY)</b><br>
-                <span style="font-size: 0.8rem; color: #94a3b8;">Kalam convective cloudburst (>185mm rain). Triggers immediate evacuation.</span>
+                <div style="color: #f87171; font-weight: 700; font-size: 0.92rem;">🔴 1. Positive Flood (EMERGENCY)</div>
+                <div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 4px;">Kalam convective cloudburst (>185mm rain). Triggers immediate evacuation.</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -614,8 +653,8 @@ def _whatsapp_simulation_tab() -> None:
         st.markdown(
             """
             <div class="scenario-box-green">
-                <b style="color: #10b981;">🟢 2. Cancel Alert (ALL CLEAR)</b><br>
-                <span style="font-size: 0.8rem; color: #94a3b8;">Water recedes below danger mark. De-escalation notice safely lifts evacuation.</span>
+                <div style="color: #4ade80; font-weight: 700; font-size: 0.92rem;">🟢 2. Cancel Alert (ALL CLEAR)</div>
+                <div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 4px;">Water recedes below danger mark. De-escalation notice safely lifts evacuation.</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -628,8 +667,8 @@ def _whatsapp_simulation_tab() -> None:
         st.markdown(
             """
             <div class="scenario-box-blue">
-                <b style="color: #94a3b8;">ℹ️ 3. False Alarm / Rumor (SAFE)</b><br>
-                <span style="font-size: 0.8rem; color: #94a3b8;">Viral audio rumor claiming Drosh dam collapse. Issues verified debunk advisory.</span>
+                <div style="color: #60a5fa; font-weight: 700; font-size: 0.92rem;">ℹ️ 3. False Alarm / Rumor (SAFE)</div>
+                <div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 4px;">Viral audio rumor claiming Drosh dam collapse. Issues verified debunk advisory.</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -726,11 +765,13 @@ def _whatsapp_simulation_tab() -> None:
     active_recipients = [r for r in st.session_state["recipients"] if r.get("active", True)]
     encoded_text = urllib.parse.quote(msg_text)
 
+    accent_border = "#ef4444" if selected_sim == "emergency" else ("#10b981" if selected_sim == "cancel" else "#3b82f6")
     st.markdown(
         f"""
-        <div class="fw-section-panel {panel_accent_class}">
-            <div class="fw-panel-title">
-                <span>📱 Active Emergency Advisory Telemetry & Protocol</span>
+        <div style="border-left: 4px solid {accent_border}; padding-left: 14px; margin: 1.5rem 0 0.9rem 0;">
+            <h4 style="margin: 0; color: #ffffff; font-weight: 700; font-size: 1.12rem;">📱 Active Emergency Advisory Telemetry & Protocol</h4>
+            <div style="font-size: 0.84rem; color: #94a3b8; margin-top: 2px;">
+                Monitored hydrological threat status, impact classification, and bilingual public advisory directives:
             </div>
         </div>
         """,
@@ -742,8 +783,8 @@ def _whatsapp_simulation_tab() -> None:
         st.markdown(
             f"""
             <div class="fw-metric-box">
-                <span style="font-size: 0.78rem; color: #94a3b8;">MONITORED BASIN</span><br>
-                <b style="font-size: 0.95rem;">{basin_name}</b>
+                <div style="font-size: 0.72rem; font-weight: 700; color: #94a3b8; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">MONITORED BASIN</div>
+                <div style="font-size: 1rem; font-weight: 700; color: #ffffff;">{basin_name}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -752,8 +793,8 @@ def _whatsapp_simulation_tab() -> None:
         st.markdown(
             f"""
             <div class="fw-metric-box">
-                <span style="font-size: 0.78rem; color: #94a3b8;">THREAT CLASSIFICATION</span><br>
-                {level_badge}
+                <div style="font-size: 0.72rem; font-weight: 700; color: #94a3b8; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">THREAT CLASSIFICATION</div>
+                <div>{level_badge}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -762,8 +803,8 @@ def _whatsapp_simulation_tab() -> None:
         st.markdown(
             f"""
             <div class="fw-metric-box">
-                <span style="font-size: 0.78rem; color: #94a3b8;">MANDATED ACTION</span><br>
-                <b style="font-size: 0.92rem; color: #f1f5f9;">{action}</b>
+                <div style="font-size: 0.72rem; font-weight: 700; color: #94a3b8; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">MANDATED ACTION</div>
+                <div style="font-size: 0.92rem; font-weight: 700; color: #f8fafc; line-height: 1.4;">{action}</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -787,11 +828,9 @@ def _whatsapp_simulation_tab() -> None:
     # -------------------------------------------------------------------------
     st.markdown(
         """
-        <div class="fw-section-panel panel-accent-green" style="margin-top: 1.5rem;">
-            <div class="fw-panel-title">
-                <span>📋 Registered Citizen Broadcast Directory (Individual Transmission)</span>
-            </div>
-            <div style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.6rem;">
+        <div style="border-left: 4px solid #10b981; padding-left: 14px; margin: 1.6rem 0 0.9rem 0;">
+            <h4 style="margin: 0; color: #ffffff; font-weight: 700; font-size: 1.12rem;">📋 Registered Citizen Broadcast Directory (Individual Transmission)</h4>
+            <div style="font-size: 0.84rem; color: #94a3b8; margin-top: 2px;">
                 Transmit verified bilingual advisories directly to registered community focal points:
             </div>
         </div>
@@ -826,14 +865,14 @@ def _whatsapp_simulation_tab() -> None:
             r_col1, r_col2, r_col3, r_col4 = st.columns([3, 2, 2, 2])
             with r_col1:
                 st.markdown(
-                    f"**{r.get('name', 'Registered Citizen')}**<br>"
-                    f"<span style='font-size: 0.8rem; color: #94a3b8;'>{r.get('role', 'Citizen')}</span>",
+                    f"<div style='font-weight: 700; color: #ffffff; font-size: 0.95rem;'>{r.get('name', 'Registered Citizen')}</div>"
+                    f"<div style='font-size: 0.8rem; color: #94a3b8;'>{r.get('role', 'Citizen')}</div>",
                     unsafe_allow_html=True,
                 )
             with r_col2:
-                st.markdown(f"<code>{masked_num}</code>", unsafe_allow_html=True)
+                st.markdown(f"<code style='background: #1e293b; color: #38bdf8; border: 1px solid #334155; padding: 3px 7px; border-radius: 4px; font-weight: 600;'>{masked_num}</code>", unsafe_allow_html=True)
             with r_col3:
-                st.markdown("<span style='font-size: 0.85rem; color: #10b981; font-weight: 600;'>● Ready</span>", unsafe_allow_html=True)
+                st.markdown("<span style='font-size: 0.85rem; color: #4ade80; font-weight: 700;'>● Ready</span>", unsafe_allow_html=True)
             with r_col4:
                 st.link_button(
                     f"📲 Send to {first_name}",
@@ -842,7 +881,7 @@ def _whatsapp_simulation_tab() -> None:
                     type=btn_type,
                     key=f"link_btn_{r.get('id', idx)}_{idx}",
                 )
-            st.markdown("<hr style='margin: 0.15rem 0 0.45rem 0; border: none; border-bottom: 1.5px solid rgba(148, 163, 184, 0.2);'>", unsafe_allow_html=True)
+            st.markdown("<hr style='margin: 0.35rem 0 0.65rem 0; border: none; border-bottom: 1px solid #1e293b;'>", unsafe_allow_html=True)
 
 
 def _historical_cases_view() -> None:
