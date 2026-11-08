@@ -1,0 +1,66 @@
+[
+  {
+    "basin_id": "chitral_chitral",
+    "action": "alert",
+    "text": "FLOODWATCH ALERT\nBasin: chitral_chitral\nLevel: RED\nRisk score: 0.622\nIssued (UTC): 2022-08-27T00:00:00+00:00\nDrivers: compound: cloudburst and snowmelt both active; rain-on-snow escalation: liquid water on a snowpack; snow_depth_mm (3.9261); rain_3h (1.681); terrain_susceptibility (0.7)\nEmergency contact: Rescue 1122",
+    "problems": [],
+    "blocked_by_verify": false,
+    "fallback_used": false
+  },
+  {
+    "basin_id": "chitral_drosh",
+    "action": "alert",
+    "text": "FLOODWATCH ALERT\nBasin: chitral_drosh\nLevel: RED\nRisk score: 0.626\nIssued (UTC): 2022-08-27T00:00:00+00:00\nDrivers: compound: cloudburst and snowmelt both active; rain-on-snow escalation: liquid water on a snowpack; snow_depth_mm (3.4898); rain_3h (1.464); soil_moisture (0.85)\nEmergency contact: Rescue 1122",
+    "problems": [],
+    "blocked_by_verify": false,
+    "fallback_used": false
+  },
+  {
+    "basin_id": "chitral_mastuj",
+    "action": "alert",
+    "text": "FLOODWATCH ALERT\nBasin: chitral_mastuj\nLevel: RED\nRisk score: 0.587\nIssued (UTC): 2022-08-27T00:00:00+00:00\nDrivers: compound: cloudburst and snowmelt both active; rain-on-snow escalation: liquid water on a snowpack; snow_depth_mm (4.7985); terrain_susceptibility (0.85); degree_day_melt (0.4519)\nEmergency contact: Rescue 1122",
+    "problems": [],
+    "blocked_by_verify": false,
+    "fallback_used": false
+  },
+  {
+    "basin_id": "panjkora_dir",
+    "action": "alert",
+    "text": "FLOODWATCH ALERT\nBasin: panjkora_dir\nLevel: RED\nRisk score: 1.000\nIssued (UTC): 2022-08-27T00:00:00+00:00\nDrivers: compound: cloudburst and snowmelt both active; rain-on-snow escalation: liquid water on a snowpack; rain_3h (68.201); snow_depth_mm (2.7919); terrain_susceptibility (0.79)\nEmergency contact: Rescue 1122",
+    "problems": [],
+    "blocked_by_verify": false,
+    "fallback_used": false
+  },
+  {
+    "basin_id": "panjkora_talash",
+    "action": "alert",
+    "text": "FLOODWATCH ALERT\nBasin: panjkora_talash\nLevel: RED\nRisk score: 0.590\nIssued (UTC): 2022-08-27T00:00:00+00:00\nDrivers: compound: cloudburst and snowmelt both active; rain-on-snow escalation: liquid water on a snowpack; snow_depth_mm (1.3959); soil_moisture (0.674); terrain_susceptibility (0.66)\nEmergency contact: Rescue 1122",
+    "problems": [],
+    "blocked_by_verify": false,
+    "fallback_used": false
+  },
+  {
+    "basin_id": "swat_chakdara",
+    "action": "alert",
+    "text": "FLOODWATCH ALERT\nBasin: swat_chakdara\nLevel: RED\nRisk score: 0.992\nIssued (UTC): 2022-08-27T00:00:00+00:00\nDrivers: compound: cloudburst and snowmelt both active; rain-on-snow escalation: liquid water on a snowpack; rain_3h (45.089); snow_depth_mm (1.5704); soil_moisture (0.654)\nEmergency contact: Rescue 1122",
+    "problems": [],
+    "blocked_by_verify": false,
+    "fallback_used": false
+  },
+  {
+    "basin_id": "swat_kalam",
+    "action": "alert",
+    "text": "FLOODWATCH ALERT\nBasin: swat_kalam\nLevel: RED\nRisk score: 0.976\nIssued (UTC): 2022-08-27T00:00:00+00:00\nDrivers: compound: cloudburst and snowmelt both active; rain-on-snow escalation: liquid water on a snowpack; rain_3h (16.759); snow_depth_mm (3.0536); terrain_susceptibility (0.82)\nEmergency contact: Rescue 1122",
+    "problems": [],
+    "blocked_by_verify": false,
+    "fallback_used": false
+  },
+  {
+    "basin_id": "swat_madyan",
+    "action": "alert",
+    "text": "FLOODWATCH ALERT\nBasin: swat_madyan\nLevel: RED\nRisk score: 0.973\nIssued (UTC): 2022-08-27T00:00:00+00:00\nDrivers: compound: cloudburst and snowmelt both active; rain-on-snow escalation: liquid water on a snowpack; rain_3h (21.984); snow_depth_mm (2.4429); terrain_susceptibility (0.74)\nEmergency contact: Rescue 1122",
+    "problems": [],
+    "blocked_by_verify": false,
+    "fallback_used": false
+  }
+]

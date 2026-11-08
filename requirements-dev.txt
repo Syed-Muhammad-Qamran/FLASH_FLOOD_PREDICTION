@@ -1,0 +1,9 @@
+-r requirements.txt
+
+# Training + CI only. Never installed by the app image.
+torch>=2.2
+scikit-learn>=1.3
+requests>=2.31
+pytest>=7
+ruff>=0.5
+pip-audit>=2.7
