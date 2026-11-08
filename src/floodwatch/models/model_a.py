@@ -80,6 +80,67 @@ class CloudburstCNN_LSTM(nn.Module):
         return self.head(combined).squeeze(-1)
 
 
+class CloudburstTemporalNN(nn.Module):
+    """
+    Pure Temporal Architecture for Point Time-Series Cloudburst Risk (Model A):
+      - Avoids fabricating fake 3x3 spatial inputs when only point station/reanalysis data exists.
+      - 1D Temporal Convolution (kernel 3, max 32 filters) over temporal feature channels.
+      - 1-Layer LSTM (max 64 units) over the 72-hour sequence.
+      - Fully compliant with §3.4 architectural limits.
+    """
+
+    def __init__(
+        self,
+        in_features: int = 8,
+        conv_filters: int = 32,
+        lstm_units: int = 64,
+        dropout_rate: float = 0.2,
+    ):
+        super().__init__()
+        assert conv_filters <= MAX_CONV_FILTERS, f"Conv filters exceed limit of {MAX_CONV_FILTERS}"
+        assert lstm_units <= MAX_LSTM_UNITS, f"LSTM units exceed limit of {MAX_LSTM_UNITS}"
+
+        # 1D Temporal Convolution over sequence: input (Batch, in_features, Lookback)
+        self.conv1d = nn.Sequential(
+            nn.Conv1d(in_features, 16, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv1d(16, conv_filters, kernel_size=3, padding=1),
+            nn.ReLU(),
+        )
+
+        # 1-layer LSTM: input (Batch, Lookback, conv_filters + in_features)
+        self.lstm = nn.LSTM(
+            input_size=conv_filters + in_features,
+            hidden_size=lstm_units,
+            num_layers=1,
+            batch_first=True,
+        )
+
+        self.head = nn.Sequential(
+            nn.Dropout(dropout_rate),
+            nn.Linear(lstm_units, 32),
+            nn.ReLU(),
+            nn.Linear(32, 1),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, x_temporal: torch.Tensor) -> torch.Tensor:
+        """
+        x_temporal: (Batch, Lookback, in_features)
+        returns: (Batch,) probabilities in [0.0, 1.0]
+        """
+        # (Batch, Lookback, in_features) -> (Batch, in_features, Lookback)
+        x_trans = x_temporal.transpose(1, 2)
+        conv_feats = self.conv1d(x_trans).transpose(1, 2)  # (Batch, Lookback, conv_filters)
+
+        # Concat raw features and conv features along channel dimension
+        merged = torch.cat([x_temporal, conv_feats], dim=-1)
+
+        _, (h_n, _) = self.lstm(merged)
+        lstm_out = h_n[-1]  # (Batch, lstm_units)
+        return self.head(lstm_out).squeeze(-1)
+
+
 class LogisticRegressionBaselineA:
     """Mandatory non-deep baseline for Model A (§4.1)."""
 

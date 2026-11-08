@@ -5,8 +5,16 @@ fetch). Responses are normalised toward ``floodwatch.features.RAW_COLUMNS`` wher
 fields are available; missing hydrology/snowpack fields are left null rather than
 invented.
 
-Operational use: cache responses, record ``source_health``, and never treat a
-failed fetch as a crash.
+HYDROLOGY & PROVENANCE NOTICE:
+Open-Meteo ERA5 and ERA5-Land datasets are gridded atmospheric reanalyses produced
+by ECMWF assimilating global in-situ and satellite observations. Reanalysis weather
+represents a spatial cell average (~9-30 km) and is NOT an in-situ local river stage
+or streamgauge measurement. Never confuse reanalysis rainfall with gauge-verified
+inundation.
+
+Operational use: cache responses, record ``source_health``, retry transient 429
+rate limits with bounded backoff, and NEVER silently generate synthetic weather
+or labels upon failure.
 """
 
 from __future__ import annotations
@@ -60,17 +68,16 @@ Fetcher = Callable[[str, dict[str, Any], float], dict[str, Any]]
 
 
 def _default_fetch(url: str, params: dict[str, Any], timeout_s: float) -> dict[str, Any]:
+    """Single network fetch using urllib without internal retry loop."""
     query = urllib.parse.urlencode(params, doseq=True)
+    full_url = f"{url}?{query}"
     request = urllib.request.Request(
-        f"{url}?{query}",
+        full_url,
         headers={"Accept": "application/json", "User-Agent": USER_AGENT},
         method="GET",
     )
-    try:
-        with urllib.request.urlopen(request, timeout=timeout_s) as response:
-            payload = response.read().decode("utf-8")
-    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError) as exc:
-        raise OpenMeteoError(f"Open-Meteo request failed: {type(exc).__name__}") from exc
+    with urllib.request.urlopen(request, timeout=timeout_s) as response:
+        payload = response.read().decode("utf-8")
     try:
         data = json.loads(payload or "{}")
     except ValueError as exc:
@@ -81,6 +88,47 @@ def _default_fetch(url: str, params: dict[str, Any], timeout_s: float) -> dict[s
     if not isinstance(data, dict):
         raise OpenMeteoError("Open-Meteo returned an unexpected payload")
     return data
+
+
+def _execute_with_retry(
+    fetcher: Fetcher,
+    url: str,
+    params: dict[str, Any],
+    timeout_s: float,
+    *,
+    max_retries: int = 4,
+    initial_backoff_s: float = 0.2,
+    max_backoff_s: float = 5.0,
+) -> dict[str, Any]:
+    """Execute any fetcher with bounded exponential backoff for HTTP 429 and transient errors.
+
+    Never synthesizes replacement weather or fallback labels.
+    """
+    last_error: Exception | None = None
+    for attempt in range(max_retries + 1):
+        try:
+            return fetcher(url, params, timeout_s)
+        except urllib.error.HTTPError as exc:
+            last_error = exc
+            if exc.code in {429, 500, 502, 503, 504} and attempt < max_retries:
+                backoff = min(max_backoff_s, initial_backoff_s * (2**attempt))
+                time.sleep(backoff)
+                continue
+            raise OpenMeteoError(
+                f"Open-Meteo request failed with HTTP {exc.code} (refusing to synthesize fake weather)"
+            ) from exc
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            last_error = exc
+            if attempt < max_retries:
+                backoff = min(max_backoff_s, initial_backoff_s * (2**attempt))
+                time.sleep(backoff)
+                continue
+            raise OpenMeteoError(
+                f"Open-Meteo request failed after {max_retries} retries: {type(exc).__name__} "
+                "(refusing to synthesize fake weather)"
+            ) from exc
+
+    raise OpenMeteoError(f"Open-Meteo fetch failed: {last_error}")
 
 
 def _hourly_frame(payload: dict[str, Any]) -> pd.DataFrame:
@@ -121,15 +169,25 @@ def _normalise_weather(
     soil = out.get("soil_moisture_0_to_7cm")
     out["soil_moisture"] = pd.to_numeric(soil, errors="coerce")
     # Open-Meteo snow_depth is metres in recent APIs; convert defensively.
-    snow_depth = pd.to_numeric(out.get("snow_depth"), errors="coerce")
-    if snow_depth.notna().any() and float(snow_depth.dropna().median()) < 50:
-        snow_depth = snow_depth * 1000.0
-    out["snow_depth_mm"] = snow_depth
+    snow_depth_raw = out.get("snow_depth")
+    if snow_depth_raw is not None:
+        snow_depth = pd.to_numeric(snow_depth_raw, errors="coerce")
+        if (
+            isinstance(snow_depth, pd.Series)
+            and snow_depth.notna().any()
+            and float(snow_depth.dropna().median()) < 50
+        ):
+            snow_depth = snow_depth * 1000.0
+        out["snow_depth_mm"] = snow_depth
+    else:
+        out["snow_depth_mm"] = math.nan
     # Snowfall is cm in Open-Meteo; approximate melt proxy as 0 when unknown.
-    snowfall_cm = pd.to_numeric(out.get("snowfall"), errors="coerce")
+    snowfall_raw = out.get("snowfall")
     out["snowmelt_mm"] = pd.to_numeric(out.get("snowmelt_mm"), errors="coerce")
-    if out["snowmelt_mm"].isna().all() and snowfall_cm.notna().any():
-        out["snowmelt_mm"] = 0.0
+    if out["snowmelt_mm"].isna().all() and snowfall_raw is not None:
+        snowfall_s = pd.to_numeric(snowfall_raw, errors="coerce")
+        if isinstance(snowfall_s, pd.Series) and snowfall_s.notna().any():
+            out["snowmelt_mm"] = 0.0
     out["discharge_m3s"] = pd.to_numeric(out.get("discharge_m3s"), errors="coerce")
     out["snow_fraction"] = float(snow_fraction) if snow_fraction is not None else math.nan
     out["elevation_mean_m"] = float(elevation_m) if elevation_m is not None else math.nan
@@ -152,8 +210,36 @@ def fetch_archive(
     timezone: str = "UTC",
     timeout_s: float = 30.0,
     fetcher: Fetcher | None = None,
+    use_cache: bool = False,
+    cache_dir: Any = None,
 ) -> FetchResult:
-    """Fetch historical hourly weather for one point (ERA5-backed archive API)."""
+    """Fetch historical hourly weather for one point (ERA5-backed archive API).
+
+    Never returns synthetic placeholder weather on failure.
+    """
+    from . import cache as cache_mod
+
+    key = cache_mod.cache_key(
+        "archive",
+        basin_id=basin_id,
+        start=start_date,
+        end=end_date,
+        lat=round(latitude, 4),
+        lon=round(longitude, 4),
+    )
+    if use_cache:
+        cached_df = cache_mod.read_frame(key, cache_dir=cache_dir)
+        if cached_df is not None and not cached_df.empty:
+            return FetchResult(
+                source="archive",
+                frame=cached_df,
+                fetched_at=datetime.now(UTC),
+                latitude=latitude,
+                longitude=longitude,
+                elevation=elevation_m,
+                raw={"cached": True, "key": key},
+            )
+
     params = {
         "latitude": latitude,
         "longitude": longitude,
@@ -163,8 +249,10 @@ def fetch_archive(
         "timezone": timezone,
     }
     try:
-        payload = (fetcher or _default_fetch)(ARCHIVE_BASE, params, timeout_s)
-    except (OpenMeteoError, ValueError, TypeError, OSError) as exc:
+        payload = _execute_with_retry(fetcher or _default_fetch, ARCHIVE_BASE, params, timeout_s)
+    except OpenMeteoError:
+        raise
+    except (ValueError, TypeError, OSError) as exc:
         raise OpenMeteoError(f"Open-Meteo request failed: {type(exc).__name__}") from exc
     frame = _normalise_weather(
         _hourly_frame(payload),
@@ -173,6 +261,13 @@ def fetch_archive(
         terrain_susceptibility=terrain_susceptibility,
         snow_fraction=snow_fraction,
     )
+    if use_cache and not frame.empty:
+        cache_mod.write_frame(
+            frame,
+            key=key,
+            meta={"source": "archive", "basin_id": basin_id, "start": start_date, "end": end_date},
+            cache_dir=cache_dir,
+        )
     return FetchResult(
         source="archive",
         frame=frame,
@@ -209,8 +304,12 @@ def fetch_forecast(
         "timezone": timezone,
     }
     try:
-        payload = (fetcher or _default_fetch)(API_BASE + "/forecast", params, timeout_s)
-    except (OpenMeteoError, ValueError, TypeError, OSError) as exc:
+        payload = _execute_with_retry(
+            fetcher or _default_fetch, API_BASE + "/forecast", params, timeout_s
+        )
+    except OpenMeteoError:
+        raise
+    except (ValueError, TypeError, OSError) as exc:
         raise OpenMeteoError(f"Open-Meteo request failed: {type(exc).__name__}") from exc
     frame = _hourly_frame(payload)
     # Derive a simple 3h forward rain sum when precipitation is present.
