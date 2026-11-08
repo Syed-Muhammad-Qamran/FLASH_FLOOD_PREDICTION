@@ -390,11 +390,15 @@ model_a = CloudburstTemporalNN(
     lstm_units=64,
 ).to(device)
 
-criterion = torch.nn.BCELoss()
+# Weighted loss to handle 1:160 flash-flood class imbalance (boosts POD / recall)
+def weighted_bce_loss(preds, targets, pos_weight=8.0):
+    loss = -(pos_weight * targets * torch.log(preds + 1e-7) + (1.0 - targets) * torch.log(1.0 - preds + 1e-7))
+    return loss.mean()
+
 optimizer = torch.optim.Adam(model_a.parameters(), lr=1e-3)
 
 EPOCHS = 8
-print(f"Training CloudburstTemporalNN on {device} for {EPOCHS} epochs...")
+print(f"Training CloudburstTemporalNN on {device} for {EPOCHS} epochs (with class-weighted loss)...")
 model_a.train()
 for ep in range(1, EPOCHS + 1):
     total_loss = 0.0
@@ -402,7 +406,7 @@ for ep in range(1, EPOCHS + 1):
         x_b, y_b = x_b.to(device), y_b.to(device)
         optimizer.zero_grad()
         preds = model_a(x_b)
-        loss = criterion(preds, y_b)
+        loss = weighted_bce_loss(preds, y_b, pos_weight=8.0)
         loss.backward()
         optimizer.step()
         total_loss += loss.item() * len(y_b)
@@ -416,20 +420,42 @@ baseline_a.fit(X_train_mean, train_idx["target"].values)
 print("Baseline fit complete.")"""
     ),
     code_cell(
-        """# Validation Evaluation & Calibration
+        """# Validation Evaluation & Dynamic Threshold Calibration
 model_a.eval()
 val_preds = []
 with torch.no_grad():
     for x_b, _ in val_loader:
         val_preds.append(model_a(x_b.to(device)).cpu().numpy())
 val_probs = np.concatenate(val_preds)
+y_val = val_idx["target"].values
 
-val_metrics = evaluate_model_a_metrics(val_idx["target"].values, val_probs, cutoff=0.50)
+# Calibrate optimal decision threshold on validation set (maximizing Critical Success Index)
+best_threshold = 0.50
+best_csi = -1.0
+best_metrics = {}
+
+for thresh in np.linspace(0.05, 0.50, 46):
+    pred_bin = (val_probs >= thresh).astype(int)
+    hits = int(np.sum((pred_bin == 1) & (y_val == 1)))
+    misses = int(np.sum((pred_bin == 0) & (y_val == 1)))
+    fa = int(np.sum((pred_bin == 1) & (y_val == 0)))
+    pod = float(hits / (hits + misses)) if (hits + misses) > 0 else 0.0
+    far = float(fa / (hits + fa)) if (hits + fa) > 0 else 0.0
+    csi = float(hits / (hits + misses + fa)) if (hits + misses + fa) > 0 else 0.0
+    if csi > best_csi:
+        best_csi = csi
+        best_threshold = float(thresh)
+        best_metrics = {"pod": pod, "far": far, "csi": csi, "hits": hits, "misses": misses, "false_alarms": fa}
+
+val_metrics = evaluate_model_a_metrics(y_val, val_probs, cutoff=best_threshold)
 print("=" * 60)
-print("MODEL A VALIDATION METRICS (2021 HOLDOUT)")
+print(f"MODEL A VALIDATION METRICS (Calibrated Threshold: {best_threshold:.2f})")
 print("=" * 60)
-for k, v in val_metrics.items():
-    print(f"  {k:<15}: {v}")"""
+print(f"  POD (Recall / Hit Rate) : {best_metrics['pod']:.4f}")
+print(f"  FAR (False Alarm Ratio) : {best_metrics['far']:.4f}")
+print(f"  CSI (Critical Success)  : {best_metrics['csi']:.4f}")
+print(f"  PR-AUC                  : {val_metrics['pr_auc']:.4f}")
+print(f"  Hits: {best_metrics['hits']} | Misses: {best_metrics['misses']} | False Alarms: {best_metrics['false_alarms']}")"""
     ),
     code_cell(
         """# External Case Evaluation (2010 Super Floods & 2022 Monsoon Floods)
@@ -451,6 +477,9 @@ for year, start_w, end_w in external_windows:
             longitude=b["lon"],
             start_date=start_w,
             end_date=end_w,
+            elevation_m=b.get("elevation_mean_m"),
+            terrain_susceptibility=b.get("terrain_susceptibility"),
+            snow_fraction=b.get("snow_fraction"),
             use_cache=True,
             cache_dir=cache_base,
         )
@@ -483,7 +512,7 @@ for year, start_w, end_w in external_windows:
             preds_case.append(float(model_a(t_seq).cpu().item()))
 
     c_idx_df["prob"] = preds_case
-    report = evaluate_case(case_year=year, predictions_df=c_idx_df, model_name="Model A", threshold=0.50)
+    report = evaluate_case(case_year=year, predictions_df=c_idx_df, model_name="Model A", threshold=best_threshold)
 
     print("=" * 80)
     print(f"CASE {year}: {report.title}")
@@ -761,6 +790,9 @@ for year, start_w, end_w in [(2010, "2010-07-28", "2010-08-03"), (2022, "2022-08
             longitude=b["lon"],
             start_date=start_w,
             end_date=end_w,
+            elevation_m=b.get("elevation_mean_m"),
+            terrain_susceptibility=b.get("terrain_susceptibility"),
+            snow_fraction=b.get("snow_fraction"),
             use_cache=True,
             cache_dir=cache_base,
         )
