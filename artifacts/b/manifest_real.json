@@ -1,0 +1,21 @@
+{
+  "module": "B_snowmelt_lstm",
+  "seed": 42,
+  "features": [
+    "rain_1h",
+    "rain_3h",
+    "rain_24h",
+    "rain_72h",
+    "temp_c",
+    "freezing_level_m",
+    "soil_moisture",
+    "snow_depth_mm",
+    "snowmelt_mm",
+    "degree_day_melt",
+    "rain_on_snow",
+    "terrain_susceptibility"
+  ],
+  "validation_pod": 0.9067357512953368,
+  "validation_far": 0.45987654320987653,
+  "disclaimer": "Trained on real Open-Meteo ERA5 reanalysis for snowmelt/rain-on-snow flood risk."
+}
