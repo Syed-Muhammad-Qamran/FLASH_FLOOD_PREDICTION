@@ -417,8 +417,8 @@ def _whatsapp_simulation_tab() -> None:
         "Fully automated, zero-human-involvement flood early warning dispatch engine with citizen directory CRUD and alert cancellation."
     )
 
-    # Directory state initialization with defaults
-    if "recipients" not in st.session_state:
+    # Directory state initialization with defaults and legacy session migration
+    if "recipients" not in st.session_state or not isinstance(st.session_state["recipients"], list):
         st.session_state["recipients"] = [
             {
                 "id": 1,
@@ -435,8 +435,19 @@ def _whatsapp_simulation_tab() -> None:
                 "active": True,
             },
         ]
+    else:
+        # Guarantee 'id' and all required keys exist on any cached session objects
+        for i, r in enumerate(st.session_state["recipients"]):
+            if isinstance(r, dict):
+                if "id" not in r:
+                    r["id"] = i + 1
+                r.setdefault("name", "Registered Citizen")
+                r.setdefault("role", "Citizen")
+                r.setdefault("phone", CITIZEN_PHONE)
+                r.setdefault("active", True)
+
     if "recipient_seq" not in st.session_state:
-        st.session_state["recipient_seq"] = 3
+        st.session_state["recipient_seq"] = max([r.get("id", 0) for r in st.session_state["recipients"]] + [2]) + 1
 
     # Top Bar: Autonomous Sentinel Status & Privacy Shield
     top_c1, top_c2 = st.columns([2, 1])
@@ -501,33 +512,29 @@ def _whatsapp_simulation_tab() -> None:
             if not st.session_state["recipients"]:
                 st.info("Directory is currently empty.")
             else:
-                r_opts = {r["id"]: f"{r['name']} ({r['role']}) - {mask_phone(r['phone'], mask_privacy)}" for r in st.session_state["recipients"]}
+                r_opts = {
+                    r.get("id", idx + 1): f"{r.get('name', 'Contact')} ({r.get('role', 'Citizen')}) - {mask_phone(r.get('phone', ''), mask_privacy)}"
+                    for idx, r in enumerate(st.session_state["recipients"])
+                }
                 selected_id = st.selectbox("Select Contact to Edit", options=list(r_opts.keys()), format_func=lambda x: r_opts[x])
-                target = next((r for r in st.session_state["recipients"] if r["id"] == selected_id), None)
+                target = next((r for idx, r in enumerate(st.session_state["recipients"]) if r.get("id", idx + 1) == selected_id), None)
                 if target:
                     with st.form("edit_recipient_form"):
                         e_c1, e_c2 = st.columns(2)
-                        new_name = e_c1.text_input("Full Name", value=target["name"])
-                        new_phone = e_c2.text_input("Mobile Number", value=target["phone"])
-                        new_role = st.selectbox(
-                            "Designation / Role",
-                            [
-                                "Community Focal Person",
-                                "Village Council Secretary",
-                                "Rescue 1122 Officer",
-                                "Local Resident / Citizen",
-                                "Mosque / Community Announcer",
-                                "School Principal (Evac Shelter)",
-                            ],
-                            index=0 if target["role"] not in [
-                                "Community Focal Person", "Village Council Secretary", "Rescue 1122 Officer",
-                                "Local Resident / Citizen", "Mosque / Community Announcer", "School Principal (Evac Shelter)"
-                            ] else [
-                                "Community Focal Person", "Village Council Secretary", "Rescue 1122 Officer",
-                                "Local Resident / Citizen", "Mosque / Community Announcer", "School Principal (Evac Shelter)"
-                            ].index(target["role"])
-                        )
-                        new_active = st.checkbox("Active for Emergency Broadcasts", value=target["active"])
+                        new_name = e_c1.text_input("Full Name", value=target.get("name", "Registered Citizen"))
+                        new_phone = e_c2.text_input("Mobile Number", value=target.get("phone", ""))
+                        role_val = target.get("role", "Community Focal Person")
+                        roles_list = [
+                            "Community Focal Person",
+                            "Village Council Secretary",
+                            "Rescue 1122 Officer",
+                            "Local Resident / Citizen",
+                            "Mosque / Community Announcer",
+                            "School Principal (Evac Shelter)",
+                        ]
+                        role_idx = roles_list.index(role_val) if role_val in roles_list else 0
+                        new_role = st.selectbox("Designation / Role", roles_list, index=role_idx)
+                        new_active = st.checkbox("Active for Emergency Broadcasts", value=target.get("active", True))
                         if st.form_submit_button("💾 Save Recipient Changes", use_container_width=True):
                             target["name"] = new_name.strip()
                             target["phone"] = new_phone.strip()
@@ -544,12 +551,17 @@ def _whatsapp_simulation_tab() -> None:
             else:
                 for idx, r in enumerate(st.session_state["recipients"]):
                     d_c1, d_c2, d_c3, d_c4 = st.columns([3, 2, 2, 1])
-                    d_c1.markdown(f"**{r['name']}**<br><span style='font-size: 0.8rem; color:#888;'>{r['role']}</span>", unsafe_allow_html=True)
-                    d_c2.markdown(f"`{mask_phone(r['phone'], mask_privacy)}`")
-                    d_c3.markdown("🟢 Active" if r["active"] else "⏸️ Muted")
-                    if d_c4.button("🗑️", key=f"del_rec_{r['id']}", help=f"Delete {r['name']}"):
-                        st.session_state["recipients"] = [x for x in st.session_state["recipients"] if x["id"] != r["id"]]
-                        st.warning(f"Deleted {r['name']} from directory.")
+                    r_id = r.get("id", idx + 1)
+                    r_name = r.get("name", "Registered Citizen")
+                    r_role = r.get("role", "Citizen")
+                    r_phone = r.get("phone", "")
+                    r_active = r.get("active", True)
+                    d_c1.markdown(f"**{r_name}**<br><span style='font-size: 0.8rem; color:#888;'>{r_role}</span>", unsafe_allow_html=True)
+                    d_c2.markdown(f"`{mask_phone(r_phone, mask_privacy)}`")
+                    d_c3.markdown("🟢 Active" if r_active else "⏸️ Muted")
+                    if d_c4.button("🗑️", key=f"del_rec_{r_id}_{idx}", help=f"Delete {r_name}"):
+                        st.session_state["recipients"] = [x for i, x in enumerate(st.session_state["recipients"]) if x.get("id", i + 1) != r_id]
+                        st.warning(f"Deleted {r_name} from directory.")
                         st.rerun()
 
     # Cloud API Credentials (Optional)
