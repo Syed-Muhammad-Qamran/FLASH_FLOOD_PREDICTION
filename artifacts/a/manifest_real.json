@@ -22,5 +22,269 @@
     "misses": 111,
     "false_alarms": 183
   },
-  "data_disclaimer": "Trained on real Open-Meteo ERA5 historical reanalysis. 2010 and 2022 evaluated strictly out-of-sample."
+  "data_disclaimer": "Trained on real Open-Meteo ERA5 historical reanalysis. 2010 and 2022 evaluated strictly out-of-sample.",
+  "case_reports": {
+    "2010": {
+      "case_id": "pakistan_superflood_2010",
+      "year": 2010,
+      "title": "2010 Pakistan Super Floods (Khyber Pakhtunkhwa)",
+      "mechanism": "cloudburst",
+      "model_evaluated": "Model A",
+      "threshold_used": 0.5,
+      "window_start": "2010-07-28T00:00:00Z",
+      "window_end": "2010-08-03T23:00:00Z",
+      "comparisons": [
+        {
+          "basin_id": "swat_kalam",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "NDMA 2010 Annual Flood Report, Section 3.2; PDMA KP SitRep",
+          "spatial_granularity": "river_gauge_and_valley",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9967,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: river_gauge_and_valley. Direct comparison valid."
+        },
+        {
+          "basin_id": "swat_madyan",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "NDMA 2010 Annual Flood Report; FFC Discharge Bulletin",
+          "spatial_granularity": "river_stretch",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9984,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: river_stretch. Direct comparison valid."
+        },
+        {
+          "basin_id": "swat_chakdara",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "FFC Daily River Bulletin July 30, 2010; NDMA Report Table 4",
+          "spatial_granularity": "gauging_station_discharge",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9988,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: gauging_station_discharge. Direct comparison valid."
+        },
+        {
+          "basin_id": "panjkora_dir",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "PMD Rainfall Bulletin (Dir: 274mm/24h); NDMA 2010 Upper Dir damages",
+          "spatial_granularity": "river_gauge_and_tehsil",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9989,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: river_gauge_and_tehsil. Direct comparison valid."
+        },
+        {
+          "basin_id": "panjkora_talash",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "PDMA KP District Lower Dir damage matrix, July 30, 2010",
+          "spatial_granularity": "river_stretch",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9989,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: river_stretch. Direct comparison valid."
+        },
+        {
+          "basin_id": "chitral_mastuj",
+          "confirmed_status": "localized_minor",
+          "source_citation": "NDMA 2010 District Chitral Report (No superflood reported in Upper Chitral)",
+          "spatial_granularity": "district_report",
+          "model_predicted_risk": false,
+          "model_max_prob": 0.4243,
+          "model_tier": "YELLOW",
+          "is_comparable": false,
+          "comparison_outcome": "NON_COMPARABLE",
+          "caveat": "Mechanistic/geographic mismatch: chitral_mastuj is in a different hydrological regime or lacks point-to-point gauge resolution (district_report)."
+        },
+        {
+          "basin_id": "chitral_drosh",
+          "confirmed_status": "no_confirmed_flood",
+          "source_citation": "FFC Daily River Status; NDMA Chitral Situation Table",
+          "spatial_granularity": "gauging_station_discharge",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9975,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "FALSE_POSITIVE",
+          "caveat": "Spatial granularity: gauging_station_discharge. Direct comparison valid."
+        },
+        {
+          "basin_id": "chitral_chitral",
+          "confirmed_status": "no_confirmed_flood",
+          "source_citation": "NDMA 2010 District Chitral Report; FFC Gauge Records",
+          "spatial_granularity": "gauging_station_discharge",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9957,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "FALSE_POSITIVE",
+          "caveat": "Spatial granularity: gauging_station_discharge. Direct comparison valid."
+        }
+      ],
+      "metrics": {
+        "tp": 5.0,
+        "fp": 2.0,
+        "fn": 0.0,
+        "tn": 0.0,
+        "pod": 1.0,
+        "far": 0.2857,
+        "csi": 0.7143,
+        "precision": 0.7143,
+        "f1": 0.8333,
+        "accuracy": 0.7143,
+        "brier_score": 0.2838
+      },
+      "provenance_citations": [
+        "FFC Daily River Bulletin July 30, 2010; NDMA Report Table 4",
+        "FFC Daily River Status; NDMA Chitral Situation Table",
+        "NDMA 2010 Annual Flood Report, Section 3.2; PDMA KP SitRep",
+        "NDMA 2010 Annual Flood Report; FFC Discharge Bulletin",
+        "NDMA 2010 District Chitral Report (No superflood reported in Upper Chitral)",
+        "NDMA 2010 District Chitral Report; FFC Gauge Records",
+        "PDMA KP District Lower Dir damage matrix, July 30, 2010",
+        "PMD Rainfall Bulletin (Dir: 274mm/24h); NDMA 2010 Upper Dir damages"
+      ]
+    },
+    "2022": {
+      "case_id": "pakistan_monsoon_flood_2022",
+      "year": 2022,
+      "title": "2022 Pakistan Monsoon Floods (Kalam/Swat/Panjkora Catastrophe)",
+      "mechanism": "cloudburst",
+      "model_evaluated": "Model A",
+      "threshold_used": 0.5,
+      "window_start": "2022-08-25T00:00:00Z",
+      "window_end": "2022-08-30T23:00:00Z",
+      "comparisons": [
+        {
+          "basin_id": "swat_kalam",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "NDMA SitRep No. 74 (Aug 26, 2022); PDMA KP Flash Flood Alert #14",
+          "spatial_granularity": "river_gauge_and_valley",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9921,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: river_gauge_and_valley. Direct comparison valid."
+        },
+        {
+          "basin_id": "swat_madyan",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "PDMA KP Situation Update August 26-27, 2022; UN OCHA SitRep #03",
+          "spatial_granularity": "river_stretch",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9885,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: river_stretch. Direct comparison valid."
+        },
+        {
+          "basin_id": "swat_chakdara",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "FFC Daily Flood Situation Report August 27, 2022; PDMA KP River Monitoring",
+          "spatial_granularity": "gauging_station_discharge",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.8718,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: gauging_station_discharge. Direct comparison valid."
+        },
+        {
+          "basin_id": "panjkora_dir",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "NDMA Daily SitRep No. 75; PDMA KP Upper Dir Damage Report",
+          "spatial_granularity": "river_gauge_and_tehsil",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9113,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: river_gauge_and_tehsil. Direct comparison valid."
+        },
+        {
+          "basin_id": "panjkora_talash",
+          "confirmed_status": "confirmed_flood",
+          "source_citation": "PDMA KP Lower Dir Incident Report, August 26, 2022",
+          "spatial_granularity": "river_stretch",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.7672,
+          "model_tier": "ORANGE",
+          "is_comparable": true,
+          "comparison_outcome": "TRUE_POSITIVE",
+          "caveat": "Spatial granularity: river_stretch. Direct comparison valid."
+        },
+        {
+          "basin_id": "chitral_mastuj",
+          "confirmed_status": "localized_minor",
+          "source_citation": "PDMA KP Upper Chitral GLOF / Melt Report August 2022",
+          "spatial_granularity": "district_report",
+          "model_predicted_risk": false,
+          "model_max_prob": 0.3701,
+          "model_tier": "YELLOW",
+          "is_comparable": false,
+          "comparison_outcome": "NON_COMPARABLE",
+          "caveat": "Mechanistic/geographic mismatch: chitral_mastuj is in a different hydrological regime or lacks point-to-point gauge resolution (district_report)."
+        },
+        {
+          "basin_id": "chitral_drosh",
+          "confirmed_status": "no_confirmed_flood",
+          "source_citation": "FFC River Status Report August 26-28, 2022",
+          "spatial_granularity": "gauging_station_discharge",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.9672,
+          "model_tier": "RED",
+          "is_comparable": true,
+          "comparison_outcome": "FALSE_POSITIVE",
+          "caveat": "Spatial granularity: gauging_station_discharge. Direct comparison valid."
+        },
+        {
+          "basin_id": "chitral_chitral",
+          "confirmed_status": "no_confirmed_flood",
+          "source_citation": "FFC Gauge Station Log; NDMA SitRep August 27, 2022",
+          "spatial_granularity": "gauging_station_discharge",
+          "model_predicted_risk": true,
+          "model_max_prob": 0.714,
+          "model_tier": "ORANGE",
+          "is_comparable": true,
+          "comparison_outcome": "FALSE_POSITIVE",
+          "caveat": "Spatial granularity: gauging_station_discharge. Direct comparison valid."
+        }
+      ],
+      "metrics": {
+        "tp": 5.0,
+        "fp": 2.0,
+        "fn": 0.0,
+        "tn": 0.0,
+        "pod": 1.0,
+        "far": 0.2857,
+        "csi": 0.7143,
+        "precision": 0.7143,
+        "f1": 0.8333,
+        "accuracy": 0.7143,
+        "brier_score": 0.2177
+      },
+      "provenance_citations": [
+        "FFC Daily Flood Situation Report August 27, 2022; PDMA KP River Monitoring",
+        "FFC Gauge Station Log; NDMA SitRep August 27, 2022",
+        "FFC River Status Report August 26-28, 2022",
+        "NDMA Daily SitRep No. 75; PDMA KP Upper Dir Damage Report",
+        "NDMA SitRep No. 74 (Aug 26, 2022); PDMA KP Flash Flood Alert #14",
+        "PDMA KP Lower Dir Incident Report, August 26, 2022",
+        "PDMA KP Situation Update August 26-27, 2022; UN OCHA SitRep #03",
+        "PDMA KP Upper Chitral GLOF / Melt Report August 2022"
+      ]
+    }
+  }
 }
