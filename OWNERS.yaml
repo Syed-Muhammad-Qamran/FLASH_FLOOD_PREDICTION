@@ -38,8 +38,7 @@ owners:
     # Artifacts & docs
     - artifacts/a/**
     - docs/SOURCES.md
-    - docs/SOURCES.md
-  - docs/model_a.md
+    - docs/model_a.md
     - docs/decisions/q-*.md
     # Tests & fixtures
     - tests/helpers_a.py
@@ -48,8 +47,7 @@ owners:
     - tests/test_features.py
     - tests/test_windows.py
     - tests/test_data_sources.py
-    - tests/test_data_sources.py
-  - tests/test_health.py
+    - tests/test_health.py
     - tests/test_model_a.py
     - tests/test_model_output_files.py
     - tests/test_verify.py
