@@ -65,18 +65,26 @@ This notebook validates the meteorological ingest pipeline, verifies Open-Meteo 
 3. **No Synthetic Fallbacks:** If the API fails or is rate-limited (429), bounded backoff retries the request; missing coverage is reported and never fabricated."""
     ),
     code_cell(
-        """# Colab environment setup
-!pip install -q pandas numpy pyyaml pyarrow requests
-
+        """# Setup environment & automatic Google Colab repository cloning
+import os
 import sys
 from pathlib import Path
 
-# Add project root to sys.path
+if "google.colab" in sys.modules:
+    if not (Path.cwd() / "src" / "floodwatch").exists():
+        if not Path("FLASH_FLOOD_PREDICTION").exists():
+            !git clone -b qamran/real-data-eval https://github.com/Syed-Muhammad-Qamran/FLASH_FLOOD_PREDICTION.git
+        %cd FLASH_FLOOD_PREDICTION
+    !pip install -q pyyaml pyarrow
+
 repo_root = Path.cwd()
+if not (repo_root / "src" / "floodwatch").exists() and (repo_root.parent / "src" / "floodwatch").exists():
+    repo_root = repo_root.parent
+
 if str(repo_root / "src") not in sys.path:
     sys.path.insert(0, str(repo_root / "src"))
 
-print(f"Working directory: {repo_root}")"""
+print(f"Repository Root: {repo_root}")"""
     ),
     code_cell(
         """from floodwatch.features import load_basins
@@ -544,8 +552,9 @@ import yaml
 SEED = 42
 np.random.seed(SEED)
 torch.manual_seed(SEED)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Repository Root: {repo_root}")
-print("Environment ready for Model B training.")"""
+print(f"Computation Device: {device}")"""
     ),
     code_cell(
         """from floodwatch.features import load_basins, add_features, validate_no_leakage
@@ -567,7 +576,8 @@ print(f"Model B Features: {feature_cols}")"""
 cache_base = repo_root / "data" / "raw" / "cache"
 cache_base.mkdir(parents=True, exist_ok=True)
 
-START_DATE = "2020-01-01"
+# Increased dataset including the 2010 Super Floods event (2010 through 2021)
+START_DATE = "2010-06-01"
 END_DATE = "2021-12-31"
 
 basin_dfs = []
@@ -680,7 +690,7 @@ train_loader = DataLoader(TemporalDatasetB(basin_arrays, train_idx, lookback), b
 val_loader = DataLoader(TemporalDatasetB(basin_arrays, val_idx, lookback), batch_size=256, shuffle=False)
 
 t_cfg = TrainConfig(seed=SEED, hidden_units=48, max_epochs=10)
-model_b = build_model(n_features=len(feature_cols), cfg=t_cfg)
+model_b = build_model(n_features=len(feature_cols), cfg=t_cfg).to(device)
 optimizer = torch.optim.Adam(model_b.parameters(), lr=1e-3)
 
 print("Training Model B LSTM (1 layer, 48 units)...")
@@ -688,6 +698,7 @@ model_b.train()
 for ep in range(1, 11):
     total_loss = 0.0
     for x_b, y_b in train_loader:
+        x_b, y_b = x_b.to(device), y_b.to(device)
         optimizer.zero_grad()
         loss = torch.nn.functional.binary_cross_entropy(model_b(x_b), y_b)
         loss.backward()
@@ -701,7 +712,7 @@ model_b.eval()
 val_preds = []
 with torch.no_grad():
     for x_b, _ in val_loader:
-        val_preds.append(model_b(x_b).numpy())
+        val_preds.append(model_b(x_b.to(device)).detach().cpu().numpy())
 val_probs = np.concatenate(val_preds)
 val_pred_binary = (val_probs >= 0.50).astype(int)
 y_val = val_idx["target"].values
@@ -749,9 +760,9 @@ for year, start_w, end_w in [(2010, "2010-07-28", "2010-08-03"), (2022, "2022-08
             seq = np.vstack([pad, arr[:s]])
         else:
             seq = arr[s - lookback : s]
-        t_seq = torch.tensor(seq[np.newaxis, ...], dtype=torch.float32)
+        t_seq = torch.tensor(seq[np.newaxis, ...], dtype=torch.float32).to(device)
         with torch.no_grad():
-            preds_case.append(float(model_b(t_seq).item()))
+            preds_case.append(float(model_b(t_seq).detach().cpu().item()))
 
     c_idx_df["prob"] = preds_case
     report = evaluate_case(case_year=year, predictions_df=c_idx_df, model_name="Model B", threshold=0.50)
@@ -803,12 +814,22 @@ This notebook runs rigorous external case evaluations for the **2010 Pakistan Su
 3. **Transparent Non-Comparable / Unmapped Reporting:** Basins located outside the convective flood zone or lacking point streamgauge data are explicitly cataloged with scientific caveats."""
     ),
     code_cell(
-        """!pip install -q pandas numpy pyyaml pyarrow requests
-
+        """# Setup environment & automatic Google Colab repository cloning
+import os
 import sys
 from pathlib import Path
 
+if "google.colab" in sys.modules:
+    if not (Path.cwd() / "src" / "floodwatch").exists():
+        if not Path("FLASH_FLOOD_PREDICTION").exists():
+            !git clone -b qamran/real-data-eval https://github.com/Syed-Muhammad-Qamran/FLASH_FLOOD_PREDICTION.git
+        %cd FLASH_FLOOD_PREDICTION
+    !pip install -q pyyaml pyarrow
+
 repo_root = Path.cwd()
+if not (repo_root / "src" / "floodwatch").exists() and (repo_root.parent / "src" / "floodwatch").exists():
+    repo_root = repo_root.parent
+
 if str(repo_root / "src") not in sys.path:
     sys.path.insert(0, str(repo_root / "src"))
 
@@ -816,6 +837,7 @@ import pandas as pd
 from floodwatch.data_sources import historical_events
 from floodwatch.models import eval_cases
 
+print(f"Repository Root: {repo_root}")
 print("Historical Case Evaluation Harness initialized.")"""
     ),
     code_cell(
