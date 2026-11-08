@@ -555,40 +555,22 @@ def _whatsapp_simulation_tab() -> None:
     with sim_col1:
         st.markdown("##### 🔴 1. Positive Flood (EMERGENCY)")
         st.caption("Severe convective cloudburst in Kalam (>185mm rain). Triggers immediate evacuation.")
-        if st.button("🚨 Autonomous Flood Emergency", type="primary", use_container_width=True):
+        if st.button("🚨 Autonomous Flood Emergency", type="primary", use_container_width=True, key="btn_sim_emergency"):
             st.session_state["sim_case"] = "emergency"
             st.session_state["auto_dispatched"] = True
 
     with sim_col2:
         st.markdown("##### 🟢 2. Cancel Alert (ALL CLEAR)")
         st.caption("Water recedes below danger threshold. Autonomous de-escalation notice lifts evacuation.")
-        if st.button("✅ Cancel Alert / All Clear", use_container_width=True):
+        if st.button("✅ Cancel Alert / All Clear", use_container_width=True, key="btn_sim_cancel"):
             st.session_state["sim_case"] = "cancel"
             st.session_state["auto_dispatched"] = True
 
     with sim_col3:
         st.markdown("##### ℹ️ 3. False Alarm / Rumor (SAFE)")
         st.caption("Viral social media rumor claiming Drosh dam collapse during dry weather. Issues debunk advisory.")
-        if st.button("🛡️ Clarify Safe / False Rumor", use_container_width=True):
+        if st.button("🛡️ Clarify Safe / False Rumor", use_container_width=True, key="btn_sim_rumor"):
             st.session_state["sim_case"] = "rumor"
-            st.session_state["auto_dispatched"] = True
-        st.caption("Severe convective cloudburst in Kalam (>185mm rain). Triggers immediate evacuation.")
-        if st.button("🚨 Autonomous Flood Emergency", type="primary", use_container_width=True):
-            st.session_state["sim_case"] = "emergency"
-            st.session_state["auto_dispatched"] = True
-
-    with sim_col2:
-        st.markdown("##### 🟢 2. Cancel Alert (ALL CLEAR)")
-        st.caption("Water recedes below danger threshold. Autonomous de-escalation notice lifts evacuation.")
-        if st.button("✅ Cancel Alert / All Clear", use_container_width=True):
-            st.session_state["sim_case"] = "cancel"
-            st.session_state["auto_dispatched"] = True
-
-    with sim_col3:
-        st.markdown("##### ℹ️ 3. False Alarm / Rumor (SAFE)")
-        st.caption("Viral social media rumor claiming Drosh dam collapse during dry weather. Issues debunk advisory.")
-        if st.button("🛡️ Clarify Safe / False Rumor", use_container_width=True):
-            st.session_state["sim_case"] = "safe"
             st.session_state["auto_dispatched"] = True
 
     selected_sim = st.session_state.get("sim_case", "emergency")
@@ -802,6 +784,7 @@ def _whatsapp_simulation_tab() -> None:
                     wa_link,
                     use_container_width=True,
                     type=btn_type,
+                    key=f"link_btn_{r.get('id', idx)}_{idx}",
                 )
 
 
