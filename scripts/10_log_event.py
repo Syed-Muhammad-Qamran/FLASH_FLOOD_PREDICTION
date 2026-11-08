@@ -22,7 +22,9 @@ def main() -> None:
     parser.add_argument("--end", required=True, help="End UTC timestamp (ISO)")
     parser.add_argument("--source", required=True, help="Official source / citation URL")
     parser.add_argument("--notes", default="", help="Field notes / damages")
-    parser.add_argument("--db-path", default="data/verified_events.json", help="Event inventory file")
+    parser.add_argument(
+        "--db-path", default="data/verified_events.json", help="Event inventory file"
+    )
     args = parser.parse_args()
 
     db_file = Path(args.db_path)
@@ -40,7 +42,7 @@ def main() -> None:
         "end_utc": args.end,
         "logged_at": datetime.now(timezone.utc).isoformat(),
         "source": args.source,
-        "notes": args.notes
+        "notes": args.notes,
     }
 
     data["events"].append(new_event)

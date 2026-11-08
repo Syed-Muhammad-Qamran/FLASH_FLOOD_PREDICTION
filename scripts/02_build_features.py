@@ -36,11 +36,7 @@ def assign_splits(df: pd.DataFrame, split_cfg_path: str = "configs/split.yaml") 
     test_start = pd.to_datetime(splits["test"]["start_utc"])
 
     ts = pd.to_datetime(df["timestamp_utc"], utc=True)
-    conds = [
-        (ts <= train_end),
-        (ts >= val_start) & (ts <= val_end),
-        (ts >= test_start)
-    ]
+    conds = [(ts <= train_end), (ts >= val_start) & (ts <= val_end), (ts >= test_start)]
     choices = ["train", "validation", "test"]
     df["split"] = np.select(conds, choices, default="buffer")
     return df
@@ -48,7 +44,9 @@ def assign_splits(df: pd.DataFrame, split_cfg_path: str = "configs/split.yaml") 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build features and windows.")
-    parser.add_argument("--input", default="data/processed/raw_features.parquet", help="Raw features input")
+    parser.add_argument(
+        "--input", default="data/processed/raw_features.parquet", help="Raw features input"
+    )
     parser.add_argument("--out-dir", default="data/processed", help="Output directory")
     args = parser.parse_args()
 
@@ -56,6 +54,7 @@ def main() -> None:
     if not in_file.exists():
         print(f"Input file {in_file} not found. Running fetch first...")
         import importlib
+
         fetch_mod = importlib.import_module("scripts.01_fetch_openmeteo")
         fetch_mod.main()
 
@@ -70,7 +69,7 @@ def main() -> None:
         processed_basins.append(feat_df)
 
     full_features = pd.concat(processed_basins, ignore_index=True)
-    
+
     # Fit scaler strictly on train split
     train_subset = full_features[full_features["split"] == "train"]
     print("Fitting normalization scalers strictly on train split...")

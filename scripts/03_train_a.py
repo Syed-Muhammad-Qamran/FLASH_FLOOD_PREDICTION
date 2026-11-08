@@ -36,8 +36,14 @@ from floodwatch.models.windows import CORE_TEMPORAL_FEATURES
 from floodwatch.schema import validate_model_file
 
 BASINS = [
-    "swat_kalam", "swat_madyan", "swat_chakdara", "panjkora_dir",
-    "panjkora_talash", "chitral_mastuj", "chitral_drosh", "chitral_chitral"
+    "swat_kalam",
+    "swat_madyan",
+    "swat_chakdara",
+    "panjkora_dir",
+    "panjkora_talash",
+    "chitral_mastuj",
+    "chitral_drosh",
+    "chitral_chitral",
 ]
 
 
@@ -46,8 +52,13 @@ class SlidingWindowDataset(Dataset):
     Memory-efficient on-the-fly sliding window dataset.
     Holds only the base 2D meteorological series (13 MB) and slices windows on-demand.
     """
-    def __init__(self, basin_series: dict[str, np.ndarray], index_df: pd.DataFrame, lookback: int = 72):
-        self.basin_series = {b: torch.tensor(arr, dtype=torch.float32) for b, arr in basin_series.items()}
+
+    def __init__(
+        self, basin_series: dict[str, np.ndarray], index_df: pd.DataFrame, lookback: int = 72
+    ):
+        self.basin_series = {
+            b: torch.tensor(arr, dtype=torch.float32) for b, arr in basin_series.items()
+        }
         self.index_df = index_df.reset_index(drop=True)
         self.lookback = lookback
         self.b_ids = self.index_df["basin_id"].values
@@ -61,18 +72,20 @@ class SlidingWindowDataset(Dataset):
         b = self.b_ids[idx]
         step = self.steps[idx]
         series = self.basin_series[b]
-        
+
         # Temporal window: (72, n_features)
         x_temp = series[step - self.lookback : step]
-        
+
         # 3x3 spatial patch over channels 0, 5, 6 (rain, temp, freezing)
         spatial_vals = x_temp[-1, [0, 5, 6]]
         x_spat = spatial_vals.view(3, 1, 1).repeat(1, 3, 3)
-        
+
         return x_temp, x_spat, self.targets[idx]
 
 
-def evaluate_loader(model: nn.Module, loader: DataLoader, criterion: nn.Module, device: torch.device) -> tuple[float, np.ndarray, np.ndarray]:
+def evaluate_loader(
+    model: nn.Module, loader: DataLoader, criterion: nn.Module, device: torch.device
+) -> tuple[float, np.ndarray, np.ndarray]:
     """Computes average loss and outputs probabilities and true labels over a loader."""
     model.eval()
     total_loss = 0.0
@@ -91,19 +104,25 @@ def evaluate_loader(model: nn.Module, loader: DataLoader, criterion: nn.Module, 
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Train Model A with memory-efficient multi-year dataset and validation.")
+    parser = argparse.ArgumentParser(
+        description="Train Model A with memory-efficient multi-year dataset and validation."
+    )
     parser.add_argument("--epochs", type=int, default=8, help="Number of training epochs")
     parser.add_argument("--batch-size", type=int, default=128, help="Batch size")
     parser.add_argument("--lr", type=float, default=0.003, help="Learning rate")
     parser.add_argument("--patience", type=int, default=3, help="Early stopping patience")
-    parser.add_argument("--device", default="cpu", choices=["cpu", "cuda"], help="Computation device")
+    parser.add_argument(
+        "--device", default="cpu", choices=["cpu", "cuda"], help="Computation device"
+    )
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
     parser.add_argument("--out-dir", default="artifacts/a", help="Output artifact directory")
     args = parser.parse_args()
 
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
-    device = torch.device(args.device if torch.cuda.is_available() and args.device == "cuda" else "cpu")
+    device = torch.device(
+        args.device if torch.cuda.is_available() and args.device == "cuda" else "cpu"
+    )
     print("=" * 80)
     print("FLOODWATCH KP: MODEL A MULTI-YEAR TRAINING & COMPREHENSIVE VALIDATION")
     print(f"Device: {device} | Random Seed: {args.seed} | Early Stopping Patience: {args.patience}")
@@ -128,9 +147,11 @@ def main() -> None:
         # Seasonal monsoon spikes in July & August
         monsoon_mask = (times.month == 7) | (times.month == 8)
         b_series[monsoon_mask, 0] += np.random.exponential(1.2, size=monsoon_mask.sum())
-        
+
         # 6h forward flood target
-        rain_forward = pd.Series(b_series[:, 0]).rolling(6, min_periods=1).sum().shift(-6).fillna(0).values
+        rain_forward = (
+            pd.Series(b_series[:, 0]).rolling(6, min_periods=1).sum().shift(-6).fillna(0).values
+        )
         targets = (rain_forward > 3.0).astype(np.float32)
 
         basin_series[b] = b_series
@@ -143,16 +164,22 @@ def main() -> None:
                 split = "validation"
             else:
                 continue  # 30-day buffer period
-            
-            index_records.append({
-                "basin_id": b,
-                "timestamp_utc": t,
-                "step_idx": step,
-                "split": split,
-                "target": targets[step]
-            })
 
-    grid_index = pd.DataFrame(index_records).sort_values(["basin_id", "timestamp_utc"]).reset_index(drop=True)
+            index_records.append(
+                {
+                    "basin_id": b,
+                    "timestamp_utc": t,
+                    "step_idx": step,
+                    "split": split,
+                    "target": targets[step],
+                }
+            )
+
+    grid_index = (
+        pd.DataFrame(index_records)
+        .sort_values(["basin_id", "timestamp_utc"])
+        .reset_index(drop=True)
+    )
     n_samples = len(grid_index)
     train_mask = grid_index["split"] == "train"
     val_mask = grid_index["split"] == "validation"
@@ -160,7 +187,9 @@ def main() -> None:
     print(f"  Total valid windows: {n_samples:,}")
     print(f"  Training samples:    {train_mask.sum():,} (2019-2021)")
     print(f"  Validation samples:  {val_mask.sum():,} (2022, incl. August 2022 flood)")
-    print(f"  Memory footprint of raw series: {sum(v.nbytes for v in basin_series.values()) / (1024*1024):.1f} MB (Optimized)")
+    print(
+        f"  Memory footprint of raw series: {sum(v.nbytes for v in basin_series.values()) / (1024 * 1024):.1f} MB (Optimized)"
+    )
 
     # 2. DataLoaders with on-the-fly windowing
     train_dataset = SlidingWindowDataset(basin_series, grid_index[train_mask], LOOKBACK)
@@ -172,17 +201,31 @@ def main() -> None:
     # 3. Fit Baseline Model
     print("\n[STEP 2] Fitting Logistic Regression Baseline on Multi-Year Train Split...")
     # Extract mean features for a representative sample
-    sub_train = grid_index[train_mask].sample(n=min(15000, len(train_dataset)), random_state=args.seed)
+    sub_train = grid_index[train_mask].sample(
+        n=min(15000, len(train_dataset)), random_state=args.seed
+    )
     sub_val = grid_index[val_mask].sample(n=min(10000, len(val_dataset)), random_state=args.seed)
 
-    X_tr_mean = np.array([basin_series[b][s - LOOKBACK:s].mean(axis=0) for b, s in zip(sub_train["basin_id"], sub_train["step_idx"], strict=False)])
-    X_va_mean = np.array([basin_series[b][s - LOOKBACK:s].mean(axis=0) for b, s in zip(sub_val["basin_id"], sub_val["step_idx"], strict=False)])
+    X_tr_mean = np.array(
+        [
+            basin_series[b][s - LOOKBACK : s].mean(axis=0)
+            for b, s in zip(sub_train["basin_id"], sub_train["step_idx"], strict=False)
+        ]
+    )
+    X_va_mean = np.array(
+        [
+            basin_series[b][s - LOOKBACK : s].mean(axis=0)
+            for b, s in zip(sub_val["basin_id"], sub_val["step_idx"], strict=False)
+        ]
+    )
 
     baseline = LogisticRegressionBaselineA()
     baseline.fit(X_tr_mean, sub_train["target"].values)
     base_val_prob = baseline.predict_proba(X_va_mean)
     base_metrics = evaluate_model_a_metrics(sub_val["target"].values, base_val_prob)
-    print(f"  Baseline Validation Metrics: PR-AUC={base_metrics['pr_auc']:.4f} | POD={base_metrics['pod']:.3f} | FAR={base_metrics['far']:.3f} | CSI={base_metrics['csi']:.3f}")
+    print(
+        f"  Baseline Validation Metrics: PR-AUC={base_metrics['pr_auc']:.4f} | POD={base_metrics['pod']:.3f} | FAR={base_metrics['far']:.3f} | CSI={base_metrics['csi']:.3f}"
+    )
 
     # 4. Neural Network Training with Epoch-by-Epoch Validation & Early Stopping
     print("\n[STEP 3] Training Model A (Cloudburst CNN-LSTM) with Early Stopping...")
@@ -196,7 +239,9 @@ def main() -> None:
     epochs_no_improve = 0
 
     print("-" * 80)
-    print(f"{'Epoch':<8}{'Train Loss':<14}{'Val Loss':<12}{'Val PR-AUC':<14}{'Val POD':<12}{'Val FAR':<10}{'Status'}")
+    print(
+        f"{'Epoch':<8}{'Train Loss':<14}{'Val Loss':<12}{'Val PR-AUC':<14}{'Val POD':<12}{'Val FAR':<10}{'Status'}"
+    )
     print("-" * 80)
 
     for ep in range(args.epochs):
@@ -227,14 +272,18 @@ def main() -> None:
             epochs_no_improve += 1
             status = f"patience {epochs_no_improve}/{args.patience}"
 
-        print(f"{ep+1:<8}{train_loss:<14.4f}{val_loss:<12.4f}{val_metrics['pr_auc']:<14.4f}{val_metrics['pod']:<12.3f}{val_metrics['far']:<10.3f}{status}")
+        print(
+            f"{ep + 1:<8}{train_loss:<14.4f}{val_loss:<12.4f}{val_metrics['pr_auc']:<14.4f}{val_metrics['pod']:<12.3f}{val_metrics['far']:<10.3f}{status}"
+        )
 
         if epochs_no_improve >= args.patience:
-            print(f"\nEarly stopping triggered at epoch {ep+1}.")
+            print(f"\nEarly stopping triggered at epoch {ep + 1}.")
             break
 
     # Restore best checkpoint
-    print(f"\nRestoring best model checkpoint from {best_weights_path} (PR-AUC = {best_val_auc:.4f})...")
+    print(
+        f"\nRestoring best model checkpoint from {best_weights_path} (PR-AUC = {best_val_auc:.4f})..."
+    )
     model.load_state_dict(torch.load(best_weights_path))
 
     # 5. Full Validation Evaluation
@@ -244,10 +293,16 @@ def main() -> None:
     print("\n" + "=" * 80)
     print("FINAL VALIDATION EVALUATION (2022 Validation Split)")
     print("=" * 80)
-    print(f"Deep CNN-LSTM: PR-AUC={deep_val_metrics['pr_auc']:.4f} | POD={deep_val_metrics['pod']:.3f} | FAR={deep_val_metrics['far']:.3f} | CSI={deep_val_metrics['csi']:.3f}")
-    print(f"Baseline:      PR-AUC={base_metrics['pr_auc']:.4f} | POD={base_metrics['pod']:.3f} | FAR={base_metrics['far']:.3f} | CSI={base_metrics['csi']:.3f}")
+    print(
+        f"Deep CNN-LSTM: PR-AUC={deep_val_metrics['pr_auc']:.4f} | POD={deep_val_metrics['pod']:.3f} | FAR={deep_val_metrics['far']:.3f} | CSI={deep_val_metrics['csi']:.3f}"
+    )
+    print(
+        f"Baseline:      PR-AUC={base_metrics['pr_auc']:.4f} | POD={base_metrics['pod']:.3f} | FAR={base_metrics['far']:.3f} | CSI={base_metrics['csi']:.3f}"
+    )
     deep_wins = deep_val_metrics["pr_auc"] >= base_metrics["pr_auc"]
-    print(f"Decision:      {'Deep CNN-LSTM beats baseline -> Selected for fusion' if deep_wins else 'Baseline selected'}")
+    print(
+        f"Decision:      {'Deep CNN-LSTM beats baseline -> Selected for fusion' if deep_wins else 'Baseline selected'}"
+    )
 
     # 6. Decision D-01 Verification
     print("\n" + "=" * 80)
@@ -264,7 +319,9 @@ def main() -> None:
     print(f"  Train:      POD={train_metrics['pod']:.3f} | FAR={train_metrics['far']:.3f}")
     print(f"  Validation: POD={deep_val_metrics['pod']:.3f} | FAR={deep_val_metrics['far']:.3f}")
     print(f"  Drift:      POD={pod_drift:.3f} | FAR={far_drift:.3f} (Permitted <= 0.10)")
-    print(f"  D-01 Status: {'PASSED [APPROVED]' if d01_pass else 'DRIFT DETECTED [FLAG IN MODEL CARD]'}")
+    print(
+        f"  D-01 Status: {'PASSED [APPROVED]' if d01_pass else 'DRIFT DETECTED [FLAG IN MODEL CARD]'}"
+    )
 
     # 7. Per-Basin Performance Breakdown
     print("\n" + "=" * 80)
@@ -277,14 +334,16 @@ def main() -> None:
     for b in BASINS:
         b_data = val_sub_df[val_sub_df["basin_id"] == b]
         bm = evaluate_model_a_metrics(b_data["target"].values, b_data["pred"].values)
-        basin_perf.append({
-            "Basin": b,
-            "PR-AUC": bm["pr_auc"],
-            "POD": bm["pod"],
-            "FAR": bm["far"],
-            "CSI": bm["csi"],
-            "Events": int(b_data["target"].sum())
-        })
+        basin_perf.append(
+            {
+                "Basin": b,
+                "PR-AUC": bm["pr_auc"],
+                "POD": bm["pod"],
+                "FAR": bm["far"],
+                "CSI": bm["csi"],
+                "Events": int(b_data["target"].sum()),
+            }
+        )
 
     perf_df = pd.DataFrame(basin_perf)
     print(perf_df.to_string(index=False))
@@ -295,7 +354,11 @@ def main() -> None:
     print("=" * 80)
     out_dir = Path(args.out_dir)
 
-    all_loader = DataLoader(SlidingWindowDataset(basin_series, grid_index, LOOKBACK), batch_size=args.batch_size * 2, shuffle=False)
+    all_loader = DataLoader(
+        SlidingWindowDataset(basin_series, grid_index, LOOKBACK),
+        batch_size=args.batch_size * 2,
+        shuffle=False,
+    )
     _, all_preds, _ = evaluate_loader(model, all_loader, criterion, device)
 
     out_df = grid_index[["basin_id", "timestamp_utc", "split"]].copy()
@@ -303,7 +366,9 @@ def main() -> None:
     out_df["prob"] = all_preds.astype(float)
     out_df["baseline_prob"] = np.random.uniform(0.05, 0.25, size=len(out_df))
     out_df["source"] = "deep" if deep_wins else "baseline"
-    out_df["top_drivers"] = json.dumps([{"feature": "rain_1h", "weight": 0.72}, {"feature": "rain_forecast_6h", "weight": 0.45}])
+    out_df["top_drivers"] = json.dumps(
+        [{"feature": "rain_1h", "weight": 0.72}, {"feature": "rain_forecast_6h", "weight": 0.45}]
+    )
     out_df["model_version"] = f"A_cloudburst_cnn_lstm-multiyear-{args.seed}"
     out_df = out_df.sort_values(["basin_id", "timestamp_utc"]).reset_index(drop=True)
 
@@ -329,7 +394,7 @@ def main() -> None:
         "baseline_wins": not deep_wins,
         "validation_metrics": deep_val_metrics,
         "d01_calibration_pass": d01_pass,
-        "per_basin_metrics": basin_perf
+        "per_basin_metrics": basin_perf,
     }
     manifest_path = out_dir / "manifest.json"
     with open(manifest_path, "w", encoding="utf-8") as f:

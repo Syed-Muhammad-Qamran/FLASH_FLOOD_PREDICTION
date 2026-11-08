@@ -20,7 +20,9 @@ import pandas as pd
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Compute climatological baseline percentiles.")
-    parser.add_argument("--input", default="data/processed/raw_features.parquet", help="Raw features file")
+    parser.add_argument(
+        "--input", default="data/processed/raw_features.parquet", help="Raw features file"
+    )
     parser.add_argument("--output", default="data/static/climatology.json", help="Output JSON path")
     args = parser.parse_args()
 
@@ -28,6 +30,7 @@ def main() -> None:
     if not in_file.exists():
         print("Raw features not found. Creating features first...")
         import importlib
+
         fetch_mod = importlib.import_module("scripts.01_fetch_openmeteo")
         fetch_mod.main()
 
@@ -37,7 +40,7 @@ def main() -> None:
     climatology = {
         "schema_version": 1,
         "computed_at": pd.Timestamp.utcnow().isoformat(),
-        "basins": {}
+        "basins": {},
     }
 
     for b_id, grp in df.groupby("basin_id"):
@@ -55,7 +58,7 @@ def main() -> None:
                 "p50": round(p50, 2),
                 "p90": round(p90, 2),
                 "p95": round(p95, 2),
-                "p99": round(p99, 2)
+                "p99": round(p99, 2),
             }
         }
         print(f"  {b_id}: p90={p90:.1f}mm, p95={p95:.1f}mm, p99={p99:.1f}mm")

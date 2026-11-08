@@ -52,6 +52,11 @@ owners:
     - tests/test_model_output_files.py
     - tests/test_verify.py
     - tests/test_triage.py
+    - COLLABORATION_AND_CODING_GUIDELINES.md
+    - create_floodwatch_issues.sh
+    - notebooks/**
+    - scripts/train_pipeline_flow.py
+    - uv.lock
 
   warisha:
     # Contracts & model I/O

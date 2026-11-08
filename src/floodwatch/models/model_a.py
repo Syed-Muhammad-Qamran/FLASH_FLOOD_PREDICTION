@@ -28,13 +28,14 @@ class CloudburstCNN_LSTM(nn.Module):
       - Temporal Branch: 1-layer LSTM over 72-hour temporal sequence.
       - Fusion Head: Concatenation -> Dense -> Sigmoid.
     """
+
     def __init__(
         self,
         in_spatial_channels: int = 3,
         in_temporal_features: int = 12,
         conv_filters: int = 32,
         lstm_units: int = 64,
-        dropout_rate: float = 0.2
+        dropout_rate: float = 0.2,
     ):
         super().__init__()
         assert conv_filters <= MAX_CONV_FILTERS, f"Conv filters exceed limit of {MAX_CONV_FILTERS}"
@@ -46,15 +47,12 @@ class CloudburstCNN_LSTM(nn.Module):
             nn.ReLU(),
             nn.Conv2d(16, conv_filters, kernel_size=2),
             nn.ReLU(),
-            nn.AdaptiveAvgPool2d((1, 1))
+            nn.AdaptiveAvgPool2d((1, 1)),
         )
 
         # 2. Temporal 1-Layer LSTM Branch (72h lookback)
         self.lstm = nn.LSTM(
-            input_size=in_temporal_features,
-            hidden_size=lstm_units,
-            num_layers=1,
-            batch_first=True
+            input_size=in_temporal_features, hidden_size=lstm_units, num_layers=1, batch_first=True
         )
 
         # 3. Dense Head
@@ -63,7 +61,7 @@ class CloudburstCNN_LSTM(nn.Module):
             nn.Linear(conv_filters + lstm_units, 32),
             nn.ReLU(),
             nn.Linear(32, 1),
-            nn.Sigmoid()
+            nn.Sigmoid(),
         )
 
     def forward(self, x_temporal: torch.Tensor, x_spatial: torch.Tensor) -> torch.Tensor:
@@ -84,6 +82,7 @@ class CloudburstCNN_LSTM(nn.Module):
 
 class LogisticRegressionBaselineA:
     """Mandatory non-deep baseline for Model A (§4.1)."""
+
     def __init__(self):
         self.clf = LogisticRegression(max_iter=300, random_state=42)
 
@@ -94,7 +93,9 @@ class LogisticRegressionBaselineA:
         return self.clf.predict_proba(X_temporal_mean)[:, 1]
 
 
-def evaluate_model_a_metrics(y_true: np.ndarray, y_prob: np.ndarray, cutoff: float = 0.50) -> dict[str, float]:
+def evaluate_model_a_metrics(
+    y_true: np.ndarray, y_prob: np.ndarray, cutoff: float = 0.50
+) -> dict[str, float]:
     """Computes POD, FAR, CSI, PR-AUC for Model A."""
     y_pred = (y_prob >= cutoff).astype(int)
     hits = int(np.sum((y_pred == 1) & (y_true == 1)))
@@ -115,5 +116,5 @@ def evaluate_model_a_metrics(y_true: np.ndarray, y_prob: np.ndarray, cutoff: flo
         "pr_auc": round(float(pr_auc), 4),
         "hits": hits,
         "misses": misses,
-        "false_alarms": false_alarms
+        "false_alarms": false_alarms,
     }
