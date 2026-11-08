@@ -1,0 +1,129 @@
+# FloodWatch KP: single-owner file map (v2 plan §9.1 / §13.1).
+#
+# `scripts/check_ownership.py` fails a PR when:
+#   (a) a file owned by the other person changes without the `cross-owner` label,
+#   (b) a contract file changes without the `contract` label,
+#   (c) a new file is reached by no pattern here.
+#
+# Globs support `**` (any depth) and `{a,b}` alternatives.
+
+version: 1
+
+owners:
+  qamran:
+    # Configs & data
+    - configs/basins.yaml
+    - configs/region.yaml
+    - configs/split.yaml
+    - data/demo/**
+    - data/static/**
+    - data/advisories.json
+    - data/verified_events.json
+    - data/processed/**
+    # Pipeline & models
+    - src/floodwatch/schema.py
+    - src/floodwatch/features.py
+    - src/floodwatch/data_sources/**
+    - src/floodwatch/models/windows.py
+    - src/floodwatch/models/model_a.py
+    # Trust layers
+    - src/floodwatch/verify.py
+    - src/floodwatch/triage.py
+    # Scripts
+    - scripts/01_*.py
+    - scripts/02_*.py
+    - scripts/03_*.py
+    - scripts/09_*.py
+    - scripts/10_*.py
+    # Artifacts & docs
+    - artifacts/a/**
+    - docs/SOURCES.md
+    - docs/model_a.md
+    - docs/decisions/q-*.md
+    # Tests & fixtures
+    - tests/helpers_a.py
+    - tests/fixtures/golden/predictions_a.parquet
+    - tests/test_schema.py
+    - tests/test_features.py
+    - tests/test_windows.py
+    - tests/test_data_sources.py
+    - tests/test_health.py
+    - tests/test_model_a.py
+    - tests/test_model_output_files.py
+    - tests/test_verify.py
+    - tests/test_triage.py
+
+  warisha:
+    # Contracts & model I/O
+    - src/floodwatch/models/base.py
+    - src/floodwatch/models/__init__.py
+    - src/floodwatch/__init__.py
+    - src/floodwatch/models/eval.py
+    - src/floodwatch/models/model_b.py
+    - src/floodwatch/tiers.py
+    - src/floodwatch/report_schema.py
+    - configs/thresholds.yaml
+    - configs/run.yaml
+    - src/floodwatch/thresholds.py
+    - src/floodwatch/fusion.py
+    - src/floodwatch/runner.py
+    # Trust & delivery
+    - src/floodwatch/interop.py
+    - src/floodwatch/ensemble.py
+    - src/floodwatch/decisions.py
+    - src/floodwatch/messages.py
+    - src/floodwatch/explain.py
+    - src/floodwatch/alerts.py
+    - src/floodwatch/channels/**
+    # Offline demo scaffolding (person-2 lane; documented in README)
+    - src/floodwatch/demo_data.py
+    - scripts/00_build_demo.py
+    # Scripts
+    - scripts/04_*.py
+    - scripts/05_*.py
+    - scripts/06_*.py
+    - scripts/07_*.py
+    - scripts/08_*.py
+    - scripts/11_*.py
+    - scripts/check_ownership.py
+    # App & state
+    - app/**
+    - artifacts/b/**
+    - artifacts/ablation*
+    - runs/**
+    - data/state/**
+    - data/overrides.json
+    # DevOps & docs
+    - .github/**
+    - OWNERS.yaml
+    - Makefile
+    - README.md
+    - .gitignore
+    - .env.example
+    - requirements.txt
+    - requirements-dev.txt
+    - pyproject.toml
+    - FEATURE_BACKLOG.md
+    - docs/FEATURE_BACKLOG.md
+    - docs/model_b.md
+    - docs/ABLATION.md
+    - docs/PR_PLAN.md
+    - docs/SOURCES.md
+    - docs/TEST_REPORT.md
+    - docs/decisions/w-*.md
+    # Tests & fixtures
+    - tests/conftest.py
+    - tests/helpers_b.py
+    - tests/fixtures/golden/predictions_b.parquet
+    - tests/fixtures/golden/golden_expected.json
+    - tests/fixtures/golden/labels.parquet
+    - tests/test_*.py
+
+contract:
+  - src/floodwatch/schema.py
+  - src/floodwatch/tiers.py
+  - src/floodwatch/report_schema.py
+  - src/floodwatch/models/base.py
+  - src/floodwatch/models/windows.py
+  - src/floodwatch/models/eval.py
+  - configs/split.yaml

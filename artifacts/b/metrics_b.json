@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "module": "B_snowmelt_lstm",
+  "model_version": "B_snowmelt_lstm-2434f0a-aee867d5",
+  "data_snapshot_hash": "aee867d56d657f7abc7b3fe8260c845dbcccf158434ffd22e7d5cbad82573f71",
+  "seed": 42,
+  "trained_on": "train",
+  "evaluated_on": "validation",
+  "display_threshold": 0.2,
+  "deep": {
+    "rows": 64128.0,
+    "threshold": 0.2,
+    "pod": 0.9904,
+    "far": 0.4067,
+    "csi": 0.5899,
+    "precision": 0.5933,
+    "pr_auc": 0.756,
+    "positive_rate": 0.3791,
+    "event_pod": 0.7012,
+    "median_lead_time_h": 24.0,
+    "events": 723.0
+  },
+  "baseline": {
+    "rows": 64128.0,
+    "threshold": 0.2,
+    "pod": 0.8607,
+    "far": 0.379,
+    "csi": 0.5643,
+    "precision": 0.621,
+    "pr_auc": 0.7073,
+    "positive_rate": 0.3791,
+    "event_pod": 0.5851,
+    "median_lead_time_h": 24.0,
+    "events": 723.0
+  },
+  "baseline_wins": false,
+  "published_source": "deep",
+  "best_epoch": 1,
+  "train_rows": 16904,
+  "validation_rows": 64128,
+  "synthetic_data": true
+}

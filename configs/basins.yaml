@@ -1,0 +1,88 @@
+# Eight monitored control points in northern Khyber Pakhtunkhwa.
+#
+# These are river gauging / outlet control points, NOT delineated catchments.
+# Coordinates and elevations are approximate: they drive the synthetic demo and
+# the 3x3 Open-Meteo patch, and must not be cited as survey data.
+
+schema_version: 1
+
+basins:
+  - basin_id: swat_kalam
+    name: Swat River at Kalam
+    district: Swat
+    lon: 72.58
+    lat: 35.48
+    elevation_mean_m: 2100
+    snow_fraction: 0.35
+    terrain_susceptibility: 0.82
+    primary_mechanism: cloudburst
+
+  - basin_id: swat_madyan
+    name: Swat River at Madyan
+    district: Swat
+    lon: 72.53
+    lat: 35.15
+    elevation_mean_m: 1600
+    snow_fraction: 0.28
+    terrain_susceptibility: 0.74
+    primary_mechanism: cloudburst
+
+  - basin_id: swat_chakdara
+    name: Swat River at Chakdara
+    district: Swat
+    lon: 72.03
+    lat: 34.65
+    elevation_mean_m: 1100
+    snow_fraction: 0.18
+    terrain_susceptibility: 0.61
+    primary_mechanism: cloudburst
+
+  - basin_id: panjkora_dir
+    name: Panjkora River at Dir
+    district: Upper Dir
+    lon: 71.88
+    lat: 35.20
+    elevation_mean_m: 1420
+    snow_fraction: 0.32
+    terrain_susceptibility: 0.79
+    primary_mechanism: cloudburst
+
+  - basin_id: panjkora_talash
+    name: Panjkora River at Talash
+    district: Lower Dir
+    lon: 71.90
+    lat: 34.90
+    elevation_mean_m: 900
+    snow_fraction: 0.16
+    terrain_susceptibility: 0.66
+    primary_mechanism: mixed
+
+  - basin_id: chitral_mastuj
+    name: Chitral River at Mastuj
+    district: Upper Chitral
+    lon: 72.55
+    lat: 36.28
+    elevation_mean_m: 2400
+    snow_fraction: 0.55
+    terrain_susceptibility: 0.85
+    primary_mechanism: melt
+
+  - basin_id: chitral_drosh
+    name: Chitral River at Drosh
+    district: Lower Chitral
+    lon: 71.79
+    lat: 35.56
+    elevation_mean_m: 1500
+    snow_fraction: 0.40
+    terrain_susceptibility: 0.72
+    primary_mechanism: mixed
+
+  - basin_id: chitral_chitral
+    name: Chitral River at Chitral
+    district: Lower Chitral
+    lon: 71.79
+    lat: 35.85
+    elevation_mean_m: 1500
+    snow_fraction: 0.45
+    terrain_susceptibility: 0.70
+    primary_mechanism: melt

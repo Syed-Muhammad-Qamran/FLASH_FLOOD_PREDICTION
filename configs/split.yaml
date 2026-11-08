@@ -1,0 +1,24 @@
+# Chronological split. CONTRACT FILE: joint PR required to change.
+#
+# D-06: train through 2021, validation 2022, test 2023 onward, with a
+# mandatory 30-day buffer between adjacent splits. The August 2022 demo window
+# therefore lives in validation, never test. The 30-day buffer is excluded
+# from the scored grid, so no window or evaluation can straddle a boundary.
+
+schema_version: 1
+timezone: UTC
+gap_days: 30
+
+splits:
+  train:
+    start: "2021-01-01T00:00:00Z"
+    end: "2021-12-01T00:00:00Z"
+  validation:
+    start: "2022-01-01T00:00:00Z"
+    end: "2022-12-01T00:00:00Z"
+  test:
+    start: "2023-01-01T00:00:00Z"
+    end: null
+
+# Recorded so a consumer can assert which mechanism this split belongs to.
+label_horizon_h: 6
