@@ -8,6 +8,7 @@ default and degrades gracefully when a source is missing.
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -185,6 +186,46 @@ def _run_view(run_id: str) -> None:
         _triage_tab(results)
 
 
+def _run_model_test(test_file: str, model_name: str) -> None:
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "pytest", "-q", test_file],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=300,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        st.error(f"{model_name} tests exceeded the 5-minute time limit.")
+        return
+    except OSError as exc:
+        st.error(f"Could not start {model_name} tests: {exc}")
+        return
+
+    output = "\n".join(part for part in (result.stdout, result.stderr) if part).strip()
+    if result.returncode == 0:
+        st.success(f"{model_name} tests passed.")
+    else:
+        st.error(f"{model_name} tests failed. Check that development dependencies are installed.")
+    if output:
+        st.code(output, language="text")
+
+
+def _model_test_view() -> None:
+    st.caption(
+        "Runs each model's unit and smoke tests separately. These checks do not measure "
+        "accuracy on real flood events. Install requirements-dev.txt to run them."
+    )
+    model_a, model_b = st.columns(2)
+    if model_a.button("Run Model A tests", key="run_model_a_tests"):
+        with st.spinner("Running Model A tests..."):
+            _run_model_test("tests/test_model_a.py", "Model A")
+    if model_b.button("Run Model B tests", key="run_model_b_tests"):
+        with st.spinner("Running Model B tests..."):
+            _run_model_test("tests/test_model_b.py", "Model B")
+
+
 def main() -> None:
     st.set_page_config(page_title="FloodWatch KP", layout="wide")
     st.title("FloodWatch KP")
@@ -193,14 +234,19 @@ def main() -> None:
         "Alerts are verified before delivery; the committed demo runs fully offline."
     )
     runs = _discover_runs()
-    if not runs:
-        st.error(
-            "No runs found under `runs/`. Generate one with `python scripts/06_run.py --run-id demo --offline`."
-        )
-        return
-    selected = st.sidebar.selectbox("Run", runs, index=0)
+    selected = st.sidebar.selectbox("Run", runs, index=0) if runs else None
     st.sidebar.caption("The demo uses synthetic data and committed thresholds.")
-    _run_view(selected)
+    dashboard_tab, model_tests_tab = st.tabs(["Dashboard", "Model tests"])
+    with dashboard_tab:
+        if selected is None:
+            st.error(
+                "No runs found under `runs/`. Generate one with "
+                "`python scripts/06_run.py --run-id demo --offline`."
+            )
+        else:
+            _run_view(selected)
+    with model_tests_tab:
+        _model_test_view()
 
 
 if __name__ == "__main__":
