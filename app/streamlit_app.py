@@ -44,98 +44,108 @@ CUSTOM_CSS = """
 <style>
     /* Metric & Card Containers */
     .fw-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(128, 128, 128, 0.2);
-        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1.5px solid rgba(148, 163, 184, 0.28);
+        border-radius: 10px;
         padding: 1.2rem;
         margin-bottom: 1rem;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
     }
     .fw-hero {
         background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
         color: #ffffff;
-        border-radius: 14px;
+        border: 1.5px solid #334155;
+        border-top: 3.5px solid #0284c7;
+        border-radius: 12px;
         padding: 1.5rem 2rem;
         margin-bottom: 1.5rem;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.2);
     }
     .fw-badge {
         display: inline-block;
-        padding: 0.25rem 0.65rem;
+        padding: 0.28rem 0.75rem;
         font-size: 0.82rem;
         font-weight: 700;
         border-radius: 9999px;
         text-transform: uppercase;
         letter-spacing: 0.04em;
     }
-    .badge-red { background-color: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
-    .badge-orange { background-color: #ffedd5; color: #9a3412; border: 1px solid #fb923c; }
-    .badge-yellow { background-color: #fef9c3; color: #854d0e; border: 1px solid #facc15; }
-    .badge-green { background-color: #dcfce7; color: #166534; border: 1px solid #4ade80; }
+    .badge-red { background-color: #fee2e2; color: #991b1b; border: 1.5px solid #ef4444; }
+    .badge-orange { background-color: #ffedd5; color: #9a3412; border: 1.5px solid #f97316; }
+    .badge-yellow { background-color: #fef9c3; color: #854d0e; border: 1.5px solid #eab308; }
+    .badge-green { background-color: #dcfce7; color: #166534; border: 1.5px solid #22c55e; }
 
-    /* WhatsApp Smartphone Preview */
-    .wa-phone-frame {
-        max-width: 520px;
-        margin: 0 auto;
-        border-radius: 18px;
-        background-color: #0b141a;
-        color: #e9edef;
-        border: 2px solid #202c33;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        overflow: hidden;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* Executive High-Contrast Section Panels with Top Accent Borders */
+    .fw-section-panel {
+        background: rgba(15, 23, 42, 0.45);
+        border: 1.5px solid rgba(148, 163, 184, 0.28);
+        border-radius: 10px;
+        padding: 1.25rem 1.4rem;
+        margin-bottom: 1.4rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
-    .wa-header {
-        background-color: #202c33;
-        padding: 0.75rem 1rem;
+    .panel-accent-blue {
+        border-top: 3.5px solid #0284c7 !important;
+    }
+    .panel-accent-red {
+        border-top: 3.5px solid #ef4444 !important;
+    }
+    .panel-accent-green {
+        border-top: 3.5px solid #10b981 !important;
+    }
+    .panel-accent-purple {
+        border-top: 3.5px solid #8b5cf6 !important;
+    }
+    .panel-accent-amber {
+        border-top: 3.5px solid #f59e0b !important;
+    }
+    .fw-panel-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        margin-bottom: 0.85rem;
+        padding-bottom: 0.55rem;
+        border-bottom: 1.5px solid rgba(148, 163, 184, 0.2);
         display: flex;
         align-items: center;
-        gap: 0.75rem;
-        border-bottom: 1px solid #2a3942;
+        gap: 0.5rem;
     }
-    .wa-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #00a884;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        color: white;
+    .fw-table-header {
+        background: rgba(30, 41, 59, 0.65);
+        border: 1.5px solid rgba(148, 163, 184, 0.3);
+        border-radius: 8px;
+        padding: 0.6rem 0.8rem;
+        font-weight: 700;
+        font-size: 0.88rem;
+        margin-bottom: 0.6rem;
     }
-    .wa-chat-body {
-        background-color: #0b141a;
-        background-image: radial-gradient(#202c33 0.75px, transparent 0.75px);
-        background-size: 16px 16px;
-        padding: 1.25rem 1rem;
-        min-height: 220px;
-    }
-    .wa-bubble-emergency {
-        background-color: #202c33;
-        border-left: 5px solid #ef4444;
-        color: #e9edef;
+    .fw-metric-box {
+        background: rgba(30, 41, 59, 0.4);
+        border: 1.5px solid rgba(148, 163, 184, 0.25);
         border-radius: 8px;
         padding: 0.85rem 1rem;
-        font-size: 0.92rem;
-        line-height: 1.45;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+        margin-bottom: 0.6rem;
     }
-    .wa-bubble-normal {
-        background-color: #202c33;
-        border-left: 5px solid #22c55e;
-        color: #e9edef;
+    .scenario-box-red {
+        border: 1.5px solid #ef4444;
         border-radius: 8px;
-        padding: 0.85rem 1rem;
-        font-size: 0.92rem;
-        line-height: 1.45;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+        padding: 0.85rem;
+        background: rgba(239, 68, 68, 0.05);
+        margin-bottom: 0.6rem;
     }
-    .wa-footer-time {
-        font-size: 0.72rem;
-        color: #8696a0;
-        text-align: right;
-        margin-top: 0.4rem;
+    .scenario-box-green {
+        border: 1.5px solid #10b981;
+        border-radius: 8px;
+        padding: 0.85rem;
+        background: rgba(16, 185, 129, 0.05);
+        margin-bottom: 0.6rem;
+    }
+    .scenario-box-blue {
+        border: 1.5px solid #64748b;
+        border-radius: 8px;
+        padding: 0.85rem;
+        background: rgba(100, 116, 139, 0.05);
+        margin-bottom: 0.6rem;
     }
 </style>
 """
@@ -429,6 +439,17 @@ def _whatsapp_simulation_tab() -> None:
         st.session_state["recipient_seq"] = max([r.get("id", 0) for r in st.session_state["recipients"]] + [2]) + 1
 
     # Top Bar: Autonomous Sentinel Status & Privacy Shield
+    st.markdown(
+        """
+        <div class="fw-section-panel panel-accent-purple">
+            <div class="fw-panel-title">
+                <span>🛡️ System Security & Autonomous Sentinel Controls</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     top_c1, top_c2 = st.columns([2, 1])
     with top_c1:
         auto_mode = st.toggle(
@@ -446,7 +467,17 @@ def _whatsapp_simulation_tab() -> None:
     # -------------------------------------------------------------------------
     # Recipient Directory CRUD Operations
     # -------------------------------------------------------------------------
-    with st.expander("👥 Emergency Recipient Directory (Add, Update, Delete Citizens)", expanded=False):
+    st.markdown(
+        """
+        <div class="fw-section-panel panel-accent-blue" style="margin-bottom: 0.6rem; padding: 0.8rem 1.2rem;">
+            <div class="fw-panel-title" style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">
+                <span>👥 Emergency Recipient Directory & Citizen Registry</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    with st.expander("👥 Click to Expand Directory (Add, Update, Delete Contacts)", expanded=False):
         crud_tabs = st.tabs(["➕ Add Recipient", "✏️ Update / Edit Recipient", "📋 Registered Directory"])
 
         # 1. CREATE / ADD
@@ -546,8 +577,19 @@ def _whatsapp_simulation_tab() -> None:
     # -------------------------------------------------------------------------
     # Operational Lifecycle Scenarios: Emergency, Cancel Alert, False Rumor
     # -------------------------------------------------------------------------
-    st.markdown("---")
-    st.markdown("#### ⚡ Operational Lifecycle Scenarios:")
+    st.markdown(
+        """
+        <div class="fw-section-panel panel-accent-amber">
+            <div class="fw-panel-title">
+                <span>⚡ Operational Lifecycle Directives & Scenario Triage</span>
+            </div>
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.8rem;">
+                Select an operational directive to generate authenticated bilingual directives with official helplines:
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     sim_col1, sim_col2, sim_col3 = st.columns(3)
     pkt_tz = timezone(timedelta(hours=5))
@@ -555,22 +597,43 @@ def _whatsapp_simulation_tab() -> None:
     now_str = now_pkt.strftime("%d %b %Y, %I:%M %p PKT") + " (" + datetime.now(timezone.utc).strftime("%I:%M %p UTC") + ")"
 
     with sim_col1:
-        st.markdown("##### 🔴 1. Positive Flood (EMERGENCY)")
-        st.caption("Severe convective cloudburst in Kalam (>185mm rain). Triggers immediate evacuation.")
+        st.markdown(
+            """
+            <div class="scenario-box-red">
+                <b style="color: #ef4444;">🔴 1. Positive Flood (EMERGENCY)</b><br>
+                <span style="font-size: 0.8rem; color: #94a3b8;">Kalam convective cloudburst (>185mm rain). Triggers immediate evacuation.</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
         if st.button("🚨 Autonomous Flood Emergency", type="primary", use_container_width=True, key="btn_sim_emergency"):
             st.session_state["sim_case"] = "emergency"
             st.session_state["auto_dispatched"] = True
 
     with sim_col2:
-        st.markdown("##### 🟢 2. Cancel Alert (ALL CLEAR)")
-        st.caption("Water recedes below danger threshold. Autonomous de-escalation notice lifts evacuation.")
+        st.markdown(
+            """
+            <div class="scenario-box-green">
+                <b style="color: #10b981;">🟢 2. Cancel Alert (ALL CLEAR)</b><br>
+                <span style="font-size: 0.8rem; color: #94a3b8;">Water recedes below danger mark. De-escalation notice safely lifts evacuation.</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
         if st.button("✅ Cancel Alert / All Clear", use_container_width=True, key="btn_sim_cancel"):
             st.session_state["sim_case"] = "cancel"
             st.session_state["auto_dispatched"] = True
 
     with sim_col3:
-        st.markdown("##### ℹ️ 3. False Alarm / Rumor (SAFE)")
-        st.caption("Viral social media rumor claiming Drosh dam collapse during dry weather. Issues debunk advisory.")
+        st.markdown(
+            """
+            <div class="scenario-box-blue">
+                <b style="color: #94a3b8;">ℹ️ 3. False Alarm / Rumor (SAFE)</b><br>
+                <span style="font-size: 0.8rem; color: #94a3b8;">Viral audio rumor claiming Drosh dam collapse. Issues verified debunk advisory.</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
         if st.button("🛡️ Clarify Safe / False Rumor", use_container_width=True, key="btn_sim_rumor"):
             st.session_state["sim_case"] = "rumor"
             st.session_state["auto_dispatched"] = True
@@ -587,6 +650,7 @@ def _whatsapp_simulation_tab() -> None:
         action = "IMMEDIATE EVACUATION REQUIRED / فوری انخلاء لازمی ہے"
         risk_score = "0.988"
         lead_time = "3 to 6 Hours"
+        panel_accent_class = "panel-accent-red"
 
         msg_text = (
             "🚨 *FLOODWATCH KP EMERGENCY ALERT*\n"
@@ -612,6 +676,7 @@ def _whatsapp_simulation_tab() -> None:
         action = "EVACUATION LIFTED — SAFE RETURN PERMITTED / انخلاء ختم - واپسی کی اجازت"
         risk_score = "0.045"
         lead_time = "N/A"
+        panel_accent_class = "panel-accent-green"
 
         msg_text = (
             "🟢 *FLOODWATCH KP: ALERT CANCELLATION & ALL CLEAR NOTICE*\n"
@@ -637,6 +702,7 @@ def _whatsapp_simulation_tab() -> None:
         action = "NORMAL ROUTINE — NO EVACUATION / معمول کے مطابق - انخلاء کی ضرورت نہیں"
         risk_score = "0.012"
         lead_time = "N/A"
+        panel_accent_class = "panel-accent-blue"
 
         msg_text = (
             "ℹ️ *FLOODWATCH KP VERIFICATION ADVISORY*\n"
@@ -655,18 +721,53 @@ def _whatsapp_simulation_tab() -> None:
         )
 
     # -------------------------------------------------------------------------
-    # Recipient Broadcast Dispatch List (Manual / Individual WhatsApp Transmission)
+    # Active Emergency Advisory Panel (Clear Border & Metric Highlights)
     # -------------------------------------------------------------------------
     active_recipients = [r for r in st.session_state["recipients"] if r.get("active", True)]
     encoded_text = urllib.parse.quote(msg_text)
 
-    # Operational status banner
-    st.markdown("---")
-    st.markdown("#### 📱 Active Emergency Advisory Details:")
+    st.markdown(
+        f"""
+        <div class="fw-section-panel {panel_accent_class}">
+            <div class="fw-panel-title">
+                <span>📱 Active Emergency Advisory Telemetry & Protocol</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     c_info1, c_info2, c_info3 = st.columns(3)
-    c_info1.markdown(f"**Target Basin:** `{basin_name}`")
-    c_info2.markdown(f"**Operational Threat:** {level_badge}", unsafe_allow_html=True)
-    c_info3.markdown(f"**Protocol Required:** **{action}**")
+    with c_info1:
+        st.markdown(
+            f"""
+            <div class="fw-metric-box">
+                <span style="font-size: 0.78rem; color: #94a3b8;">MONITORED BASIN</span><br>
+                <b style="font-size: 0.95rem;">{basin_name}</b>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with c_info2:
+        st.markdown(
+            f"""
+            <div class="fw-metric-box">
+                <span style="font-size: 0.78rem; color: #94a3b8;">THREAT CLASSIFICATION</span><br>
+                {level_badge}
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with c_info3:
+        st.markdown(
+            f"""
+            <div class="fw-metric-box">
+                <span style="font-size: 0.78rem; color: #94a3b8;">MANDATED ACTION</span><br>
+                <b style="font-size: 0.92rem; color: #f1f5f9;">{action}</b>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
     # Bilingual Advisory Text Expander
     with st.expander("📄 View Official Bilingual Advisory Text (Urdu & English) + Pakistan Standard Time", expanded=True):
@@ -681,38 +782,58 @@ def _whatsapp_simulation_tab() -> None:
             key="dl_bilingual_alert_text",
         )
 
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("#### 📋 Registered Recipient Dispatch List (Manual WhatsApp Transmission):")
-    st.caption("Send official bilingual flood alerts individually to each registered contact with a single click:")
+    # -------------------------------------------------------------------------
+    # Recipient Broadcast Dispatch List (Clean Bordered Table Panel)
+    # -------------------------------------------------------------------------
+    st.markdown(
+        """
+        <div class="fw-section-panel panel-accent-green" style="margin-top: 1.5rem;">
+            <div class="fw-panel-title">
+                <span>📋 Registered Citizen Broadcast Directory (Individual Transmission)</span>
+            </div>
+            <div style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.6rem;">
+                Transmit verified bilingual advisories directly to registered community focal points:
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     if not active_recipients:
         st.warning("All recipients in the directory are currently muted or deleted. Add or unmute recipients above.")
     else:
-        # Table Header
-        h_col1, h_col2, h_col3, h_col4 = st.columns([3, 2, 2, 2])
-        h_col1.markdown("**Recipient & Designation**")
-        h_col2.markdown("**WhatsApp Mobile**")
-        h_col3.markdown("**Operational Status**")
-        h_col4.markdown("**Direct Action**")
-        st.markdown("<hr style='margin: 0.2rem 0 0.6rem 0;'>", unsafe_allow_html=True)
+        # High-Contrast Table Header Bar
+        st.markdown(
+            """
+            <div class="fw-table-header">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="flex: 3;">👤 Recipient & Designation</span>
+                    <span style="flex: 2;">📱 WhatsApp Contact</span>
+                    <span style="flex: 2;">🟢 Status</span>
+                    <span style="flex: 2; text-align: right;">⚡ Action</span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
         for idx, r in enumerate(active_recipients):
-            r_col1, r_col2, r_col3, r_col4 = st.columns([3, 2, 2, 2])
             wa_link = f"https://api.whatsapp.com/send?phone={normalize_phone(r['phone'])}&text={encoded_text}"
             masked_num = mask_phone(r["phone"], mask_privacy)
             first_name = r.get("name", "Citizen").split()[0]
             btn_type = "primary" if selected_sim == "emergency" else "secondary"
 
+            r_col1, r_col2, r_col3, r_col4 = st.columns([3, 2, 2, 2])
             with r_col1:
                 st.markdown(
                     f"**{r.get('name', 'Registered Citizen')}**<br>"
-                    f"<span style='font-size: 0.8rem; color: #888;'>{r.get('role', 'Citizen')}</span>",
+                    f"<span style='font-size: 0.8rem; color: #94a3b8;'>{r.get('role', 'Citizen')}</span>",
                     unsafe_allow_html=True,
                 )
             with r_col2:
                 st.markdown(f"<code>{masked_num}</code>", unsafe_allow_html=True)
             with r_col3:
-                st.markdown("<span style='font-size: 0.85rem; color: #10b981;'>● Ready for Dispatch</span>", unsafe_allow_html=True)
+                st.markdown("<span style='font-size: 0.85rem; color: #10b981; font-weight: 600;'>● Ready</span>", unsafe_allow_html=True)
             with r_col4:
                 st.link_button(
                     f"📲 Send to {first_name}",
@@ -721,7 +842,7 @@ def _whatsapp_simulation_tab() -> None:
                     type=btn_type,
                     key=f"link_btn_{r.get('id', idx)}_{idx}",
                 )
-            st.markdown("<hr style='margin: 0.2rem 0 0.5rem 0; border: none; border-bottom: 1px dashed rgba(255,255,255,0.15);'>", unsafe_allow_html=True)
+            st.markdown("<hr style='margin: 0.15rem 0 0.45rem 0; border: none; border-bottom: 1.5px solid rgba(148, 163, 184, 0.2);'>", unsafe_allow_html=True)
 
 
 def _historical_cases_view() -> None:
