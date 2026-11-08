@@ -8,6 +8,7 @@ default and degrades gracefully when a source is missing.
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -23,6 +24,8 @@ import pandas as pd  # noqa: E402
 import streamlit as st  # noqa: E402
 
 from floodwatch import explain, interop, schema, thresholds, triage  # noqa: E402
+from floodwatch.data_sources import historical_events  # noqa: E402
+from floodwatch.models import eval_cases  # noqa: E402
 from floodwatch.tiers import Level  # noqa: E402
 
 RUNS_ROOT = ROOT / "runs"
@@ -185,6 +188,218 @@ def _run_view(run_id: str) -> None:
         _triage_tab(results)
 
 
+def _historical_cases_view() -> None:
+    st.header("Historical Case Evaluation (Pakistan 2010 & 2022 Floods)")
+    st.caption(
+        "Evaluates Model A and Model B against external benchmark events. "
+        "Source-confirmed historical impacts from official disaster authorities (NDMA/PDMA/FFC) "
+        "are reported strictly separately from model predictions."
+    )
+
+    # 1. Hydrological & Reanalysis Provenance Notice
+    with st.expander("Hydrological Provenance & Reanalysis Notice", expanded=False):
+        st.markdown(
+            """
+            - **Gridded Reanalysis Weather (ERA5 / ERA5-Land):** Historical weather inputs are obtained from
+              Open-Meteo ERA5 atmospheric reanalysis (~9–30 km resolution). Reanalysis represents gridded spatial
+              averages, **NOT local in-situ river gauge stage or discharge measurements**.
+            - **Approximate Basin Control Points:** Monitored basins are approximate outlet/river gauging points,
+              **NOT delineated catchment polygons**. A district-wide disaster declaration does not automatically mean
+              every sub-basin or tributary inside that district experienced overbank flooding.
+            - **Out-of-Sample Isolation:** Both the 2010 Super Floods and 2022 Monsoon Floods are strictly
+              excluded from training, validation tuning, and decision threshold selection.
+            """
+        )
+
+    # 2. Controls
+    ctrl_col1, ctrl_col2, ctrl_col3 = st.columns(3)
+    with ctrl_col1:
+        case_choice = st.selectbox(
+            "Historical Event",
+            [
+                "2022 Pakistan Monsoon Floods (Aug 25 - Aug 30, 2022)",
+                "2010 Pakistan Super Floods (Jul 28 - Aug 3, 2010)",
+            ],
+            index=0,
+            key="hist_case_choice",
+        )
+        case_year = 2022 if "2022" in case_choice else 2010
+
+    with ctrl_col2:
+        model_choice = st.selectbox(
+            "Evaluation Model",
+            [
+                "Model A (Cloudburst / Convective Rain Risk)",
+                "Model B (Snowmelt & Rain-on-Snow Risk)",
+            ],
+            index=0,
+            key="hist_model_choice",
+        )
+        is_model_a = "Model A" in model_choice
+        model_name = "Model A" if is_model_a else "Model B"
+
+    with ctrl_col3:
+        threshold = st.slider(
+            "Risk Decision Cutoff", min_value=0.10, max_value=0.90, value=0.50, step=0.05
+        )
+
+    cases = historical_events.load_historical_cases()
+    case = cases.get(case_year)
+    if not case:
+        st.error(f"Historical case definition missing for {case_year}.")
+        return
+
+    st.info(
+        f"**{case.title}** · Mechanism: `{case.primary_mechanism.upper()}` · Window: `{case.start_utc}` to `{case.end_utc}`"
+    )
+    st.write(case.description)
+
+    # Check for precomputed report in artifacts, or evaluate live
+    art_dir = ROOT / "artifacts" / ("a" if is_model_a else "b")
+    manifest_p = art_dir / "manifest_real.json"
+    report_dict = None
+    if manifest_p.exists():
+        try:
+            m_data = json.loads(manifest_p.read_text(encoding="utf-8"))
+            reports = m_data.get("case_reports", {})
+            report_dict = reports.get(str(case_year)) or reports.get(case_year)
+        except Exception:
+            report_dict = None
+
+    if report_dict is None:
+        # Fallback to computing from available predictions parquet or demo
+        pred_p = art_dir / f"predictions_{'a' if is_model_a else 'b'}.parquet"
+        if not pred_p.exists():
+            pred_p = ROOT / "runs" / "demo" / "predictions_fused.parquet"
+        if pred_p.exists():
+            df_p = pd.read_parquet(pred_p)
+            if "prob" not in df_p.columns:
+                df_p["prob"] = df_p["prob_a"] if is_model_a else df_p["prob_b"]
+            rep = eval_cases.evaluate_case(
+                case_year=case_year, predictions_df=df_p, model_name=model_name, threshold=threshold
+            )
+            report_dict = rep.to_dict()
+
+    if report_dict is None:
+        st.warning(
+            f"No trained {model_name} predictions or real evaluation reports found yet. Run `python scripts/train_{'model_a' if is_model_a else 'model_b'}_real.py` to generate real event evaluations."
+        )
+        return
+
+    # 3. Two-Column Separate Reporting: Source-Confirmed Impact vs Model Predictions
+    st.subheader("Source-Confirmed Impacts vs. Model-Predicted Risk")
+    st.caption(
+        "Official ground truth is reported separately from model predictions. Model predictions are never presented as confirmed historical impacts."
+    )
+
+    col_truth, col_pred = st.columns(2)
+
+    comparisons = report_dict.get("comparisons", [])
+    truth_rows = []
+    pred_rows = []
+
+    for c in comparisons:
+        truth_rows.append(
+            {
+                "Basin ID": c["basin_id"],
+                "Official Observed Status": c["confirmed_status"].replace("_", " ").title(),
+                "Spatial Granularity": c["spatial_granularity"].replace("_", " ").title(),
+                "Official Citation": c["source_citation"],
+            }
+        )
+        pred_rows.append(
+            {
+                "Basin ID": c["basin_id"],
+                "Model Max Probability": f"{c['model_max_prob']:.3f}",
+                "Predicted Risk (>= Cutoff)": "ALERT (Risk Detected)"
+                if c["model_predicted_risk"]
+                else "NORMAL (Below Cutoff)",
+                "Risk Tier": c["model_tier"],
+                "Comparison Status": c["comparison_outcome"],
+            }
+        )
+
+    with col_truth:
+        st.markdown("#### 🏛️ Official Source-Confirmed Impacts")
+        st.dataframe(pd.DataFrame(truth_rows), hide_index=True, width="stretch")
+
+    with col_pred:
+        st.markdown(f"#### 🤖 {model_name} Predicted Risk")
+        st.dataframe(pd.DataFrame(pred_rows), hide_index=True, width="stretch")
+
+    # 4. Comparison & Agreement Metrics (where geography & labels support comparison)
+    st.subheader("Comparison & Verification Metrics (Comparable Basins Only)")
+    metrics = report_dict.get("metrics", {})
+    m_col1, m_col2, m_col3, m_col4, m_col5 = st.columns(5)
+    m_col1.metric("Probability of Detection (POD)", f"{metrics.get('pod', 0.0):.3f}")
+    m_col2.metric("False Alarm Ratio (FAR)", f"{metrics.get('far', 0.0):.3f}")
+    m_col3.metric("Critical Success Index (CSI)", f"{metrics.get('csi', 0.0):.3f}")
+    m_col4.metric("F1-Score", f"{metrics.get('f1', 0.0):.3f}")
+    m_col5.metric("Brier Score", f"{metrics.get('brier_score', 0.0):.3f}")
+
+    # Detailed Matching Matrix
+    comp_df = pd.DataFrame(
+        [
+            {
+                "Basin": c["basin_id"],
+                "Confirmed Impact": c["confirmed_status"],
+                "Model Alert": c["model_predicted_risk"],
+                "Outcome Classification": c["comparison_outcome"],
+                "Scientific / Spatial Caveat": c["caveat"],
+            }
+            for c in comparisons
+        ]
+    )
+    st.dataframe(comp_df, hide_index=True, width="stretch")
+
+    # 5. Citations & Attribution
+    st.subheader("Official Citations & Reference Provenance")
+    for cit in historical_events.list_citations():
+        st.markdown(
+            f"- **{cit['name']}** ({cit['date']}) — Granularity: `{cit['granularity']}`. Attribution: {cit['attribution']}. [URL]({cit['url']})"
+        )
+
+
+def _run_model_test(test_file: str, model_name: str) -> None:
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "pytest", "-q", test_file],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=300,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        st.error(f"{model_name} tests exceeded the 5-minute time limit.")
+        return
+    except OSError as exc:
+        st.error(f"Could not start {model_name} tests: {exc}")
+        return
+
+    output = "\n".join(part for part in (result.stdout, result.stderr) if part).strip()
+    if result.returncode == 0:
+        st.success(f"{model_name} tests passed.")
+    else:
+        st.error(f"{model_name} tests failed. Check that development dependencies are installed.")
+    if output:
+        st.code(output, language="text")
+
+
+def _model_test_view() -> None:
+    st.caption(
+        "Runs each model's unit and smoke tests separately. These checks do not measure "
+        "accuracy on real flood events. Install requirements-dev.txt to run them."
+    )
+    model_a, model_b = st.columns(2)
+    if model_a.button("Run Model A tests", key="run_model_a_tests"):
+        with st.spinner("Running Model A tests..."):
+            _run_model_test("tests/test_model_a.py", "Model A")
+    if model_b.button("Run Model B tests", key="run_model_b_tests"):
+        with st.spinner("Running Model B tests..."):
+            _run_model_test("tests/test_model_b.py", "Model B")
+
+
 def main() -> None:
     st.set_page_config(page_title="FloodWatch KP", layout="wide")
     st.title("FloodWatch KP")
@@ -193,14 +408,24 @@ def main() -> None:
         "Alerts are verified before delivery; the committed demo runs fully offline."
     )
     runs = _discover_runs()
-    if not runs:
-        st.error(
-            "No runs found under `runs/`. Generate one with `python scripts/06_run.py --run-id demo --offline`."
-        )
-        return
-    selected = st.sidebar.selectbox("Run", runs, index=0)
+    selected = st.sidebar.selectbox("Run", runs, index=0) if runs else None
     st.sidebar.caption("The demo uses synthetic data and committed thresholds.")
-    _run_view(selected)
+
+    dashboard_tab, historical_tab, model_tests_tab = st.tabs(
+        ["Operational Dashboard", "Historical Case Testing (2010 & 2022)", "Model Unit Tests"]
+    )
+    with dashboard_tab:
+        if selected is None:
+            st.error(
+                "No runs found under `runs/`. Generate one with "
+                "`python scripts/06_run.py --run-id demo --offline`."
+            )
+        else:
+            _run_view(selected)
+    with historical_tab:
+        _historical_cases_view()
+    with model_tests_tab:
+        _model_test_view()
 
 
 if __name__ == "__main__":

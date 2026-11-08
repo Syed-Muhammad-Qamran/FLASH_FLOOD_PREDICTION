@@ -1,0 +1,217 @@
+# Historical Case Evaluation Configuration (Pakistan 2010 & 2022 Floods)
+# =====================================================================
+# Strict Provenance & Hydrological Truth Mapping:
+# 1. Open-Meteo ERA5 / ERA5-Land reanalysis is gridded historical weather (~9-30 km),
+#    NOT an in-situ local streamgauge observation.
+# 2. Observed flood impacts are compiled from cited official reports:
+#    - NDMA Pakistan Annual Flood Report 2010
+#    - NDMA Pakistan Monsoon 2022 Daily Situation Reports (SitRep No. 74, Aug 26, 2022)
+#    - PDMA Khyber Pakhtunkhwa Monsoon Floods 2022 Damage Assessment
+#    - Federal Flood Commission (FFC) Daily River Discharge Summaries (2010, 2022)
+#    - UN OCHA Pakistan Humanitarian Floods Overview (2022)
+#    - Dartmouth Flood Observatory (DFO) & UNOSAT Satellite Inundation Maps
+# 3. Basins are approximate control/gauging points, NOT delineated catchment polygons.
+#    District reports do NOT automatically label all control points as flooded.
+# 4. Kept strictly out of training, validation tuning, and threshold fitting.
+
+schema_version: 1
+
+sources:
+  ndma_2010:
+    name: "National Disaster Management Authority (NDMA) Pakistan — Annual Flood Report 2010"
+    url: "http://web.ndma.gov.pk/plans/flood2010.pdf"
+    date_published: "2011-03-15"
+    granularity: "district_and_provincial"
+    attribution: "Government of Pakistan, NDMA Islamabad"
+    license: "Official Public Report / Crown Copyright equivalent"
+
+  ndma_2022:
+    name: "NDMA Pakistan — Monsoon 2022 Daily Situation Report No. 74"
+    url: "http://web.ndma.gov.pk/sitrep/Sitrep-26-08-2022.pdf"
+    date_published: "2022-08-26"
+    granularity: "district_and_gauging_station"
+    attribution: "Government of Pakistan, NDMA Islamabad"
+    license: "Official Public Report"
+
+  pdma_kp_2022:
+    name: "Provincial Disaster Management Authority (PDMA) KP — Monsoon 2022 Floods Review"
+    url: "https://pdma.gov.pk/reports/monsoon-2022"
+    date_published: "2022-09-10"
+    granularity: "tehsil_and_river_stretch"
+    attribution: "Government of Khyber Pakhtunkhwa"
+    license: "Official Public Report"
+
+  ffc_2010_2022:
+    name: "Federal Flood Commission (FFC) River Discharge Records (Indus/Swat/Kabul)"
+    url: "http://ffc.gov.pk"
+    date_published: "2010-08-01 / 2022-08-28"
+    granularity: "gauging_station_discharge"
+    attribution: "Ministry of Water Resources, Pakistan"
+    license: "Official Hydrometric Record"
+
+  dfo_unosat:
+    name: "Dartmouth Flood Observatory (DFO) & UNOSAT Satellite Flood Inundation"
+    url: "https://floodobservatory.colorado.edu/"
+    date_published: "2010 / 2022"
+    granularity: "satellite_inundation_grid"
+    attribution: "DFO University of Colorado / UNITAR UNOSAT"
+    license: "Open Data Commons / CC BY 4.0"
+
+cases:
+  2010:
+    case_id: "pakistan_superflood_2010"
+    title: "2010 Pakistan Super Floods (Khyber Pakhtunkhwa)"
+    window:
+      start: "2010-07-28T00:00:00Z"
+      end: "2010-08-03T23:00:00Z"
+      peak: "2010-07-29T12:00:00Z"
+    primary_mechanism: "cloudburst"
+    description: >
+      A historic atmospheric block coupled with convective monsoon cloudbursts delivered
+      over 280 mm of rain in 24 hours across northern KP (Dir gauge: 274 mm, Saidu Sharif: 280 mm).
+      Swat and Panjkora rivers generated peak discharges that severed bridges, washed away road
+      networks, and inundated towns from Kalam to Chakdara and Charsadda/Nowshera.
+    ground_truth:
+      swat_kalam:
+        confirmed_status: "confirmed_flood"
+        source_citation: "NDMA 2010 Annual Flood Report, Section 3.2; PDMA KP SitRep"
+        spatial_granularity: "river_gauge_and_valley"
+        gauge_discharge_cusecs: null
+        notes: "Devastating flash flood wave destroyed bridges, isolating Kalam from Mingora."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      swat_madyan:
+        confirmed_status: "confirmed_flood"
+        source_citation: "NDMA 2010 Annual Flood Report; FFC Discharge Bulletin"
+        spatial_granularity: "river_stretch"
+        gauge_discharge_cusecs: null
+        notes: "Major bridge and riverine infrastructure collapse along Swat River at Madyan."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      swat_chakdara:
+        confirmed_status: "confirmed_flood"
+        source_citation: "FFC Daily River Bulletin July 30, 2010; NDMA Report Table 4"
+        spatial_granularity: "gauging_station_discharge"
+        gauge_discharge_cusecs: 227000
+        notes: "Record peak flow >227,000 cusecs (Very High/Super Flood category at Chakdara gauge)."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      panjkora_dir:
+        confirmed_status: "confirmed_flood"
+        source_citation: "PMD Rainfall Bulletin (Dir: 274mm/24h); NDMA 2010 Upper Dir damages"
+        spatial_granularity: "river_gauge_and_tehsil"
+        gauge_discharge_cusecs: null
+        notes: "Severe flash flood in Panjkora River tributaries; town embankment breaches."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      panjkora_talash:
+        confirmed_status: "confirmed_flood"
+        source_citation: "PDMA KP District Lower Dir damage matrix, July 30, 2010"
+        spatial_granularity: "river_stretch"
+        gauge_discharge_cusecs: null
+        notes: "High flood wave traveling down Lower Dir towards Swat/Kabul confluence."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      chitral_mastuj:
+        confirmed_status: "localized_minor"
+        source_citation: "NDMA 2010 District Chitral Report (No superflood reported in Upper Chitral)"
+        spatial_granularity: "district_report"
+        gauge_discharge_cusecs: null
+        notes: "Upper Chitral remained out of the main monsoon cloudburst core; high flows but below superflood."
+        comparable_with_model_a: false
+        comparable_with_model_b: true
+      chitral_drosh:
+        confirmed_status: "no_confirmed_flood"
+        source_citation: "FFC Daily River Status; NDMA Chitral Situation Table"
+        spatial_granularity: "gauging_station_discharge"
+        gauge_discharge_cusecs: null
+        notes: "Drosh gauge remained within normal seasonal high-flow envelope during late July 2010."
+        comparable_with_model_a: true
+        comparable_with_model_b: true
+      chitral_chitral:
+        confirmed_status: "no_confirmed_flood"
+        source_citation: "NDMA 2010 District Chitral Report; FFC Gauge Records"
+        spatial_granularity: "gauging_station_discharge"
+        gauge_discharge_cusecs: null
+        notes: "Chitral River at Chitral town stayed within bankfull capacity."
+        comparable_with_model_a: true
+        comparable_with_model_b: true
+
+  2022:
+    case_id: "pakistan_monsoon_flood_2022"
+    title: "2022 Pakistan Monsoon Floods (Kalam/Swat/Panjkora Catastrophe)"
+    window:
+      start: "2022-08-25T00:00:00Z"
+      end: "2022-08-30T23:00:00Z"
+      peak: "2022-08-26T08:00:00Z"
+    primary_mechanism: "cloudburst"
+    description: >
+      Extreme torrential rainfall along the upper Swat watershed triggered rapid convective runoff.
+      On August 26, 2022, a devastating flash flood surge swept down Swat River, collapsing multi-story
+      hotels in Kalam, destroying bridges at Bahrain and Madyan, and reaching record discharge
+      (~246,000 cusecs) at Chakdara. Panjkora River in Dir also reached high flood.
+    ground_truth:
+      swat_kalam:
+        confirmed_status: "confirmed_flood"
+        source_citation: "NDMA SitRep No. 74 (Aug 26, 2022); PDMA KP Flash Flood Alert #14"
+        spatial_granularity: "river_gauge_and_valley"
+        gauge_discharge_cusecs: null
+        notes: "Catastrophic flash flood: landmark hotels and roads swept away in Kalam on Aug 26."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      swat_madyan:
+        confirmed_status: "confirmed_flood"
+        source_citation: "PDMA KP Situation Update August 26-27, 2022; UN OCHA SitRep #03"
+        spatial_granularity: "river_stretch"
+        gauge_discharge_cusecs: null
+        notes: "Swat River in Madyan and Bahrain washed out key bridges and riparian settlements."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      swat_chakdara:
+        confirmed_status: "confirmed_flood"
+        source_citation: "FFC Daily Flood Situation Report August 27, 2022; PDMA KP River Monitoring"
+        spatial_granularity: "gauging_station_discharge"
+        gauge_discharge_cusecs: 246000
+        notes: "Peak flow reached ~246,000 cusecs on August 26 (Very High to Super Flood stage)."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      panjkora_dir:
+        confirmed_status: "confirmed_flood"
+        source_citation: "NDMA Daily SitRep No. 75; PDMA KP Upper Dir Damage Report"
+        spatial_granularity: "river_gauge_and_tehsil"
+        gauge_discharge_cusecs: null
+        notes: "Panjkora River at Dir reached high flood stage, causing erosion and bridge damages."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      panjkora_talash:
+        confirmed_status: "confirmed_flood"
+        source_citation: "PDMA KP Lower Dir Incident Report, August 26, 2022"
+        spatial_granularity: "river_stretch"
+        gauge_discharge_cusecs: null
+        notes: "High flood surge inundated agricultural terraces and access roads near Talash."
+        comparable_with_model_a: true
+        comparable_with_model_b: false
+      chitral_mastuj:
+        confirmed_status: "localized_minor"
+        source_citation: "PDMA KP Upper Chitral GLOF / Melt Report August 2022"
+        spatial_granularity: "district_report"
+        gauge_discharge_cusecs: null
+        notes: "Summer glacial melt and sporadic localized stream bursts, but unaffected by Swat cloudburst surge."
+        comparable_with_model_a: false
+        comparable_with_model_b: true
+      chitral_drosh:
+        confirmed_status: "no_confirmed_flood"
+        source_citation: "FFC River Status Report August 26-28, 2022"
+        spatial_granularity: "gauging_station_discharge"
+        gauge_discharge_cusecs: null
+        notes: "Discharge below critical danger stage during the late-August monsoon wave."
+        comparable_with_model_a: true
+        comparable_with_model_b: true
+      chitral_chitral:
+        confirmed_status: "no_confirmed_flood"
+        source_citation: "FFC Gauge Station Log; NDMA SitRep August 27, 2022"
+        spatial_granularity: "gauging_station_discharge"
+        gauge_discharge_cusecs: null
+        notes: "Chitral town gauge reported medium seasonal discharge, no major overbank flooding."
+        comparable_with_model_a: true
+        comparable_with_model_b: true

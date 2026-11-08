@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "description": "Historical ground-truth flood impacts for Pakistan 2010 Super Floods and 2022 Monsoon Floods in northern KP",
+  "disclaimer": "These verified outcomes are compiled from official NDMA, PDMA KP, FFC, and UN OCHA hydrometric and damage reports. They represent observed historical events and are strictly kept out of model training, feature fitting, and validation tuning.",
+  "events": [
+    {
+      "case_id": "pakistan_superflood_2010",
+      "year": 2010,
+      "title": "2010 Pakistan Super Floods",
+      "window_start": "2010-07-28T00:00:00Z",
+      "window_end": "2010-08-03T23:00:00Z",
+      "peak_timestamp": "2010-07-29T12:00:00Z",
+      "primary_mechanism": "cloudburst",
+      "sources": [
+        "NDMA Annual Flood Report 2010 (Govt of Pakistan)",
+        "Federal Flood Commission (FFC) River Discharge Records (July-August 2010)",
+        "PMD Saidu Sharif & Dir Gauge 24h Rainfall Bulletins"
+      ],
+      "basins": {
+        "swat_kalam": {
+          "status": "confirmed_flood",
+          "severity": "extreme",
+          "granularity": "river_gauge_and_valley",
+          "citation": "NDMA 2010 Section 3.2; Kalam bridge and road destruction",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "swat_madyan": {
+          "status": "confirmed_flood",
+          "severity": "extreme",
+          "granularity": "river_stretch",
+          "citation": "NDMA 2010 Swat valley damage matrix",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "swat_chakdara": {
+          "status": "confirmed_flood",
+          "severity": "extreme",
+          "granularity": "gauging_station_discharge",
+          "discharge_cusecs": 227000,
+          "citation": "FFC Daily River Bulletin July 30, 2010 (>227k cusecs)",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "panjkora_dir": {
+          "status": "confirmed_flood",
+          "severity": "extreme",
+          "granularity": "river_gauge_and_tehsil",
+          "citation": "PMD 274 mm/24h rain record; NDMA Upper Dir damages",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "panjkora_talash": {
+          "status": "confirmed_flood",
+          "severity": "high",
+          "granularity": "river_stretch",
+          "citation": "PDMA KP Lower Dir incident records",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "chitral_mastuj": {
+          "status": "localized_minor",
+          "severity": "minor",
+          "granularity": "district_report",
+          "citation": "NDMA 2010 Chitral summary (no widespread inundation)",
+          "comparable_model_a": false,
+          "comparable_model_b": true
+        },
+        "chitral_drosh": {
+          "status": "no_confirmed_flood",
+          "severity": "none",
+          "granularity": "gauging_station_discharge",
+          "citation": "FFC River Status July 2010 (below danger level)",
+          "comparable_model_a": true,
+          "comparable_model_b": true
+        },
+        "chitral_chitral": {
+          "status": "no_confirmed_flood",
+          "severity": "none",
+          "granularity": "gauging_station_discharge",
+          "citation": "FFC River Status July 2010 (bankfull within bounds)",
+          "comparable_model_a": true,
+          "comparable_model_b": true
+        }
+      }
+    },
+    {
+      "case_id": "pakistan_monsoon_flood_2022",
+      "year": 2022,
+      "title": "2022 Pakistan Monsoon Floods",
+      "window_start": "2022-08-25T00:00:00Z",
+      "window_end": "2022-08-30T23:00:00Z",
+      "peak_timestamp": "2022-08-26T08:00:00Z",
+      "primary_mechanism": "cloudburst",
+      "sources": [
+        "NDMA Monsoon 2022 Daily Situation Report No. 74 (Aug 26, 2022)",
+        "PDMA Khyber Pakhtunkhwa Monsoon Floods 2022 Review",
+        "Federal Flood Commission (FFC) Daily Flood Situation Reports",
+        "UN OCHA Pakistan Monsoon Floods SitRep #03"
+      ],
+      "basins": {
+        "swat_kalam": {
+          "status": "confirmed_flood",
+          "severity": "extreme",
+          "granularity": "river_gauge_and_valley",
+          "citation": "NDMA SitRep No. 74 (Aug 26, 2022); Kalam Honeymoon hotel collapse",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "swat_madyan": {
+          "status": "confirmed_flood",
+          "severity": "extreme",
+          "granularity": "river_stretch",
+          "citation": "PDMA KP SitRep Aug 26; Swat River bridge washout at Bahrain/Madyan",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "swat_chakdara": {
+          "status": "confirmed_flood",
+          "severity": "extreme",
+          "granularity": "gauging_station_discharge",
+          "discharge_cusecs": 246000,
+          "citation": "FFC Daily Bulletin Aug 27, 2022 (~246k cusecs peak)",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "panjkora_dir": {
+          "status": "confirmed_flood",
+          "severity": "high",
+          "granularity": "river_gauge_and_tehsil",
+          "citation": "NDMA Daily SitRep No. 75; Panjkora riverbank breaches in Dir",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "panjkora_talash": {
+          "status": "confirmed_flood",
+          "severity": "high",
+          "granularity": "river_stretch",
+          "citation": "PDMA KP Lower Dir Incident Log Aug 26, 2022",
+          "comparable_model_a": true,
+          "comparable_model_b": false
+        },
+        "chitral_mastuj": {
+          "status": "localized_minor",
+          "severity": "minor",
+          "granularity": "district_report",
+          "citation": "PDMA KP Upper Chitral GLOF/Melt memo; unaffected by Swat surge",
+          "comparable_model_a": false,
+          "comparable_model_b": true
+        },
+        "chitral_drosh": {
+          "status": "no_confirmed_flood",
+          "severity": "none",
+          "granularity": "gauging_station_discharge",
+          "citation": "FFC River Status Report Aug 26-28, 2022 (below danger stage)",
+          "comparable_model_a": true,
+          "comparable_model_b": true
+        },
+        "chitral_chitral": {
+          "status": "no_confirmed_flood",
+          "severity": "none",
+          "granularity": "gauging_station_discharge",
+          "citation": "FFC River Station Records (normal seasonal high flow)",
+          "comparable_model_a": true,
+          "comparable_model_b": true
+        }
+      }
+    }
+  ]
+}

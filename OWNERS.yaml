@@ -15,6 +15,8 @@ owners:
     - configs/basins.yaml
     - configs/region.yaml
     - configs/split.yaml
+    - configs/historical_cases.yaml
+    - configs/real_data_training.yaml
     - data/demo/**
     - data/static/**
     - data/advisories.json
@@ -26,6 +28,7 @@ owners:
     - src/floodwatch/data_sources/**
     - src/floodwatch/models/windows.py
     - src/floodwatch/models/model_a.py
+    - src/floodwatch/models/eval_cases.py
     # Trust layers
     - src/floodwatch/verify.py
     - src/floodwatch/triage.py
@@ -35,6 +38,9 @@ owners:
     - scripts/03_*.py
     - scripts/09_*.py
     - scripts/10_*.py
+    - scripts/train_*.py
+    - scripts/eval_*.py
+    - scripts/build_*.py
     # Artifacts & docs
     - artifacts/a/**
     - docs/SOURCES.md
@@ -52,6 +58,11 @@ owners:
     - tests/test_model_output_files.py
     - tests/test_verify.py
     - tests/test_triage.py
+    - tests/test_openmeteo_retry.py
+    - tests/test_historical_cases.py
+    - tests/test_leakage.py
+    - tests/test_real_models.py
+    - tests/test_case_ui.py
     - COLLABORATION_AND_CODING_GUIDELINES.md
     - create_floodwatch_issues.sh
     - notebooks/**

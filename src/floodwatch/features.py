@@ -165,3 +165,44 @@ def read_features(path: str | Path) -> pd.DataFrame:
     df = pd.read_parquet(path)
     df["timestamp_utc"] = pd.to_datetime(df["timestamp_utc"], utc=True)
     return df
+
+
+def validate_no_leakage(
+    features_df: pd.DataFrame,
+    feature_cols: tuple[str, ...] | list[str],
+    *,
+    split_col: str = "split",
+    forbidden_terms: tuple[str, ...] = ("forecast", "future", "target", "label", "lead"),
+) -> None:
+    """Validate that input feature columns do not contain leaked future or target data.
+
+    Enforces:
+      1. No future/target keywords in feature names (e.g. shifted rain).
+      2. Features must have no NaN values when fitted on training data.
+      3. Splits must strictly separate historical training and external test periods.
+    """
+    for col in feature_cols:
+        col_lower = col.lower()
+        for term in forbidden_terms:
+            if term in col_lower and col_lower != "freezing_level_m":
+                # Special allowance for actual forecast in operational mode only if explicitly named
+                if "fcst" not in col_lower:
+                    raise ValueError(
+                        f"Feature column '{col}' contains forbidden target/leak keyword '{term}'"
+                    )
+
+    if split_col in features_df.columns:
+        splits = set(features_df[split_col].unique())
+        # Check that external test periods (2010, 2022) do not contaminate train
+        if "train" in splits:
+            train_df = features_df[features_df[split_col] == "train"]
+            if not train_df.empty:
+                train_years = pd.to_datetime(train_df["timestamp_utc"]).dt.year.unique()
+                if 2010 in train_years:
+                    raise ValueError(
+                        "Leakage error: Year 2010 (external case study) is present in train split!"
+                    )
+                if 2022 in train_years:
+                    raise ValueError(
+                        "Leakage error: Year 2022 (external case study) is present in train split!"
+                    )

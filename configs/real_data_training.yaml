@@ -1,0 +1,82 @@
+# Real-Data Training and External Event Evaluation Configuration
+# ==============================================================
+# Model A: Rainfall / Cloudburst Flash Flood Risk
+# Model B: Snowmelt and Rain-on-Snow Flood Risk
+#
+# Leakage Prevention Rules:
+# 1. 2010 and 2022 historical flood events are STRICTLY OUTSIDE training and validation.
+#    They serve as external case studies only.
+# 2. Preprocessing transformations (StandardScaler, baseline intercepts) are fit
+#    STRICTLY on the train split rows.
+# 3. No future observed rainfall or weather is ever used as a feature.
+# 4. A 30-day buffer is enforced between chronological splits.
+
+schema_version: 1
+seed: 42
+
+splits:
+  train:
+    start: "2016-01-01T00:00:00Z"
+    end: "2020-11-30T23:00:00Z"
+    description: "Multi-year training split (~5 years, 2016-2020) across all 8 basins"
+  buffer:
+    start: "2020-12-01T00:00:00Z"
+    end: "2020-12-31T23:00:00Z"
+    description: "30-day temporal isolation buffer"
+  validation:
+    start: "2021-01-01T00:00:00Z"
+    end: "2021-12-31T23:00:00Z"
+    description: "Full holdout year (2021) for hyperparameter tuning and threshold fitting"
+
+external_cases:
+  case_2010:
+    start: "2010-07-25T00:00:00Z"
+    end: "2010-08-05T23:00:00Z"
+    title: "2010 Pakistan Super Floods External Test Case"
+  case_2022:
+    start: "2022-08-20T00:00:00Z"
+    end: "2022-08-31T23:00:00Z"
+    title: "2022 Pakistan Monsoon Floods External Test Case"
+
+model_a:
+  module: "A_cloudburst_cnn_lstm"
+  lookback_h: 72
+  label_horizon_h: 6
+  conv_filters: 32
+  lstm_units: 64
+  learning_rate: 0.001
+  batch_size: 256
+  max_epochs: 15
+  patience: 4
+  features:
+    - rain_1h
+    - rain_3h
+    - rain_24h
+    - rain_72h
+    - temp_c
+    - freezing_level_m
+    - soil_moisture
+    - terrain_susceptibility
+
+model_b:
+  module: "B_snowmelt_lstm"
+  lookback_h: 72
+  label_horizon_h: 6
+  hidden_units: 48
+  learning_rate: 0.001
+  batch_size: 256
+  max_epochs: 15
+  patience: 4
+  features:
+    - rain_1h
+    - rain_3h
+    - rain_24h
+    - rain_72h
+    - temp_c
+    - freezing_level_m
+    - soil_moisture
+    - snow_depth_mm
+    - snowmelt_mm
+    - degree_day_melt
+    - rain_on_snow
+    - terrain_susceptibility
