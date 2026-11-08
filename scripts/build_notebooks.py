@@ -745,37 +745,57 @@ val_idx = index_df[index_df["split"] == "validation"].reset_index(drop=True)
 train_loader = DataLoader(TemporalDatasetB(basin_arrays, train_idx, lookback), batch_size=256, shuffle=True)
 val_loader = DataLoader(TemporalDatasetB(basin_arrays, val_idx, lookback), batch_size=256, shuffle=False)
 
+def weighted_bce_loss(preds, targets, pos_weight=5.0):
+    loss = -(pos_weight * targets * torch.log(preds + 1e-7) + (1.0 - targets) * torch.log(1.0 - preds + 1e-7))
+    return loss.mean()
+
 t_cfg = TrainConfig(seed=SEED, hidden_units=48, max_epochs=8)
 model_b = build_model(n_features=len(feature_cols), cfg=t_cfg).to(device)
 optimizer = torch.optim.Adam(model_b.parameters(), lr=1e-3)
 
-print("Training Model B LSTM (1 layer, 48 units)...")
+print("Training Model B LSTM (1 layer, 48 units) with class-weighted loss...")
 model_b.train()
 for ep in range(1, 9):
     total_loss = 0.0
     for x_b, y_b in train_loader:
         x_b, y_b = x_b.to(device), y_b.to(device)
         optimizer.zero_grad()
-        loss = torch.nn.functional.binary_cross_entropy(model_b(x_b), y_b)
+        loss = weighted_bce_loss(model_b(x_b), y_b, pos_weight=5.0)
         loss.backward()
         optimizer.step()
         total_loss += loss.item() * len(y_b)
     print(f"Epoch {ep:02d} - Loss: {total_loss / len(train_idx):.4f}")"""
     ),
     code_cell(
-        """# Validation Evaluation
+        """# Validation Evaluation & Dynamic Threshold Calibration
 model_b.eval()
 val_preds = []
 with torch.no_grad():
     for x_b, _ in val_loader:
         val_preds.append(model_b(x_b.to(device)).detach().cpu().numpy())
 val_probs = np.concatenate(val_preds)
-val_pred_binary = (val_probs >= 0.50).astype(int)
 y_val = val_idx["target"].values
 
-val_pod = float(np.sum((val_pred_binary == 1) & (y_val == 1)) / max(1, np.sum(y_val == 1)))
-val_far = float(np.sum((val_pred_binary == 1) & (y_val == 0)) / max(1, np.sum(val_pred_binary == 1)))
-print(f"Model B Validation Metrics: POD={val_pod:.4f} | FAR={val_far:.4f}")"""
+best_threshold = 0.50
+best_csi = -1.0
+val_pod, val_far = 0.0, 0.0
+
+for thresh in np.linspace(0.05, 0.50, 46):
+    pred_bin = (val_probs >= thresh).astype(int)
+    hits = int(np.sum((pred_bin == 1) & (y_val == 1)))
+    misses = int(np.sum((pred_bin == 0) & (y_val == 1)))
+    fa = int(np.sum((pred_bin == 1) & (y_val == 0)))
+    pod = float(hits / (hits + misses)) if (hits + misses) > 0 else 0.0
+    far = float(fa / (hits + fa)) if (hits + fa) > 0 else 0.0
+    csi = float(hits / (hits + misses + fa)) if (hits + misses + fa) > 0 else 0.0
+    if csi > best_csi:
+        best_csi = csi
+        best_threshold = float(thresh)
+        val_pod = pod
+        val_far = far
+
+print(f"Model B Validation Metrics (Calibrated Threshold: {best_threshold:.2f}):")
+print(f"  POD={val_pod:.4f} | FAR={val_far:.4f} | CSI={best_csi:.4f}")"""
     ),
     code_cell(
         """# External Historical Case Evaluation for Model B
@@ -824,7 +844,7 @@ for year, start_w, end_w in [(2010, "2010-07-28", "2010-08-03"), (2022, "2022-08
             preds_case.append(float(model_b(t_seq).detach().cpu().item()))
 
     c_idx_df["prob"] = preds_case
-    report = evaluate_case(case_year=year, predictions_df=c_idx_df, model_name="Model B", threshold=0.50)
+    report = evaluate_case(case_year=year, predictions_df=c_idx_df, model_name="Model B", threshold=best_threshold)
 
     print(f"\\n=== CASE {year}: {report.title} (Model B Melt Evaluation) ===")
     rows = []

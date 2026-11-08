@@ -179,6 +179,19 @@ def baseline_probability(summary: pd.DataFrame, state: BaselineState) -> np.ndar
     return 1.0 / (1.0 + np.exp(-logit))
 
 
+def build_baseline(train_features: pd.DataFrame) -> tuple[Any, BaselineState]:
+    """Fit and return the deterministic degree-day snowmelt baseline heuristic."""
+    summary = baseline_inputs(train_features)
+    train_mask = pd.Series([True] * len(summary), index=summary.index)
+    state = fit_baseline(summary, train_mask=train_mask)
+
+    def predict_fn(features_df: pd.DataFrame) -> np.ndarray:
+        s = baseline_inputs(features_df)
+        return baseline_probability(s, state)
+
+    return predict_fn, state
+
+
 # ---------------------------------------------------------------------------
 # Sequence preparation
 # ---------------------------------------------------------------------------
