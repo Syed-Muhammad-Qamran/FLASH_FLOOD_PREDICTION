@@ -1,0 +1,7 @@
+# Lightweight runtime: Hugging Face Spaces / Streamlit app.
+# Strictly NO torch and NO scikit-learn here.
+pandas>=2.0
+numpy>=1.24
+pyarrow>=14
+PyYAML>=6
+streamlit>=1.30

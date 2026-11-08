@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Environments
+.venv/
+venv/
+.env
+
+# Data: raw + intermediate never enter git
+data/raw/
+data/processed/
+data/state/
+*.log
+
+# Large model artifacts: manifests + metrics are committed, binaries are not
+artifacts/*/*.pt
+artifacts/*/predictions_*.parquet
+
+# Runs: everything except the committed offline demo
+runs/*
+!runs/demo/
+!runs/demo/**
+!runs/.gitkeep
+!runs/TEST_EVALUATED.json
+
+# Local caches
+.cache/

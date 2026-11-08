@@ -1,0 +1,25 @@
+# Auto-request the other person as reviewer.
+# Branch protection requires one approval; do NOT require review from code owners
+# (with two people the owner cannot approve their own PR).
+
+*                       @Warisha-Bilal7 @Syed-Muhammad-Qamran
+
+# Model A / data / trust lane
+/src/floodwatch/schema.py            @Syed-Muhammad-Qamran
+/src/floodwatch/features.py          @Syed-Muhammad-Qamran
+/src/floodwatch/data_sources/        @Syed-Muhammad-Qamran
+/src/floodwatch/models/windows.py    @Syed-Muhammad-Qamran
+/src/floodwatch/models/model_a.py    @Syed-Muhammad-Qamran
+/src/floodwatch/verify.py            @Syed-Muhammad-Qamran
+/src/floodwatch/triage.py            @Syed-Muhammad-Qamran
+/configs/split.yaml                  @Syed-Muhammad-Qamran
+
+# Model B / fusion / app lane
+/src/floodwatch/models/model_b.py    @Warisha-Bilal7
+/src/floodwatch/fusion.py            @Warisha-Bilal7
+/src/floodwatch/thresholds.py        @Warisha-Bilal7
+/src/floodwatch/runner.py            @Warisha-Bilal7
+/src/floodwatch/alerts.py            @Warisha-Bilal7
+/src/floodwatch/channels/            @Warisha-Bilal7
+/app/                                @Warisha-Bilal7
+/.github/                            @Warisha-Bilal7

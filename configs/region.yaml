@@ -1,0 +1,26 @@
+# Regional bounds for the Open-Meteo grid patch and all display metadata.
+
+schema_version: 1
+
+region:
+  name: Northern Khyber Pakhtunkhwa
+  country: Pakistan
+  timezone: UTC
+
+  # Approximate envelope covering Swat, Dir and Chitral.
+  bbox:
+    lon_min: 70.5
+    lon_max: 73.5
+    lat_min: 34.0
+    lat_max: 37.0
+
+  # 3x3 patch spacing used by the spatial branch (degrees).
+  grid_step_deg: 0.25
+
+  # Open-Meteo needs no credential; the cache lives under data/raw/.
+  archive_url: https://archive-api.open-meteo.com/v1/archive
+  forecast_url: https://api.open-meteo.com/v1/forecast
+  flood_url: https://flood-api.open-meteo.com/v1/flood
+
+  request_timeout_s: 30
+  cache_ttl_hours: 24
