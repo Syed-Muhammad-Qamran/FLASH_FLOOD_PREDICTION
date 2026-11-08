@@ -1,0 +1,25 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Streamlit secrets & credentials
+.streamlit/secrets.toml
+.env
+*.token
+*.pem
+*.key
+
+# Temporary OS files
+.DS_Store
+Thumbs.db
