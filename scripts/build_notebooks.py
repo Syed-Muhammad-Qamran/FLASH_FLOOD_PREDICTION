@@ -174,7 +174,7 @@ nb2_cells = [
 4. **Legitimate Baselines:** Logistic Regression baseline fitted on training data with real calibrated probabilities."""
     ),
     code_cell(
-        """# Setup environment and dependencies (Auto-detects Google Colab)
+        """# Setup environment & CPU/GPU configuration (Auto-detects Google Colab)
 import os
 import sys
 from pathlib import Path
@@ -203,9 +203,15 @@ import yaml
 SEED = 42
 np.random.seed(SEED)
 torch.manual_seed(SEED)
+
+# Automatically use CPU if GPU quota is exhausted or unavailable
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Repository Root: {repo_root}")
-print(f"Computation Device: {device}")"""
+print(f"Computation Device: {device.type.upper()}")
+if device.type == "cpu":
+    print("✓ CPU Mode Active: Zero-GPU required. Architecture is lightweight and runs fast on CPU.")
+else:
+    print(f"✓ GPU Mode Active: {torch.cuda.get_device_name(0)}")"""
     ),
     code_cell(
         """# Load Basins & Configuration
@@ -387,7 +393,7 @@ model_a = CloudburstTemporalNN(
 criterion = torch.nn.BCELoss()
 optimizer = torch.optim.Adam(model_a.parameters(), lr=1e-3)
 
-EPOCHS = 10
+EPOCHS = 8
 print(f"Training CloudburstTemporalNN on {device} for {EPOCHS} epochs...")
 model_a.train()
 for ep in range(1, EPOCHS + 1):
@@ -532,7 +538,7 @@ nb3_cells = [
 3. **Out-of-Sample Case Studies:** 2010 and 2022 historical cases evaluated out-of-sample against official hydrometric records (focusing on snow-fed basins: Swat Kalam, Chitral Mastuj, Chitral Drosh, Chitral town)."""
     ),
     code_cell(
-        """# Setup environment and dependencies (Auto-detects Google Colab)
+        """# Setup environment & CPU/GPU configuration (Auto-detects Google Colab)
 import os
 import sys
 from pathlib import Path
@@ -560,9 +566,15 @@ import yaml
 SEED = 42
 np.random.seed(SEED)
 torch.manual_seed(SEED)
+
+# Automatically use CPU if GPU quota is exhausted or unavailable
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Repository Root: {repo_root}")
-print(f"Computation Device: {device}")"""
+print(f"Computation Device: {device.type.upper()}")
+if device.type == "cpu":
+    print("✓ CPU Mode Active: Zero-GPU required. Architecture is lightweight and runs fast on CPU.")
+else:
+    print(f"✓ GPU Mode Active: {torch.cuda.get_device_name(0)}")"""
     ),
     code_cell(
         """from floodwatch.features import load_basins, add_features, validate_no_leakage
@@ -704,13 +716,13 @@ val_idx = index_df[index_df["split"] == "validation"].reset_index(drop=True)
 train_loader = DataLoader(TemporalDatasetB(basin_arrays, train_idx, lookback), batch_size=256, shuffle=True)
 val_loader = DataLoader(TemporalDatasetB(basin_arrays, val_idx, lookback), batch_size=256, shuffle=False)
 
-t_cfg = TrainConfig(seed=SEED, hidden_units=48, max_epochs=10)
+t_cfg = TrainConfig(seed=SEED, hidden_units=48, max_epochs=8)
 model_b = build_model(n_features=len(feature_cols), cfg=t_cfg).to(device)
 optimizer = torch.optim.Adam(model_b.parameters(), lr=1e-3)
 
 print("Training Model B LSTM (1 layer, 48 units)...")
 model_b.train()
-for ep in range(1, 11):
+for ep in range(1, 9):
     total_loss = 0.0
     for x_b, y_b in train_loader:
         x_b, y_b = x_b.to(device), y_b.to(device)
