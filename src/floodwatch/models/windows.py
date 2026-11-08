@@ -133,7 +133,7 @@ def iter_sequences(
     n_features = len(feature_columns)
 
     for start in range(0, len(keys), batch_size):
-        chunk = keys.iloc[start : start + batch_size]
+        chunk = keys.iloc[start : start + batch_size].reset_index(drop=True)
         X = np.zeros((len(chunk), lookback_h, n_features), dtype=np.float32)
         keep = np.zeros(len(chunk), dtype=bool)
         for basin_id, positions in chunk.groupby("basin_id", sort=False).groups.items():

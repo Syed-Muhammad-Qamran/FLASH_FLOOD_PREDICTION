@@ -110,11 +110,12 @@ def main() -> int:
 
     # Fit the degree-day baseline on train summaries only.
     summary = model_b.baseline_inputs(features)
-    split_by_key = grid.set_index(["basin_id", "timestamp_utc"])["split"]
-    summary_splits = split_by_key.reindex(
-        pd.MultiIndex.from_frame(summary[["basin_id", "timestamp_utc"]])
-    ).to_numpy()
-    train_mask = pd.Series(summary_splits == "train")
+    summary = summary.merge(
+        grid[["basin_id", "timestamp_utc", "split"]],
+        on=["basin_id", "timestamp_utc"],
+        how="left",
+    )
+    train_mask = summary["split"].fillna("").eq("train")
     state = model_b.fit_baseline(summary, train_mask=train_mask)
 
     model_version = f"{schema.MODULE_B}-{git_sha()}-{snapshot_hash[:8]}"
