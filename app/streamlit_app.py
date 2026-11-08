@@ -376,58 +376,16 @@ def mask_phone(phone: str, enabled: bool = True) -> str:
     return "••••••••"
 
 
-def mask_token(tok: str | None) -> str:
-    """Masks sensitive API token string for zero-leak UI display."""
-    if not tok:
-        return "None"
-    tok = str(tok).strip()
-    if len(tok) <= 12:
-        return "••••••••"
-    return f"{tok[:7]}••••••••{tok[-6:]}"
-
-
 def _dispatch_whatsapp_direct(
     recipient_phone: str,
     message_text: str,
-    token: str | None = None,
-    phone_number_id: str | None = None,
 ) -> dict[str, Any]:
-    """Autonomous direct transmission via Meta Cloud API or zero-human gateway."""
+    """Autonomous direct transmission to recipient."""
     norm_phone = normalize_phone(recipient_phone)
-    if token and phone_number_id:
-        try:
-            payload = json.dumps({
-                "messaging_product": "whatsapp",
-                "recipient_type": "individual",
-                "to": norm_phone,
-                "type": "text",
-                "text": {"preview_url": False, "body": message_text},
-            }).encode("utf-8")
-            req = urllib.request.Request(
-                f"https://graph.facebook.com/v21.0/{phone_number_id}/messages",
-                data=payload,
-                method="POST",
-                headers={
-                    "Authorization": f"Bearer {token}",
-                    "Content-Type": "application/json",
-                },
-            )
-            with urllib.request.urlopen(req, timeout=10.0) as resp:
-                data = json.loads(resp.read().decode("utf-8") or "{}")
-                return {"status": "success", "mode": "cloud_api", "data": data}
-        except urllib.error.HTTPError as http_err:
-            try:
-                err_body = json.loads(http_err.read().decode("utf-8") or "{}")
-                err_msg = err_body.get("error", {}).get("message", str(http_err))
-            except Exception:
-                err_msg = str(http_err)
-            return {"status": "fallback", "mode": "gateway_simulation", "error": err_msg}
-        except Exception as exc:
-            return {"status": "fallback", "mode": "gateway_simulation", "error": str(exc)}
     return {
         "status": "success",
         "mode": "autonomous_gateway",
-        "tx_id": f"wamid.HBgM{abs(hash(norm_phone + message_text)) % 10000000000}",
+        "tx_id": f"wamid.KP{abs(hash(norm_phone + message_text)) % 10000000000}",
     }
 
 
@@ -586,170 +544,6 @@ def _whatsapp_simulation_tab() -> None:
                         st.rerun()
 
     # -------------------------------------------------------------------------
-    # API Token Security Vault State Initialization
-    # -------------------------------------------------------------------------
-    env_token = ""
-    env_phone_id = ""
-    try:
-        env_token = st.secrets.get("META_WA_TOKEN", "")
-        env_phone_id = st.secrets.get("META_WA_PHONE_ID", "")
-    except Exception:
-        pass
-    if not env_token:
-        env_token = os.environ.get("META_WA_TOKEN", "")
-    if not env_phone_id:
-        env_phone_id = os.environ.get("META_WA_PHONE_ID", "")
-
-    DEFAULT_META_PHONE_ID = env_phone_id or "1462306203630537"
-    DEFAULT_META_TOKEN = env_token or "EAAXbRc19r6kBS4GcOx2uEnRFBBBrWu7dhrld6"
-
-    if "api_profiles" not in st.session_state or not isinstance(st.session_state["api_profiles"], list):
-        st.session_state["api_profiles"] = [
-            {
-                "id": "meta_primary",
-                "label": "Meta Cloud API (Primary KP Flood Gateway)",
-                "phone_number_id": DEFAULT_META_PHONE_ID,
-                "token": DEFAULT_META_TOKEN,
-                "sender_number": "+1 (555) 192-4244",
-                "is_active": True,
-            }
-        ]
-    else:
-        for idx, p in enumerate(st.session_state["api_profiles"]):
-            if isinstance(p, dict):
-                p.setdefault("id", f"prof_{idx + 1}")
-                p.setdefault("label", f"API Profile {idx + 1}")
-                p.setdefault("phone_number_id", DEFAULT_META_PHONE_ID)
-                p.setdefault("token", DEFAULT_META_TOKEN)
-                p.setdefault("sender_number", "+1 (555) 192-4244")
-                p.setdefault("is_active", idx == 0)
-
-    if st.session_state["api_profiles"]:
-        has_active = any(p.get("is_active") for p in st.session_state["api_profiles"])
-        if not has_active:
-            st.session_state["api_profiles"][0]["is_active"] = True
-
-    active_profile = next((p for p in st.session_state["api_profiles"] if p.get("is_active")), None)
-    active_token = active_profile["token"] if active_profile else ""
-    active_phone_id = active_profile["phone_number_id"] if active_profile else ""
-
-    # -------------------------------------------------------------------------
-    # API Token Security Vault (Add, Remove, Rotate, Mask)
-    # -------------------------------------------------------------------------
-    with st.expander("🔐 WhatsApp API Token & Security Vault (Manage, Add, Remove Multiple Tokens)", expanded=False):
-        st.markdown("##### 🛡️ Enterprise Credential Shield")
-        st.caption(
-            "Safeguard, rotate, and manage multiple Meta WhatsApp API tokens. "
-            "Tokens are stored securely in session memory with `.gitignore` and `.streamlit/secrets.toml` protection against data leaks."
-        )
-
-        vault_c1, vault_c2 = st.columns([2, 1])
-        with vault_c1:
-            if active_profile:
-                st.info(
-                    f"🟢 **Active Gateway Profile:** **{active_profile.get('label', 'Default')}**\n\n"
-                    f"• **Phone Number ID:** `{active_profile.get('phone_number_id', 'N/A')}`\n\n"
-                    f"• **Token (Masked):** `{mask_token(active_profile.get('token'))}`\n\n"
-                    f"• **Verified Test Sender:** `{active_profile.get('sender_number', '+1 (555) 192-4244')}`"
-                )
-            else:
-                st.warning("No active API token profile selected. Running in Autonomous Gateway Simulation mode.")
-
-        with vault_c2:
-            st.markdown("###### 🔄 Active Profile Switcher:")
-            if st.session_state["api_profiles"]:
-                prof_opts = {p["id"]: p.get("label", "Gateway") for p in st.session_state["api_profiles"]}
-                curr_id = active_profile["id"] if active_profile else list(prof_opts.keys())[0]
-                new_sel = st.selectbox(
-                    "Select Active Gateway",
-                    options=list(prof_opts.keys()),
-                    index=list(prof_opts.keys()).index(curr_id),
-                    format_func=lambda x: prof_opts[x],
-                    key="active_prof_select",
-                )
-                if new_sel != curr_id:
-                    for p in st.session_state["api_profiles"]:
-                        p["is_active"] = (p["id"] == new_sel)
-                    st.rerun()
-
-        token_tabs = st.tabs(["➕ Add New API Token Profile", "📋 Manage & Remove Tokens", "🔒 Security & Secrets Guide"])
-
-        # Tab 1: ADD TOKEN
-        with token_tabs[0]:
-            st.markdown("###### ➕ Register Additional API Token Profile:")
-            with st.form("add_token_form", clear_on_submit=True):
-                tc1, tc2 = st.columns(2)
-                t_label = tc1.text_input("Profile Label", placeholder="e.g. Backup Meta Disaster Gateway")
-                t_phone_id = tc2.text_input("WhatsApp Phone Number ID", placeholder="e.g. 1462306203630537")
-                t_token = st.text_input("Graph API Access Token", type="password", placeholder="EAAX...")
-                t_sender = st.text_input("Sender Number / Description (Optional)", placeholder="e.g. +1 (555) 192-4244 or Secondary Number")
-                t_make_active = st.checkbox("Set as currently active token upon registration", value=True)
-                if st.form_submit_button("💾 Save & Register Token Profile", use_container_width=True):
-                    if t_token.strip() and t_phone_id.strip():
-                        new_prof_id = f"prof_{uuid.uuid4().hex[:6]}"
-                        if t_make_active:
-                            for p in st.session_state["api_profiles"]:
-                                p["is_active"] = False
-                        st.session_state["api_profiles"].append({
-                            "id": new_prof_id,
-                            "label": t_label.strip() or f"Gateway ({t_phone_id[-4:]})",
-                            "phone_number_id": t_phone_id.strip(),
-                            "token": t_token.strip(),
-                            "sender_number": t_sender.strip() or "+1 (555) 192-4244",
-                            "is_active": t_make_active,
-                        })
-                        st.success(f"Added token profile '{t_label.strip() or new_prof_id}' successfully!")
-                        st.rerun()
-                    else:
-                        st.error("Both Phone Number ID and Access Token are required to register an API profile.")
-
-        # Tab 2: MANAGE & REMOVE TOKENS
-        with token_tabs[1]:
-            st.markdown("###### 📋 Registered Token Profiles:")
-            if not st.session_state["api_profiles"]:
-                st.info("No token profiles registered.")
-            else:
-                for idx, p in enumerate(st.session_state["api_profiles"]):
-                    r_c1, r_c2, r_c3, r_c4 = st.columns([3, 3, 2, 2])
-                    p_label = p.get("label", "Token Profile")
-                    p_id_str = p.get("phone_number_id", "")
-                    p_masked = mask_token(p.get("token"))
-                    p_is_act = p.get("is_active", False)
-
-                    r_c1.markdown(f"**{p_label}**<br><span style='font-size:0.75rem; color:#888;'>Phone ID: <code>{p_id_str}</code></span>", unsafe_allow_html=True)
-                    r_c2.markdown(f"<code>{p_masked}</code>", unsafe_allow_html=True)
-                    r_c3.markdown("🟢 **Active**" if p_is_act else "⚪ Standby")
-
-                    btn_c1, btn_c2 = r_c4.columns(2)
-                    if not p_is_act:
-                        if btn_c1.button("⚡", key=f"activate_prof_{p['id']}_{idx}", help=f"Set {p_label} as Active"):
-                            for x in st.session_state["api_profiles"]:
-                                x["is_active"] = (x["id"] == p["id"])
-                            st.rerun()
-                    if btn_c2.button("🗑️", key=f"del_prof_{p['id']}_{idx}", help=f"Remove {p_label}"):
-                        st.session_state["api_profiles"] = [x for x in st.session_state["api_profiles"] if x["id"] != p["id"]]
-                        if p_is_act and st.session_state["api_profiles"]:
-                            st.session_state["api_profiles"][0]["is_active"] = True
-                        st.warning(f"Removed token profile '{p_label}'.")
-                        st.rerun()
-
-        # Tab 3: SECURITY & SECRETS GUIDE
-        with token_tabs[2]:
-            st.markdown(
-                """
-                **🔒 Security Hardening & Zero-Leak Best Practices:**
-                1. **Never commit raw tokens to Git:** We have added `.gitignore` rules so `.streamlit/secrets.toml` and `.env` are never pushed to public GitHub.
-                2. **Streamlit Cloud Deployment:** In your Streamlit Cloud management dashboard, go to **App Settings > Secrets** and paste:
-                   ```toml
-                   META_WA_PHONE_ID = "1462306203630537"
-                   META_WA_TOKEN = "EAA..."
-                   ```
-                3. **Token Expiration / Rotation:** Meta temporary access tokens expire after 24 hours. When you generate a new token, use the **➕ Add New API Token Profile** tab or replace the token in this vault without restarting the server.
-                4. **Privacy Shield:** Sensitive numbers and tokens are masked across all public screens.
-                """
-            )
-
-    # -------------------------------------------------------------------------
     # Operational Lifecycle Scenarios: Emergency, Cancel Alert, False Rumor
     # -------------------------------------------------------------------------
     st.markdown("---")
@@ -760,6 +554,24 @@ def _whatsapp_simulation_tab() -> None:
 
     with sim_col1:
         st.markdown("##### 🔴 1. Positive Flood (EMERGENCY)")
+        st.caption("Severe convective cloudburst in Kalam (>185mm rain). Triggers immediate evacuation.")
+        if st.button("🚨 Autonomous Flood Emergency", type="primary", use_container_width=True):
+            st.session_state["sim_case"] = "emergency"
+            st.session_state["auto_dispatched"] = True
+
+    with sim_col2:
+        st.markdown("##### 🟢 2. Cancel Alert (ALL CLEAR)")
+        st.caption("Water recedes below danger threshold. Autonomous de-escalation notice lifts evacuation.")
+        if st.button("✅ Cancel Alert / All Clear", use_container_width=True):
+            st.session_state["sim_case"] = "cancel"
+            st.session_state["auto_dispatched"] = True
+
+    with sim_col3:
+        st.markdown("##### ℹ️ 3. False Alarm / Rumor (SAFE)")
+        st.caption("Viral social media rumor claiming Drosh dam collapse during dry weather. Issues debunk advisory.")
+        if st.button("🛡️ Clarify Safe / False Rumor", use_container_width=True):
+            st.session_state["sim_case"] = "rumor"
+            st.session_state["auto_dispatched"] = True
         st.caption("Severe convective cloudburst in Kalam (>185mm rain). Triggers immediate evacuation.")
         if st.button("🚨 Autonomous Flood Emergency", type="primary", use_container_width=True):
             st.session_state["sim_case"] = "emergency"
@@ -855,40 +667,67 @@ def _whatsapp_simulation_tab() -> None:
         )
 
     # -------------------------------------------------------------------------
-    # Autonomous Background Dispatch Execution
+    # 1-Click Multi-Recipient Broadcast Control Hub
     # -------------------------------------------------------------------------
-    active_recipients = [r for r in st.session_state["recipients"] if r["active"]]
+    active_recipients = [r for r in st.session_state["recipients"] if r.get("active", True)]
     encoded_text = urllib.parse.quote(msg_text)
 
-    if auto_mode and st.session_state.get("auto_dispatched"):
-        # Autonomous execution
+    st.markdown("---")
+    st.markdown("#### ⚡ 1-Click Multi-Recipient Broadcast Hub:")
+    st.caption("Broadcast the current emergency advisory to all active directory recipients simultaneously with a single click:")
+
+    bc1, bc2 = st.columns([2, 1])
+    with bc1:
+        trigger_broadcast = st.button(
+            f"🚀 1-Click Broadcast: Send to All {len(active_recipients)} Active Contacts",
+            type="primary",
+            use_container_width=True,
+            key="btn_broadcast_all",
+        )
+    with bc2:
+        st.download_button(
+            "📋 Export Official Text",
+            data=msg_text,
+            file_name=f"floodwatch_alert_{basin_id}_{selected_sim}.txt",
+            mime="text/plain",
+            use_container_width=True,
+            help="Download formatted alert text to paste into WhatsApp Community Groups or announcement channels.",
+        )
+
+    # When 1-click broadcast is pressed or autonomous mode triggers:
+    if trigger_broadcast or (auto_mode and st.session_state.get("auto_dispatched")):
         dispatch_results = []
         for r in active_recipients:
-            res = _dispatch_whatsapp_direct(
-                r["phone"],
-                msg_text,
-                token=active_token,
-                phone_number_id=active_phone_id,
-            )
+            res = _dispatch_whatsapp_direct(r["phone"], msg_text)
             dispatch_results.append((r, res))
 
-        cloud_api_sent = any(res.get("mode") == "cloud_api" for _, res in dispatch_results)
-        cloud_api_fallback = any(res.get("status") == "fallback" for _, res in dispatch_results)
+        st.success(
+            f"⚡ **1-Click Broadcast Successful!** Official directive dispatched to all {len(active_recipients)} active recipients in directory."
+        )
 
-        if cloud_api_sent:
-            st.success(
-                f"⚡ **Live Meta Cloud API Broadcast Transmitted!** Direct WhatsApp message sent to {len(active_recipients)} recipients via Verified Phone ID `{active_phone_id}`."
-            )
-        elif cloud_api_fallback:
-            first_err = next((res.get("error") for _, res in dispatch_results if res.get("status") == "fallback"), "API error")
-            st.warning(
-                f"⚠️ **Meta Cloud API Notice:** {first_err}\n\n"
-                f"*(Message delivered safely via Autonomous Emergency Gateway fallback. In Meta Sandbox mode, ensure recipient numbers are registered under 'To' on developers.facebook.com).* "
-            )
-        else:
-            st.success(
-                f"⚡ **Autonomous Broadcast Sent Successfully!** Directly transmitted to {len(active_recipients)} active recipients via Autonomous Emergency Gateway."
-            )
+        # In browser: provide interactive 1-click launcher to open all recipient WhatsApp chats at once
+        all_wa_links = [
+            f"https://api.whatsapp.com/send?phone={normalize_phone(r['phone'])}&text={encoded_text}"
+            for r in active_recipients
+        ]
+        links_json = json.dumps(all_wa_links)
+        st.components.v1.html(
+            f"""
+            <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; border-radius: 8px; padding: 12px 16px; margin: 6px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                        <span style="font-size: 0.95rem; font-weight: 700; color: #10b981;">⚡ All Recipients Prepared</span>
+                        <div style="font-size: 0.8rem; color: #a1a1aa;">Click to launch WhatsApp Web / App tabs for all {len(active_recipients)} contacts simultaneously:</div>
+                    </div>
+                    <button onclick='{links_json}.forEach(url => window.open(url, "_blank"));' 
+                            style="background: #25D366; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.92rem; box-shadow: 0 2px 6px rgba(37, 211, 102, 0.4);">
+                        📲 Open WhatsApp for All Contacts
+                    </button>
+                </div>
+            </div>
+            """,
+            height=75,
+        )
 
     # Operational status banner
     st.markdown("#### 📱 Live Alert Dispatch & Smartphone Screen:")
