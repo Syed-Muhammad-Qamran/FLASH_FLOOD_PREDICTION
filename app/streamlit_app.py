@@ -7,7 +7,7 @@ default and degrades gracefully when a source is missing.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import json
 import os
 from pathlib import Path
@@ -550,7 +550,9 @@ def _whatsapp_simulation_tab() -> None:
     st.markdown("#### ⚡ Operational Lifecycle Scenarios:")
 
     sim_col1, sim_col2, sim_col3 = st.columns(3)
-    now_str = datetime.now(timezone.utc).strftime("%I:%M %p UTC")
+    pkt_tz = timezone(timedelta(hours=5))
+    now_pkt = datetime.now(pkt_tz)
+    now_str = now_pkt.strftime("%d %b %Y, %I:%M %p PKT") + " (" + datetime.now(timezone.utc).strftime("%I:%M %p UTC") + ")"
 
     with sim_col1:
         st.markdown("##### 🔴 1. Positive Flood (EMERGENCY)")
@@ -576,219 +578,150 @@ def _whatsapp_simulation_tab() -> None:
     selected_sim = st.session_state.get("sim_case", "emergency")
 
     # -------------------------------------------------------------------------
-    # Scenario Directive Texts & Metadata
+    # Scenario Directive Texts & Metadata (Bilingual Urdu + English)
     # -------------------------------------------------------------------------
     if selected_sim == "emergency":
         basin_id = "swat_kalam"
-        basin_name = "Swat River at Kalam (swat_kalam)"
+        basin_name = "Swat River at Kalam (سوات دریا، کالام)"
         level_badge = "<span class='fw-badge badge-red'>RED ALERT — LEVEL 4 (CRITICAL OVERBANK)</span>"
-        action = "IMMEDIATE EVACUATION REQUIRED"
+        action = "IMMEDIATE EVACUATION REQUIRED / فوری انخلاء لازمی ہے"
         risk_score = "0.988"
         lead_time = "3 to 6 Hours"
-        bubble_class = "wa-bubble-emergency"
 
         msg_text = (
-            "🚨 *FLOODWATCH KP EMERGENCY ALERT*\n\n"
-            f"📍 *Location:* {basin_name}\n"
-            "⚠️ *Threat Level:* RED ALERT (Critical Flash Flood Overbank)\n"
-            f"📈 *Peak Probability:* {risk_score} | *Lead Time:* {lead_time}\n"
-            "🌧️ *Mechanism:* Convective cloudburst (>185mm rain upstream)\n\n"
-            "📢 *ACTION DIRECTIVE:*\n"
-            "• Immediate evacuation from low-lying riverbanks in Kalam Bazaar.\n"
-            "• Move family & livestock to designated higher school grounds.\n"
-            "• Avoid all bridges, culverts, and riverbanks.\n\n"
-            "🏛️ *Authority:* PDMA KP Emergency Operations / Rescue 1122\n"
-            "📞 *Emergency Helplines:* 1122 / 1700\n"
-            f"⏱️ *Dispatched:* {now_str}"
+            "🚨 *FLOODWATCH KP EMERGENCY ALERT*\n"
+            "🚨 *فلڈ واچ خیبر پختونخوا ہنگامی الرٹ*\n\n"
+            f"📍 *Location / مقام:* {basin_name}\n"
+            "⚠️ *Threat Level / خطرے کی سطح:* RED ALERT — CRITICAL FLASH FLOOD (سرخ الرٹ - شدید سیلابی خطرہ)\n"
+            f"📈 *Peak Probability / سیلاب کا امکان:* {risk_score} (98.8%)\n"
+            f"⏱️ *Lead Time / متوقع وقت:* {lead_time}\n"
+            "🌧️ *Mechanism / وجہ:* Severe convective cloudburst upstream (>185mm rain) / بالائی علاقوں میں شدید کلاؤڈ برسٹ اور طوفانی بارش\n\n"
+            "📢 *ACTION DIRECTIVES / فوری حفاظتی ہدایات:*\n"
+            "• [EN] IMMEDIATE EVACUATION required from low-lying riverbanks in Kalam Bazaar. Move families and livestock to higher school shelters immediately.\n"
+            "• [UR] کالام بازار اور دریا کے قریبی نشیبی علاقے فوری خالی کریں۔ تمام خاندان اور مویشی قریبی بلندی اور محفوظ سرکاری سکولوں میں منتقل کریں۔\n"
+            "• Avoid all bridges, culverts, and fast-flowing torrents. / ندی نالوں، پلوں اور دریا کے قریب جانے سے سختی سے گریز کریں۔\n\n"
+            "🏛️ *Authority / مجاز ادارہ:* PDMA KP Emergency Operations / Rescue 1122\n"
+            "📞 *Helplines / ایمرجنسی ہیلپ لائن:* 1122 / 1700\n"
+            f"⏱️ *Dispatched / ترسیل کا وقت:* {now_str}"
         )
 
     elif selected_sim == "cancel":
         basin_id = "swat_kalam"
-        basin_name = "Swat River at Kalam (swat_kalam)"
+        basin_name = "Swat River at Kalam (سوات دریا، کالام)"
         level_badge = "<span class='fw-badge badge-green'>GREEN — ALERT CANCELED (ALL CLEAR)</span>"
-        action = "EVACUATION LIFTED — SAFE RETURN PERMITTED"
+        action = "EVACUATION LIFTED — SAFE RETURN PERMITTED / انخلاء ختم - واپسی کی اجازت"
         risk_score = "0.045"
         lead_time = "N/A"
-        bubble_class = "wa-bubble-normal"
 
         msg_text = (
-            "🟢 *FLOODWATCH KP: ALERT CANCELLATION & ALL CLEAR NOTICE*\n\n"
-            f"📍 *Location:* {basin_name}\n"
-            "✅ *Status:* ALL CLEAR — EMERGENCY DIRECTIVE LIFTED\n"
-            "📊 *Sensor Telemetry:* River discharge has receded below bankfull stage (12,000 cfs).\n"
-            "🛰️ *Satellite Feed:* Atmospheric convective cell has completely dissipated.\n\n"
-            "📢 *CIVIL DIRECTIVE:*\n"
-            "• Previous evacuation order for Kalam Valley riverbanks is officially RESCINDED.\n"
-            "• Families may safely return to residences.\n"
-            "• Emergency units are standing down to routine surveillance.\n"
-            "• Report remaining structural hazards to Rescue 1122.\n\n"
-            "🏛️ *Authority:* PDMA Khyber Pakhtunkhwa / District Admin Swat\n"
-            "📞 *Helplines:* 1122 / 1700\n"
-            f"⏱️ *Dispatched:* {now_str}"
+            "🟢 *FLOODWATCH KP: ALERT CANCELLATION & ALL CLEAR NOTICE*\n"
+            "🟢 *فلڈ واچ خیبر پختونخوا: الرٹ کی منسوخی اور صورتحال معمول پر*\n\n"
+            f"📍 *Location / مقام:* {basin_name}\n"
+            "✅ *Status / صورتحال:* ALL CLEAR — EMERGENCY DIRECTIVE LIFTED (تمام خطرات ختم - انخلاء ختم)\n"
+            "📊 *River Discharge / دریا کا بہاؤ:* River flow receded below danger bankfull stage (12,000 cfs) / پانی کا بہاؤ خطرے کے نشان سے نیچے آ چکا ہے\n"
+            "🛰️ *Satellite Telemetry / موسمی صورتحال:* Atmospheric convective storm dissipated / طوفانی بارش کا سلسلہ مکمل طور پر تھم چکا ہے\n\n"
+            "📢 *CIVIL DIRECTIVE / شہری ہدایات:*\n"
+            "• [EN] Previous evacuation order for Kalam Valley riverbanks is officially RESCINDED. Families may safely return to residences.\n"
+            "• [UR] کالام ویلی کے لیے دیا گیا انخلاء کا حکم باضابطہ طور پر واپس لیا جاتا ہے۔ شہری محفوظ طریقے سے اپنے گھروں کو واپس جا سکتے ہیں۔\n"
+            "• Emergency rescue teams standing down to routine surveillance. / ریسکیو اور ایمرجنسی عملہ معمول کی نگرانی پر واپس آ گیا ہے۔\n"
+            "• Report remaining structural hazards to Rescue 1122. / کسی بھی قسم کے نقصان کی اطلاع 1122 پر دیں۔\n\n"
+            "🏛️ *Authority / مجاز ادارہ:* PDMA Khyber Pakhtunkhwa / District Admin Swat\n"
+            "📞 *Helplines / ایمرجنسی ہیلپ لائن:* 1122 / 1700\n"
+            f"⏱️ *Dispatched / ترسیل کا وقت:* {now_str}"
         )
 
     else:
         basin_id = "chitral_drosh"
-        basin_name = "Chitral River at Drosh (chitral_drosh)"
+        basin_name = "Chitral River at Drosh (دروش، چترال)"
         level_badge = "<span class='fw-badge badge-green'>GREEN — LEVEL 1 (NORMAL / SAFE)</span>"
-        action = "NORMAL ROUTINE — NO EVACUATION"
+        action = "NORMAL ROUTINE — NO EVACUATION / معمول کے مطابق - انخلاء کی ضرورت نہیں"
         risk_score = "0.012"
         lead_time = "N/A"
-        bubble_class = "wa-bubble-normal"
 
         msg_text = (
-            "ℹ️ *FLOODWATCH KP VERIFICATION ADVISORY*\n\n"
-            f"📍 *Location:* {basin_name}\n"
-            "✅ *Status:* GREEN (Normal Hydrologic Flow - Safe)\n"
-            f"📊 *Current River Stage:* 0.85m (Danger mark: 4.50m)\n"
-            "🛰️ *Sensor Checks:* Zero convective rain detected across Chitral.\n\n"
-            "📢 *RUMOR CLARIFICATION:*\n"
-            "• Reports of dam failure or flood wave in Drosh are UNCONFIRMED RUMORS.\n"
-            "• River discharge is completely within safe seasonal parameters.\n"
-            "• Please do not spread unverified audio forwards.\n\n"
-            "🏛️ *Authority:* FloodWatch KP Misinformation Triage Desk\n"
-            "📞 *Helplines:* 1122 / 1700\n"
-            f"⏱️ *Dispatched:* {now_str}"
+            "ℹ️ *FLOODWATCH KP VERIFICATION ADVISORY*\n"
+            "ℹ️ *فلڈ واچ خیبر پختونخوا تصدیقی وضاحتی بیان*\n\n"
+            f"📍 *Location / مقام:* {basin_name}\n"
+            "✅ *Status / موجودہ صورتحال:* GREEN — NORMAL SAFE FLOW (سبز - معمول کا محفوظ بہاؤ)\n"
+            "📊 *Current River Stage / دریا کی سطح:* 0.85m (Danger mark / خطرے کا نشان: 4.50m)\n"
+            "🛰️ *Sensor Checks / سنسر ڈیٹا:* Zero flood rain detected across Chitral / چترال میں کوئی سیلابی بارش نہیں ہوئی\n\n"
+            "📢 *RUMOR CLARIFICATION / افواہ کی تردید:*\n"
+            "• [EN] Viral audio forwards claiming dam failure or flood wave in Drosh are UNCONFIRMED RUMORS. River discharge is within safe seasonal parameters.\n"
+            "• [UR] دروش میں ڈیم ٹوٹنے یا سیلابی ریلے کی وائرل خبریں سراسر بے بنیاد افواہیں ہیں۔ دریا کا بہاؤ مکمل طور پر معمول اور محفوظ حد کے اندر ہے۔\n"
+            "• Please do not spread unverified audio forwards. / برائے مہربانی غیر مصدقہ آڈیو پیغامات پھیلانے سے گریز کریں۔\n\n"
+            "🏛️ *Authority / مجاز ادارہ:* FloodWatch KP Misinformation Triage Desk\n"
+            "📞 *Helplines / ایمرجنسی ہیلپ لائن:* 1122 / 1700\n"
+            f"⏱️ *Dispatched / ترسیل کا وقت:* {now_str}"
         )
 
     # -------------------------------------------------------------------------
-    # 1-Click Multi-Recipient Broadcast Control Hub
+    # Recipient Broadcast Dispatch List (Manual / Individual WhatsApp Transmission)
     # -------------------------------------------------------------------------
     active_recipients = [r for r in st.session_state["recipients"] if r.get("active", True)]
     encoded_text = urllib.parse.quote(msg_text)
 
-    st.markdown("---")
-    st.markdown("#### ⚡ 1-Click Multi-Recipient Broadcast Hub:")
-    st.caption("Broadcast the current emergency advisory to all active directory recipients simultaneously with a single click:")
-
-    bc1, bc2 = st.columns([2, 1])
-    with bc1:
-        trigger_broadcast = st.button(
-            f"🚀 1-Click Broadcast: Send to All {len(active_recipients)} Active Contacts",
-            type="primary",
-            use_container_width=True,
-            key="btn_broadcast_all",
-        )
-    with bc2:
-        st.download_button(
-            "📋 Export Official Text",
-            data=msg_text,
-            file_name=f"floodwatch_alert_{basin_id}_{selected_sim}.txt",
-            mime="text/plain",
-            use_container_width=True,
-            help="Download formatted alert text to paste into WhatsApp Community Groups or announcement channels.",
-        )
-
-    # When 1-click broadcast is pressed or autonomous mode triggers:
-    if trigger_broadcast or (auto_mode and st.session_state.get("auto_dispatched")):
-        dispatch_results = []
-        for r in active_recipients:
-            res = _dispatch_whatsapp_direct(r["phone"], msg_text)
-            dispatch_results.append((r, res))
-
-        st.success(
-            f"⚡ **1-Click Broadcast Successful!** Official directive dispatched to all {len(active_recipients)} active recipients in directory."
-        )
-
-        # In browser: provide interactive 1-click launcher to open all recipient WhatsApp chats at once
-        all_wa_links = [
-            f"https://api.whatsapp.com/send?phone={normalize_phone(r['phone'])}&text={encoded_text}"
-            for r in active_recipients
-        ]
-        links_json = json.dumps(all_wa_links)
-        st.components.v1.html(
-            f"""
-            <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; border-radius: 8px; padding: 12px 16px; margin: 6px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-                    <div>
-                        <span style="font-size: 0.95rem; font-weight: 700; color: #10b981;">⚡ All Recipients Prepared</span>
-                        <div style="font-size: 0.8rem; color: #a1a1aa;">Click to launch WhatsApp Web / App tabs for all {len(active_recipients)} contacts simultaneously:</div>
-                    </div>
-                    <button onclick='{links_json}.forEach(url => window.open(url, "_blank"));' 
-                            style="background: #25D366; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.92rem; box-shadow: 0 2px 6px rgba(37, 211, 102, 0.4);">
-                        📲 Open WhatsApp for All Contacts
-                    </button>
-                </div>
-            </div>
-            """,
-            height=75,
-        )
-
     # Operational status banner
-    st.markdown("#### 📱 Live Alert Dispatch & Smartphone Screen:")
+    st.markdown("---")
+    st.markdown("#### 📱 Active Emergency Advisory Details:")
     c_info1, c_info2, c_info3 = st.columns(3)
     c_info1.markdown(f"**Target Basin:** `{basin_name}`")
     c_info2.markdown(f"**Operational Threat:** {level_badge}", unsafe_allow_html=True)
     c_info3.markdown(f"**Protocol Required:** **{action}**")
 
-    # Smartphone Preview Frame
-    provider_label = mask_phone(ALERT_PROVIDER_PHONE, mask_privacy)
-
-    st.markdown(
-        f"""
-        <div class="wa-phone-frame">
-            <div class="wa-header">
-                <div class="wa-avatar">FW</div>
-                <div>
-                    <div style="font-weight: 600; font-size: 0.95rem;">FloodWatch KP • Emergency Alert Gateway</div>
-                    <div style="font-size: 0.75rem; color: #8696a0;">Verified Official Dispatch • {provider_label}</div>
-                </div>
-            </div>
-            <div class="wa-chat-body">
-                <div style="text-align: center; margin-bottom: 0.8rem;">
-                    <span style="background: #182229; font-size: 0.7rem; color: #8696a0; padding: 3px 8px; border-radius: 6px;">
-                        TODAY
-                    </span>
-                </div>
-                <div class="{bubble_class}">
-                    <div style="font-size: 0.78rem; font-weight: 700; color: #00a884; margin-bottom: 4px;">
-                        Broadcast To: {len(active_recipients)} Registered Community Responders
-                    </div>
-                    {msg_text.replace(chr(10), '<br>')}
-                    <div class="wa-footer-time">{now_str} ✓✓</div>
-                </div>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    # Bilingual Advisory Text Expander
+    with st.expander("📄 View Official Bilingual Advisory Text (Urdu & English) + Pakistan Standard Time", expanded=True):
+        st.code(msg_text, language=None)
+        st.download_button(
+            "📋 Download / Copy Bilingual Directive Text",
+            data=msg_text,
+            file_name=f"floodwatch_alert_{basin_id}_{selected_sim}.txt",
+            mime="text/plain",
+            use_container_width=True,
+            help="Download or copy the exact bilingual advisory to forward into WhatsApp community groups.",
+            key="dl_bilingual_alert_text",
+        )
 
     st.markdown("<br>", unsafe_allow_html=True)
-
-    # -------------------------------------------------------------------------
-    # Multi-Recipient Individual & Bulk Dispatch Grid
-    # -------------------------------------------------------------------------
-    st.markdown("#### 🚀 Registered Citizen Broadcast Dispatch:")
-    st.caption("Live transmission status for each registered contact with direct WhatsApp integration:")
+    st.markdown("#### 📋 Registered Recipient Dispatch List (Manual WhatsApp Transmission):")
+    st.caption("Send official bilingual flood alerts individually to each registered contact with a single click:")
 
     if not active_recipients:
         st.warning("All recipients in the directory are currently muted or deleted. Add or unmute recipients above.")
     else:
-        d_cols = st.columns(min(3, len(active_recipients)))
+        # Table Header
+        h_col1, h_col2, h_col3, h_col4 = st.columns([3, 2, 2, 2])
+        h_col1.markdown("**Recipient & Designation**")
+        h_col2.markdown("**WhatsApp Mobile**")
+        h_col3.markdown("**Operational Status**")
+        h_col4.markdown("**Direct Action**")
+        st.markdown("<hr style='margin: 0.2rem 0 0.6rem 0;'>", unsafe_allow_html=True)
+
         for idx, r in enumerate(active_recipients):
-            col = d_cols[idx % len(d_cols)]
+            r_col1, r_col2, r_col3, r_col4 = st.columns([3, 2, 2, 2])
             wa_link = f"https://api.whatsapp.com/send?phone={normalize_phone(r['phone'])}&text={encoded_text}"
             masked_num = mask_phone(r["phone"], mask_privacy)
-            with col:
+            first_name = r.get("name", "Citizen").split()[0]
+            btn_type = "primary" if selected_sim == "emergency" else "secondary"
+
+            with r_col1:
                 st.markdown(
-                    f"""
-                    <div class="fw-card" style="padding: 0.85rem; margin-bottom: 0.5rem;">
-                        <b>{r['name']}</b><br>
-                        <span style="font-size: 0.8rem; color: #888;">{r['role']}</span><br>
-                        <code style="font-size: 0.75rem;">{masked_num}</code><br>
-                        <span style="font-size: 0.75rem; color: #10b981;">● Autonomous Dispatch Ready</span>
-                    </div>
-                    """,
+                    f"**{r.get('name', 'Registered Citizen')}**<br>"
+                    f"<span style='font-size: 0.8rem; color: #888;'>{r.get('role', 'Citizen')}</span>",
                     unsafe_allow_html=True,
                 )
-                btn_type = "primary" if selected_sim == "emergency" else "secondary"
+            with r_col2:
+                st.markdown(f"<code>{masked_num}</code>", unsafe_allow_html=True)
+            with r_col3:
+                st.markdown("<span style='font-size: 0.85rem; color: #10b981;'>● Ready for Dispatch</span>", unsafe_allow_html=True)
+            with r_col4:
                 st.link_button(
-                    f"📲 Send to {r['name'].split()[0]}",
+                    f"📲 Send to {first_name}",
                     wa_link,
                     use_container_width=True,
                     type=btn_type,
                     key=f"link_btn_{r.get('id', idx)}_{idx}",
                 )
+            st.markdown("<hr style='margin: 0.2rem 0 0.5rem 0; border: none; border-bottom: 1px dashed rgba(255,255,255,0.15);'>", unsafe_allow_html=True)
 
 
 def _historical_cases_view() -> None:
