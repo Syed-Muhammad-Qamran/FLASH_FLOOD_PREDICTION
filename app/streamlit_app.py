@@ -352,18 +352,101 @@ def _triage_tab(results: list[interop.RiskResult]) -> None:
                 st.write(f"• {line}")
 
 
+def normalize_phone(phone: str) -> str:
+    """Normalizes Pakistani and international phone numbers for WhatsApp API."""
+    digits = "".join(ch for ch in str(phone) if ch.isdigit())
+    if digits.startswith("0") and len(digits) == 11:
+        return "92" + digits[1:]
+    if digits.startswith("92") and len(digits) == 12:
+        return digits
+    return digits
+
+
+def mask_phone(phone: str, enabled: bool = True) -> str:
+    """Masks phone numbers for privacy protection."""
+    if not enabled:
+        return str(phone)
+    norm = normalize_phone(phone)
+    if len(norm) >= 8:
+        return f"+{norm[:4]} •••• {norm[-3:]}"
+    return "••••••••"
+
+
 def _whatsapp_simulation_tab() -> None:
-    """Interactive WhatsApp alert simulation and citizen dispatch."""
-    st.markdown("### 🚨 Emergency Simulation & Citizen WhatsApp Dispatcher")
+    """Interactive WhatsApp alert simulation, recipient directory, and direct citizen dispatch."""
+    st.markdown("### 🚨 Direct Emergency Dispatcher & Recipient Directory")
     st.caption(
-        "Simulate live emergency alerts and citizen warning dispatches with full WhatsApp Web / App integration."
+        "Manage emergency broadcast recipients and dispatch verified real-time flood warnings directly over WhatsApp."
     )
 
-    col_meta1, col_meta2 = st.columns(2)
-    with col_meta1:
-        st.markdown(f"**Official Alert Provider**: `+92 316 9927812` *(PDMA KP / FloodWatch Emergency Operations)*")
-    with col_meta2:
-        st.markdown(f"**Designated Citizen Recipient**: `+92 336 6444552` *(Focal Community Representative)*")
+    # Privacy Shield Toggle
+    t_col1, t_col2 = st.columns([2, 1])
+    with t_col2:
+        mask_privacy = st.toggle("🔒 Mask Contact Numbers (Privacy Shield)", value=True, key="privacy_mask")
+
+    # Directory state initialization
+    if "recipients" not in st.session_state:
+        st.session_state["recipients"] = [
+            {
+                "name": "Community Focal Person (Kalam)",
+                "role": "Village Community Leader",
+                "phone": CITIZEN_PHONE,
+                "active": True,
+            },
+            {
+                "name": "Rescue 1122 Swat Control Desk",
+                "role": "Emergency Services Operations",
+                "phone": ALERT_PROVIDER_PHONE,
+                "active": True,
+            },
+        ]
+
+    # Recipient Management Form (Expander)
+    with st.expander("👥 Emergency Broadcast Directory (Add / Manage Recipients)", expanded=False):
+        st.markdown("##### ➕ Register New Citizen or Emergency Responder:")
+        with st.form("add_recipient_form", clear_on_submit=True):
+            r_col1, r_col2, r_col3 = st.columns(3)
+            r_name = r_col1.text_input("Full Name / Station", placeholder="e.g. Tariq Khan / Kalam Civil Defense")
+            r_role = r_col2.selectbox(
+                "Designation / Role",
+                [
+                    "Community Focal Person",
+                    "Village Council Secretary",
+                    "Rescue 1122 Officer",
+                    "Local Resident / Citizen",
+                    "Mosque / Community Announcer",
+                    "School Principal (Evac Shelter)",
+                ],
+            )
+            r_phone = r_col3.text_input("WhatsApp Mobile Number", placeholder="03XXXXXXXXX")
+            submitted = st.form_submit_button("➕ Register to Emergency Broadcast List", use_container_width=True)
+            if submitted:
+                clean_num = "".join(ch for ch in r_phone if ch.isdigit())
+                if len(clean_num) >= 10:
+                    st.session_state["recipients"].append({
+                        "name": r_name.strip() or "Registered Citizen",
+                        "role": r_role,
+                        "phone": r_phone.strip(),
+                        "active": True,
+                    })
+                    st.success(f"Registered {r_name} ({mask_phone(r_phone, mask_privacy)}) successfully!")
+                    st.rerun()
+                else:
+                    st.error("Please enter a valid 11-digit Pakistani mobile number (e.g. 03366444552).")
+
+        # Current Directory Table
+        st.markdown("##### Current Registered Recipients:")
+        rec_display = []
+        for i, r in enumerate(st.session_state["recipients"]):
+            rec_display.append({
+                "ID": i + 1,
+                "Name / Station": r["name"],
+                "Designation": r["role"],
+                "Contact": mask_phone(r["phone"], mask_privacy),
+                "Channel": "WhatsApp Direct Gateway",
+                "Status": "Active" if r["active"] else "Muted",
+            })
+        st.dataframe(pd.DataFrame(rec_display), use_container_width=True, hide_index=True)
 
     st.markdown("---")
     st.markdown("#### Choose an Operational Test Scenario:")
@@ -389,7 +472,6 @@ def _whatsapp_simulation_tab() -> None:
     selected_sim = st.session_state.get("sim_case", "emergency")
 
     st.markdown("---")
-    st.markdown("#### 📱 Live WhatsApp Message Dispatch Screen:")
 
     if selected_sim == "emergency":
         basin_name = "Swat River at Kalam (swat_kalam)"
@@ -397,7 +479,8 @@ def _whatsapp_simulation_tab() -> None:
         action = "IMMEDIATE EVACUATION REQUIRED"
         risk_score = "0.988"
         lead_time = "3 to 6 Hours"
-        
+        bubble_class = "wa-bubble-emergency"
+
         msg_text = (
             "🚨 *FLOODWATCH KP EMERGENCY ALERT*\n\n"
             f"📍 *Location:* {basin_name}\n"
@@ -407,19 +490,19 @@ def _whatsapp_simulation_tab() -> None:
             "📢 *ACTION DIRECTIVE:*\n"
             "• Immediate evacuation from low-lying riverbanks in Kalam Bazaar.\n"
             "• Move family & livestock to designated higher school grounds.\n"
-            "• Avoid all bridges and culverts.\n\n"
+            "• Avoid all bridges, culverts, and riverbanks.\n\n"
             "🏛️ *Authority:* PDMA KP Emergency Operations / Rescue 1122\n"
-            "📞 *Helpline:* 1122 / 1700\n"
+            "📞 *Emergency Helplines:* 1122 / 1700\n"
             f"⏱️ *Dispatched:* {now_str}"
         )
-        bubble_class = "wa-bubble-emergency"
     else:
         basin_name = "Chitral River at Drosh (chitral_drosh)"
         level_badge = "<span class='fw-badge badge-green'>GREEN — LEVEL 1 (NORMAL / SAFE)</span>"
         action = "NORMAL ROUTINE — NO EVACUATION"
         risk_score = "0.012"
         lead_time = "N/A"
-        
+        bubble_class = "wa-bubble-normal"
+
         msg_text = (
             "ℹ️ *FLOODWATCH KP VERIFICATION ADVISORY*\n\n"
             f"📍 *Location:* {basin_name}\n"
@@ -431,20 +514,21 @@ def _whatsapp_simulation_tab() -> None:
             "• River discharge is completely within safe seasonal parameters.\n"
             "• Please do not spread unverified audio forwards.\n\n"
             "🏛️ *Authority:* FloodWatch KP Misinformation Triage Desk\n"
-            "📞 *Helpline:* 1122 / 1700\n"
+            "📞 *Helplines:* 1122 / 1700\n"
             f"⏱️ *Dispatched:* {now_str}"
         )
-        bubble_class = "wa-bubble-normal"
 
-    # Display operational summary
+    # Operational summary metrics
+    st.markdown("#### 📱 Live Alert Dispatch & Smartphone Screen:")
     c_info1, c_info2, c_info3 = st.columns(3)
-    c_info1.markdown(f"**Monitored Basin:** `{basin_name}`")
-    c_info2.markdown(f"**Operational Status:** {level_badge}", unsafe_allow_html=True)
-    c_info3.markdown(f"**Action Required:** **{action}**")
+    c_info1.markdown(f"**Target Basin:** `{basin_name}`")
+    c_info2.markdown(f"**Operational Threat:** {level_badge}", unsafe_allow_html=True)
+    c_info3.markdown(f"**Protocol Required:** **{action}**")
 
     # WhatsApp UI Container
     encoded_text = urllib.parse.quote(msg_text)
-    wa_link = f"https://api.whatsapp.com/send?phone=923366444552&text={encoded_text}"
+    provider_label = mask_phone(ALERT_PROVIDER_PHONE, mask_privacy)
+    primary_recipient_label = mask_phone(CITIZEN_PHONE, mask_privacy)
 
     st.markdown(
         f"""
@@ -452,8 +536,8 @@ def _whatsapp_simulation_tab() -> None:
             <div class="wa-header">
                 <div class="wa-avatar">FW</div>
                 <div>
-                    <div style="font-weight: 600; font-size: 0.95rem;">FloodWatch KP Alert Provider</div>
-                    <div style="font-size: 0.75rem; color: #8696a0;">Official Dispatch • +92 316 9927812</div>
+                    <div style="font-weight: 600; font-size: 0.95rem;">FloodWatch KP • Emergency Alert Gateway</div>
+                    <div style="font-size: 0.75rem; color: #8696a0;">Verified Official Dispatch • {provider_label}</div>
                 </div>
             </div>
             <div class="wa-chat-body">
@@ -464,7 +548,7 @@ def _whatsapp_simulation_tab() -> None:
                 </div>
                 <div class="{bubble_class}">
                     <div style="font-size: 0.78rem; font-weight: 700; color: #00a884; margin-bottom: 4px;">
-                        Recipient: Citizen (+92 336 6444552)
+                        Broadcast To: {len(st.session_state['recipients'])} Designated Community Responders
                     </div>
                     {msg_text.replace(chr(10), '<br>')}
                     <div class="wa-footer-time">{now_str} ✓✓</div>
@@ -476,14 +560,34 @@ def _whatsapp_simulation_tab() -> None:
     )
 
     st.markdown("<br>", unsafe_allow_html=True)
-    b_col1, b_col2, b_col3 = st.columns([1, 2, 1])
-    with b_col2:
-        st.link_button(
-            "📲 Open & Send Directly via WhatsApp (+92 336 6444552)",
-            wa_link,
-            use_container_width=True,
-            type="primary",
-        )
+
+    # Direct WhatsApp Broadcast Section to All Registered Recipients
+    st.markdown("#### 🚀 Direct WhatsApp Broadcast Dispatcher:")
+    st.caption("Click below to send the direct WhatsApp warning message to any registered recipient:")
+
+    dispatch_cols = st.columns(min(3, max(1, len(st.session_state["recipients"]))))
+    for idx, recipient in enumerate(st.session_state["recipients"]):
+        col = dispatch_cols[idx % len(dispatch_cols)]
+        phone_norm = normalize_phone(recipient["phone"])
+        wa_url = f"https://api.whatsapp.com/send?phone={phone_norm}&text={encoded_text}"
+        masked_num = mask_phone(recipient["phone"], mask_privacy)
+        with col:
+            st.markdown(
+                f"""
+                <div class="fw-card" style="padding: 0.8rem; margin-bottom: 0.5rem;">
+                    <b>{recipient['name']}</b><br>
+                    <span style="font-size: 0.8rem; color: #888;">{recipient['role']}</span><br>
+                    <code style="font-size: 0.75rem;">{masked_num}</code>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            st.link_button(
+                f"📲 Direct Message to {recipient['name'].split()[0]}",
+                wa_url,
+                use_container_width=True,
+                type="primary" if selected_sim == "emergency" else "secondary",
+            )
 
 
 def _historical_cases_view() -> None:
